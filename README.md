@@ -1,7 +1,13 @@
-# README
+# Notes à moi-même
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+bookmakers (max-10) - "winamax_fr", "unibet_eu"
+
+avoir plusieurs bookmakers pour prévoir les erreurs si les autres ont pas les côtes
+
+Compétitions
+* soccer_uefa_champs_league
+* api_key 45db0d1f3d9d8a565881719f73a6b386
+* id real - atletico 92053acbb79f42814087737044390f6f
 
 Things you may want to cover:
 
@@ -11,7 +17,7 @@ Things you may want to cover:
 
 * Configuration
 
-* Database creation
+<!-- * Database creation -->
 
 * Database initialization
 
