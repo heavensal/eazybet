@@ -75,3 +75,6 @@ end
 
 # users management
 gem "devise", "~> 4.9.4"
+
+# request fetch api
+gem "faraday"

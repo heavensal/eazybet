@@ -1,0 +1,26 @@
+<h1>Liste des Compétitions</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Clé</th>
+
+      <th>Titre</th>
+      <th>Description</th>
+
+
+    </tr>
+  </thead>
+  <tbody>
+    <% @competitions.each do |competition| %>
+      <tr>
+        <td><%= competition.key %></td>
+
+        <td><%= competition.title %></td>
+        <td><%= competition.description %></td>
+
+
+      </tr>
+    <% end %>
+  </tbody>
+</table>

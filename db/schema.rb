@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_03_12_142351) do
+ActiveRecord::Schema[8.0].define(version: 2025_03_12_214908) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -24,6 +24,15 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_12_142351) do
     t.datetime "updated_at", null: false
     t.index ["odd_id"], name: "index_bets_on_odd_id"
     t.index ["user_id"], name: "index_bets_on_user_id"
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.text "content", null: false
+    t.bigint "user_id", null: false
+    t.string "event_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
   create_table "competitions", force: :cascade do |t|
@@ -92,6 +101,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_12_142351) do
 
   add_foreign_key "bets", "odds"
   add_foreign_key "bets", "users"
+  add_foreign_key "comments", "events"
+  add_foreign_key "comments", "users"
   add_foreign_key "events", "competitions"
   add_foreign_key "odds", "events"
   add_foreign_key "scores", "events"
