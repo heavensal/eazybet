@@ -1,6 +1,6 @@
 <h1>Liste des Compétitions</h1>
 
-<table>
+<table class="w-full">
   <thead>
     <tr>
       <th>Clé</th>
@@ -24,3 +24,38 @@
     <% end %>
   </tbody>
 </table>
+
+<%# pour chaque competition, on affiche en titre le title et tous ses events %>
+<% @competitions.each do |competition| %>
+  <h2 class="text-center">
+    <%= competition.title %>
+  </h2>
+
+  <ul class="flex flex-wrap">
+    <% competition.events.sorted_by_commence_time.each do |event| %>
+      <li class="border p-4 m-2">
+        <h3>
+          <%= event.id %>
+        </h3>
+        <p>
+          <%= event.home_team %> vs <%= event.away_team %>
+        </p>
+        <p>
+          <%= event.commence_time %>
+        </p>
+        <hr class="my-2">
+        <ul id="odds_for_event_<%= event.id %>">
+          <% event.odds.each do |odd| %>
+            <li>
+              <%= odd.name %> - <%= odd.price %>
+            </li>
+          <% end %>
+
+        </ul>
+        <small>
+          comments: <%= event.comments.count %>
+        </small>
+      </li>
+    <% end %>
+  </ul>
+<% end %>

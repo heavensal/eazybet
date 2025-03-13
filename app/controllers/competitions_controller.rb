@@ -1,6 +1,7 @@
 class CompetitionsController < ApplicationController
+  skip_before_action :authenticate_user!
   def index
-    @competitions = Competition.all
+    @competitions = Competition.includes(events: :odds)
   end
 
   def show
