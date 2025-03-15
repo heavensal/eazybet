@@ -1,56 +1,29 @@
-<h1>Liste des Compétitions</h1>
-
-<table class="w-full">
-  <thead>
-    <tr>
-      <th>Clé</th>
-
-      <th>Titre</th>
-      <th>Description</th>
-
-
-    </tr>
-  </thead>
-  <tbody>
-    <% @competitions.each do |competition| %>
-      <tr>
-        <td><%= competition.key %></td>
-
-        <td><%= competition.title %></td>
-        <td><%= competition.description %></td>
-
-
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
 <%# pour chaque competition, on affiche en titre le title et tous ses events %>
 <% @competitions.each do |competition| %>
-  <h2 class="text-center">
-    <%= competition.title %>
-  </h2>
-
-  <ul class="flex flex-wrap">
+  <div class="flex items-center border-l-3 border-rose-600 relative">
+    <div class="absolute inset-0 bg-gradient-to-r from-rose-600 to-rose-800 opacity-30"></div>
+    <h2 class="font-medium text-rose-600 relative z-10 p-4">
+      <%= competition.title %>
+    </h2>
+  </div>
+  <ul class="flex overflow-x-auto space-x-4 p-4">
     <% competition.events.sorted_by_commence_time.each do |event| %>
-      <li class="border p-4 m-2">
-        <h3>
-          <%= event.id %>
-        </h3>
-        <p>
-          <%= event.home_team %> vs <%= event.away_team %>
-        </p>
-        <p>
-          <%= event.commence_time %>
-        </p>
-        <hr class="my-2">
-        <ul id="odds_for_event_<%= event.id %>">
+      <li class="flex-shrink-0 border-2 border-blue-900  m-2 w-[300px] bg-blue-900 rounded-lg">
+        <div class="p-2.5 flex justify-around bg-gray-900 rounded-t-lg">
+          <p>
+            <%= event.home_team %> vs <%= event.away_team %>
+          </p>
+          <p>
+            <%= event.commence_time %>
+          </p>
+        </div>
+        <ul id="odds_for_event_<%= event.id %>" class="flex justify-around">
           <% event.odds.each do |odd| %>
             <li>
-              <%= odd.name %> - <%= odd.price %>
+              <p> <%= odd.name %></p>
+              <button class=''>x <%= odd.price %></button>
             </li>
           <% end %>
-
         </ul>
         <small>
           comments: <%= event.comments.count %>
