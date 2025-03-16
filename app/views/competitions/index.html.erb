@@ -24,10 +24,26 @@
           </p>
         </div>
         <ul id="odds_for_event_<%= event.id %>" class="grid grid-cols-3 gap-4 p-2.5 items-end  ">
-          <% event.odds.each do |odd| %>
+
+          <% if event.odds.any? %>
             <li class="flex flex-col gap-2">
-              <p class='text-center text-white'> <%= odd.name %></p>
-              <button class="p-2.5 border border-white text-white bg-transparent rounded-md transition-shadow duration-200 hover:shadow-[0_0_8px_2px_rgba(255,255,255,0.6)] focus:shadow-[0_0_10px_3px_rgba(255,255,255,0.8)]">x <%= odd.price %></button>
+              <p class='text-center text-white'> <%= event.home_team_odd.name %></p>
+              <button class="p-2.5 border border-white text-white bg-transparent rounded-md transition-shadow duration-200 hover:shadow-[0_0_8px_2px_rgba(255,255,255,0.6)] focus:shadow-[0_0_10px_3px_rgba(255,255,255,0.8)]">x <%= event.home_team_odd.price %></button>
+            </li>
+
+            <li class="flex flex-col gap-2">
+              <p class='text-center text-white'> <%= event.draw_odd.name %></p>
+              <button class="p-2.5 border border-white text-white bg-transparent rounded-md transition-shadow duration-200 hover:shadow-[0_0_8px_2px_rgba(255,255,255,0.6)] focus:shadow-[0_0_10px_3px_rgba(255,255,255,0.8)]">x <%= event.draw_odd.price %></button>
+            </li>
+
+            <li class="flex flex-col gap-2">
+              <p class='text-center text-white'> <%= event.away_team_odd.name %></p>
+              <button class="p-2.5 border border-white text-white bg-transparent rounded-md transition-shadow duration-200 hover:shadow-[0_0_8px_2px_rgba(255,255,255,0.6)] focus:shadow-[0_0_10px_3px_rgba(255,255,255,0.8)]">x <%= event.away_team_odd.price %></button>
+            </li>
+          <% else %>
+            <li class="col-span-3
+              flex justify-center items-center text-white">
+              <p>Les cotes ne sont pas encore disponibles</p>
             </li>
           <% end %>
         </ul>
