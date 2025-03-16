@@ -26,20 +26,16 @@
         <ul id="odds_for_event_<%= event.id %>" class="grid grid-cols-3 gap-4 p-2.5 items-end  ">
 
           <% if event.odds.any? %>
-            <li class="flex flex-col gap-2">
-              <p class='text-center text-white'> <%= event.home_team_odd.name %></p>
-              <button class="p-2.5 border border-white text-white bg-transparent rounded-md transition-shadow duration-200 hover:shadow-[0_0_8px_2px_rgba(255,255,255,0.6)] focus:shadow-[0_0_10px_3px_rgba(255,255,255,0.8)]">x <%= event.home_team_odd.price %></button>
-            </li>
 
-            <li class="flex flex-col gap-2">
-              <p class='text-center text-white'> <%= event.draw_odd.name %></p>
-              <button class="p-2.5 border border-white text-white bg-transparent rounded-md transition-shadow duration-200 hover:shadow-[0_0_8px_2px_rgba(255,255,255,0.6)] focus:shadow-[0_0_10px_3px_rgba(255,255,255,0.8)]">x <%= event.draw_odd.price %></button>
-            </li>
+<%= render "competitions/components/odds", team: event.home_team_odd.name, price:event.home_team_odd.price  %>
 
-            <li class="flex flex-col gap-2">
-              <p class='text-center text-white'> <%= event.away_team_odd.name %></p>
-              <button class="p-2.5 border border-white text-white bg-transparent rounded-md transition-shadow duration-200 hover:shadow-[0_0_8px_2px_rgba(255,255,255,0.6)] focus:shadow-[0_0_10px_3px_rgba(255,255,255,0.8)]">x <%= event.away_team_odd.price %></button>
-            </li>
+<%= render "competitions/components/odds", team: event.draw_odd.name, price:event.draw_odd.price  %>
+
+<%= render "competitions/components/odds", team: event.away_team_odd.name, price:event.away_team_odd.price  %>
+
+
+
+
           <% else %>
             <li class="col-span-3
               flex justify-center items-center text-white">
@@ -59,4 +55,4 @@
   </ul>
 <% end %>
 
-<button class="fixed bottom-[116px] left-1/2 transform -translate-x-1/2 w-[90%] bg-rose-600 rounded-lg text-white px-5 py-2.5 shadow-lg z-[1100]">Regarder une video (+250) - 20</button>
+<button id='labite' class="fixed bottom-[116px] left-1/2 transform -translate-x-1/2 w-[90%] bg-rose-600 rounded-lg text-white px-5 py-2.5 shadow-lg z-[1100]"  >Regarder une video (+250) - 20</button>

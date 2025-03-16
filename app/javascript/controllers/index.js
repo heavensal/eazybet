@@ -1,4 +1,8 @@
 // Import and register all your controllers from the importmap via controllers/**/*_controller
 import { application } from "controllers/application"
+import Dialog from '@stimulus-components/dialog'
 import { eagerLoadControllersFrom } from "@hotwired/stimulus-loading"
 eagerLoadControllersFrom("controllers", application)
+
+
+application.register('dialog', Dialog)
