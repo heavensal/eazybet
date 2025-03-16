@@ -1,28 +1,30 @@
-<h2>Sign up</h2>
+<h2 class="uppercase font-bold leading-[1.2] text-[2.25rem] mb-8">S'inscrire</h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: 'flex flex-col gap-4 mb-8' }) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  <div class="flex flex-col gap-4">
+    <%= f.label :email %>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "p-2 border border-white rounded-lg w-full", placeholder: 'Entrez votre mail'  %>
   </div>
 
-  <div class="field">
-    <%= f.label :password %>
+  <div class="flex flex-col gap-4">
+   <div class="">
+     <%= f.label :password,  "Mot de passe"  %>
     <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
+    <em>(<%= @minimum_password_length %> caractères minimum)</em>
+    <% end %>
+   </div>
+    <%= f.password_field :password, autocomplete: "new-password", class: "p-2 border border-white rounded-lg w-full", placeholder: 'Entrez votre mail'  %>
   </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+  <div class="flex flex-col gap-4">
+    <%= f.label :password_confirmation,  "Confirmation mot de passe"  %>
+    <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "p-2 border border-white rounded-lg w-full", placeholder: 'Entrez votre mail'  %>
   </div>
 
-  <div class="actions">
-    <%= f.submit "Sign up" %>
+  <div  class="bg-rose-600 rounded-lg px-2.5 py-2 max-w-fit">
+    <%= f.submit "S'inscrire" %>
   </div>
 <% end %>
 
