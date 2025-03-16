@@ -8,26 +8,30 @@
   </div>
   <ul class="flex overflow-x-auto space-x-4 p-4">
     <% competition.events.sorted_by_commence_time.each do |event| %>
-      <li class="flex-shrink-0 border-2 border-blue-900  m-2 w-[300px] bg-blue-900 rounded-lg">
+      <li class="flex-shrink-0 border-2 border-blue-900 m-2 w-[300px] bg-blue-900 rounded-lg grid grid-rows-[20%,60%,20%] text-sm">
         <div class="p-2.5 flex justify-around bg-gray-900 rounded-t-lg">
-          <p>
+          <p class="text-white">
             <%= event.home_team %> vs <%= event.away_team %>
           </p>
-          <p>
+          <p class="text-white">
             <%= event.commence_time %>
           </p>
         </div>
-        <ul id="odds_for_event_<%= event.id %>" class="flex justify-around">
+        <ul id="odds_for_event_<%= event.id %>" class="grid grid-cols-3 gap-4 p-2.5 items-end  ">
           <% event.odds.each do |odd| %>
-            <li>
-              <p> <%= odd.name %></p>
-              <button class=''>x <%= odd.price %></button>
+            <li class="flex flex-col gap-2">
+              <p class='text-center text-white'> <%= odd.name %></p>
+              <button class="p-2.5 border border-white text-white bg-transparent rounded-md transition-shadow duration-200 hover:shadow-[0_0_8px_2px_rgba(255,255,255,0.6)] focus:shadow-[0_0_10px_3px_rgba(255,255,255,0.8)]">x <%= odd.price %></button>
             </li>
           <% end %>
         </ul>
-        <small>
-          comments: <%= event.comments.count %>
-        </small>
+        <div class="flex justify-end  items-center text-rose-600">
+          <div class="rounded-lg bg-gray-900 flex gap-2 py-1 px-2">
+            <p class="text-rose-600"><%= event.comments.count %></p>
+           <p>comments:</p>
+          </div>
+
+        </div>
       </li>
     <% end %>
   </ul>
