@@ -1,15 +1,18 @@
-<h1>
-  <%= @event.id %>
-</h1>
+<div data-controller="testing">
+  <h1>
+    <%= @event.id %>
+  </h1>
 
-<h2>
-  <%= @event.competition.title %>
-</h2>
+  <h2>
+    <%= @event.competition.title %>
+  </h2>
 
-<h2>
-  <%= @event.home_team %> vs. <%= @event.away_team %>
-</h2>
+  <h2>
+    <%= @event.home_team %> vs. <%= @event.away_team %>
+  </h2>
 
-<p>
-  <%= @event.commence_time %>
-</p>
+  <p>
+    <%= @event.commence_time %>
+  </p>
+
+</div>
