@@ -12,47 +12,15 @@
       <%= competition.title %>
     </h2>
   </div>
-  <ul class="flex overflow-x-auto space-x-4 p-4">
+  <ul class="flex overflow-x-auto space-x-4 p-4 no-scrollbar">
     <% competition.events.sorted_by_commence_time.each do |event| %>
-      <li class="flex-shrink-0 border-2 border-blue-900 m-2 w-[300px] bg-blue-900 rounded-lg grid grid-rows-[20%,60%,20%] text-sm">
-        <div class="p-2.5 flex justify-around bg-gray-900 rounded-t-lg">
-          <p class="text-white">
-            <%= event.home_team %> vs <%= event.away_team %>
-          </p>
-          <p class="text-white">
-            <%= event.commence_time %>
-          </p>
-        </div>
-        <ul id="odds_for_event_<%= event.id %>" class="grid grid-cols-3 gap-4 p-2.5 items-end  ">
-
-          <% if event.odds.any? %>
-
-<%= render "competitions/components/odds", team: event.home_team_odd.name, price:event.home_team_odd.price  %>
-
-<%= render "competitions/components/odds", team: event.draw_odd.name, price:event.draw_odd.price  %>
-
-<%= render "competitions/components/odds", team: event.away_team_odd.name, price:event.away_team_odd.price  %>
-
-
-
-
-          <% else %>
-            <li class="col-span-3
-              flex justify-center items-center text-white">
-              <p>Les cotes ne sont pas encore disponibles</p>
-            </li>
-          <% end %>
-        </ul>
-        <div class="flex justify-end  items-center text-rose-600 p-2.5">
-          <div class="rounded-lg bg-gray-900 flex gap-2 py-1 px-2">
-            <p class="text-rose-600"><%= event.comments.count %></p>
-           <p>comments:</p>
-          </div>
-
-        </div>
-      </li>
+   <%= render "competitions/components/card", id:event.id, home_team: event.home_team, away_team: event.away_team, home_team_odd: event.home_team_odd, away_team_odd: event.away_team_odd,
+   draw_odd:event.draw_odd,commence_time: event.commence_time, odds:event.odds, comments:event.comments  %>
     <% end %>
   </ul>
+
 <% end %>
+
+
 
 <button id='labite' class="fixed bottom-[116px] left-1/2 transform -translate-x-1/2 w-[90%] bg-rose-600 rounded-lg text-white px-5 py-2.5 shadow-lg z-[1100]"  >Regarder une video (+250) - 20</button>
