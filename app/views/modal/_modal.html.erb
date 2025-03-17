@@ -1,19 +1,29 @@
-<div data-action="click->dialog#backdropClose">
-  <dialog data-dialog-target="dialog" data-dialog-open-value="true">
-    <p>
-      <%= team %>
-    </p>
+<div data-controller="price" data-action="click->dialog#backdropClose">
+  <dialog data-dialog-target="dialog" data-dialog-open-value="true" class="bg-blue-900 p-4 text-white"
+    style="width: 90dvw; height:30dvh; position: absolute; margin: 10dvh auto; border-radius: 8px;">
 
-    <p>
-      <%= price %>
-    </p>
+  <div class="flex justify-around mb-6">
+      <p><%= team %></p>
+    <p><%= price %></p>
 
-    <p>
-      <%= odd_id %>
-    </p>
+  </div>
 
-    <button type="button" data-action="dialog#close" autofocus>Cancel</button>
+   <div data-controller="price " class="flex flex-col gap-4">
+  <p>Gains potentiels</p>
+  <div class="flex flex-col gap-4">
+    <div class="flex gap-2">
+      <p>Mise</p>
+      <input type="number" value="1" min="1" data-price-target="input" data-action="input->price#update"  class="p-2 border border-white rounded-lg ">
+    </div>
+    <p id="result" data-price-target="result"><%= price %></p>
+  </div>
+</div>
+
+
+    <div class="flex gap-4">
+      <button class="bg-gray-900 rounded-lg px-2.5 py-2" type="button" data-action="dialog#close">Parier</button>
+      <button class="bg-gray-900 rounded-lg px-2.5 py-2" type="button" data-action="dialog#close">Annuler</button>
+    </div>
+
   </dialog>
-
-
 </div>
