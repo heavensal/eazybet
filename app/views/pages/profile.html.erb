@@ -1,0 +1,35 @@
+<h1 class="font-bold text-4xl">Pages#profile</h1>
+
+<h2>
+  <%= @user.first_name %>
+</h2>
+
+<h2>
+  faux avatar ? (par encore de photo possible)
+</h2>
+
+<%= link_to 'Paramètres', edit_user_registration_path %>
+
+<a href="/">Ajouter des amis</a>
+Page amis en cours de développement
+
+<section id="statistiques">
+  <h2>Statistiques</h2>
+  <ul>
+    <li>
+      Coins = <%= @wallet.coins %>
+    </li>
+
+    <li>
+      Diamants = <%= @wallet.diamonds %>
+    </li>
+
+    <li>
+      Paris gagnés = <%= @bets_won.count %>
+    </li>
+
+    <li>
+      Ratio de réussite = <%= @ratio %> %
+    </li>
+  </ul>
+</section>

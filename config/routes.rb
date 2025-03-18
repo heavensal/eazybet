@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get "pages/profile"
   devise_for :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
@@ -12,6 +13,7 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   root "competitions#index"
+  get "profile" => "pages#profile"
 
   resources :bets
   resources :events, only: [ :index, :show ] do

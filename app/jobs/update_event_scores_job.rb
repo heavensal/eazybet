@@ -21,6 +21,7 @@ class UpdateEventScoresJob < ApplicationJob
           next unless event
 
           if event_api["completed"]
+            next if event.status == "finished"
             event.update!(status: "finished")
 
             event_api["scores"].each do |score|
