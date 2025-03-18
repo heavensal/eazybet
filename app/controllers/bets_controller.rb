@@ -6,6 +6,7 @@ class BetsController < ApplicationController
     @bet = Bet.new(bet_params)
     @bet.payout = @bet.stake * @bet.odd.price
     @bet.user = current_user
+    @bet.status = "pending"
     if @bet.save
       redirect_to root_path, notice: "Votre pari a bien été enregistré"
     else

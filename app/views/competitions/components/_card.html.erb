@@ -1,36 +1,27 @@
-   <li class="flex-shrink-0 border-2 border-blue-900 m-2 w-[300px] bg-blue-900 rounded-lg grid grid-rows-[20%,60%,20%] text-sm">
-        <div class="p-2.5 flex justify-around bg-gray-900 rounded-t-lg">
-          <p class="text-white">
-            <%= home_team %> vs <%= away_team %>
-          </p>
-          <p class="text-white">
-            <%= commence_time %>
-          </p>
-        </div>
-        <ul id="odds_for_event_<%= id %>" class="grid grid-cols-3 gap-4 p-2.5 items-end  ">
-
-          <% if odds.any? %>
-
-<%= render "competitions/components/odds", team: home_team_odd.name, price:home_team_odd.price  %>
-
-<%= render "competitions/components/odds", team: draw_odd.name, price:draw_odd.price  %>
-
-<%= render "competitions/components/odds", team: away_team_odd.name, price:away_team_odd.price  %>
-
-          <% else %>
-            <li class="col-span-3
-              flex justify-center items-center text-white">
-              <p>Les cotes ne sont pas encore disponibles</p>
-            </li>
-          <% end %>
-        </ul>
-
-
-        <div class="flex justify-end  items-center text-rose-600 p-2.5">
-          <div class="rounded-lg bg-gray-900 flex gap-2 py-1 px-2">
-            <p class="text-rose-600"><%= comments.count %></p>
-           <p>comments:</p>
-          </div>
-
-        </div>
-      </li>
+  <li class="flex-shrink-0 border-2 border-blue-900 m-2 w-[300px] bg-blue-900 rounded-lg grid grid-rows-[20%,60%,20%] text-sm">
+    <div class="p-2.5 flex justify-around bg-gray-900 rounded-t-lg">
+      <p class="text-white">
+        <%= home_team %> vs <%= away_team %>
+      </p>
+      <p class="text-white">
+        <%= commence_time %>
+      </p>
+    </div>
+    <ul id="odds_for_event_<%= id %>" class="grid grid-cols-3 gap-4 p-2.5 items-end">
+      <% if odds.any? %>
+        <%= render "competitions/components/odds", odd: home_team_odd %>
+        <%= render "competitions/components/odds", odd: draw_odd %>
+        <%= render "competitions/components/odds", odd: away_team_odd %>
+      <% else %>
+        <li class="col-span-3 flex justify-center items-center text-white">
+          <p>Les cotes ne sont pas encore disponibles</p>
+        </li>
+      <% end %>
+    </ul>
+    <div class="flex justify-end items-center text-rose-600 p-2.5">
+      <div class="rounded-lg bg-gray-900 flex gap-2 py-1 px-2">
+        <p class="text-rose-600"><%= comments.count %></p>
+        <p>comments:</p>
+      </div>
+    </div>
+  </li>

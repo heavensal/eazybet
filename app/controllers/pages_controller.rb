@@ -7,4 +7,8 @@ class PagesController < ApplicationController
     @ratio = @bets_won.count.to_f / @bets.count.to_f
     @ratio = @ratio.nan? ? 0 : @ratio
   end
+
+  def ranking
+    @users = User.all.sort_by { |user| user.wallet.diamonds }.reverse
+  end
 end
