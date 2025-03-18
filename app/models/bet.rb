@@ -10,6 +10,8 @@ class Bet < ApplicationRecord
   # mis à jour du payout en fonction du status du bet
   after_update :update_user_wallet, if: -> { status_changed? && %w[won lost].include?(status) }
 
+  before_create :verify_wallet_coins
+
   private
 
 
@@ -17,6 +19,13 @@ class Bet < ApplicationRecord
     if status == "won"
       user.wallet += payout
       user.wallet.save!
+    end
+  end
+
+  def verify_wallet_coins
+    if user.wallet.coins < stake
+      errors.add(:stake, "Vous n'avez pas assez de coins")
+      throw(:abort)
     end
   end
 end

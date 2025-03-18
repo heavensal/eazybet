@@ -2,26 +2,28 @@
   <ul id="menu-items" class="flex justify-around items-center">
     <li>
       <a href="/" class="flex flex-col items-center gap-2">
+
          <div class="">
             <img src="/icons/matches.svg" alt="Matches" class="w-6 h-6">
          </div>
      <p>Matches</p>
+
       </a>
 
     </li>
      <li>
-      <a href="#" class="flex flex-col items-center gap-2">
-         <div class=""></div>
-     <p>Classements</p>
-      </a>
+      <%= link_to ranking_path do %>
+        <div class=""></div>
+        <p>Classements</p>
+      <% end %>
 
     </li>
-     <li>
-      <a href="/profile" class="flex flex-col items-center gap-2">
-         <div class=""></div>
-     <p>Profil</p>
-      </a>
 
+     <li>
+      <%= link_to profile_path, class: "flex flex-col items-center gap-2" do %>
+        <div class=""></div>
+        <p>Profil</p>
+      <% end %>
     </li>
 
   </ul>

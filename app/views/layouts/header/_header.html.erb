@@ -1,4 +1,32 @@
 <div  class="fixed top-0 left-0 w-full bg-blue-900 text-white  px-4 py-2 h-[50px] shadow-[0_-4px_4px_rgba(0,0,0,0.25)]  z-1000">
-<p>+0</p>
-  <a href="/users/sign_in" class="text-white">Connexion</a>
+
+  <ul class="flex justify-between items-center">
+    <% if user_signed_in? %>
+    <li>
+      <%= link_to 'Déconnexion', destroy_user_session_path, method: :delete, class: "text-white" %>
+    </li>
+
+    <li>
+      Diamant: <%= current_user.wallet.diamonds %>
+    </li>
+
+    <li>
+      Coins: <%= current_user.wallet.coins %>
+    </li>
+
+    <li>
+      <%= link_to "Regarder une video", "#", class: "text-white" %>
+    </li>
+
+    <% else %>
+    <li>
+      <%= link_to 'Connexion', new_user_session_path, class: "text-white" %>
+    </li>
+
+    <li>
+      <%= link_to 'Inscription', new_user_registration_path, class: "text-white" %>
+    </li>
+    <% end %>
+
+  </ul>
 </div>

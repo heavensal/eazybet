@@ -1,0 +1,21 @@
+<div class="container">
+  <h2>User Rankings</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Rang</th>
+        <th>Firstname</th>
+        <th>Diamonds</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% User.all.each_with_index do |user, rank| %>
+        <tr>
+          <td><%= rank + 1 %></td>
+          <td><%= user.first_name %></td>
+          <td><%= user.wallet.diamonds %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
