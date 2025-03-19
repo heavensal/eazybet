@@ -1,35 +1,60 @@
-<h1 class="font-bold text-4xl">Pages#profile</h1>
+<%# <h1 class="font-bold text-4xl">Pages#profile</h1> %>
 
-<h2>
+<div class="flex justify-between items-center py-2.5 px-5 mb-6">
+<div class='flex gap-2 items-center'>
+ <p id="avatar" class="w-[44px] h-[44px] rounded-full bg-amber-500"></p>
+<h2 class="uppercase font-bold leading-[1.2] text-2xl">
   <%= @user.first_name %>
 </h2>
+</div>
 
-<h2>
-  faux avatar ? (par encore de photo possible)
-</h2>
+  <%= link_to edit_user_registration_path  do %>
+      <img src="/icons/settings.svg" alt="Paramètres" class="w-6 h-6">
+<% end %>
+</div>
 
-<%= link_to 'Paramètres', edit_user_registration_path %>
 
-<a href="/">Ajouter des amis</a>
-Page amis en cours de développement
 
-<section id="statistiques">
-  <h2>Statistiques</h2>
-  <ul>
-    <li>
-      Coins = <%= @wallet.coins %>
+
+
+
+
+<a href="/" class="py-2 px-5 flex items-center justify-center bg-rose-600 rounded-lg mb-8">
+    <img src="/icons/add_friend.svg" alt="coin">
+  Ajouter des amis</a>
+<%# Page amis en cours de développement %>
+<section id="statistiques" class='bg-blue-900 rounded-lg p-8'>
+  <h2 class='text-rose-600 text-center mb-8 text-[18px]'>Statistiques</h2>
+  <ul class='grid grid-cols-2 grid-rows-2'>
+    <li class='mb-4'>
+      Coins
+      <p class='flex gap-2 items-center'><%= @wallet.coins %>
+      <img src="/icons/coin.svg" alt="coin">
+      </p>
+    </li>
+    <li class='mb-4'>
+      Diamants
+         <p class='flex gap-2 items-center'><%= @wallet.diamonds %>
+          <img src="/icons/diamond.svg" alt="diamond"></p>
     </li>
 
-    <li>
-      Diamants = <%= @wallet.diamonds %>
+    <li class='mb-4'>
+      Paris gagnés
+         <p class='flex gap-2 items-center'><%= @bets_won.count %>
+          <img src="/icons/win.svg" alt="win"></p>
     </li>
 
-    <li>
-      Paris gagnés = <%= @bets_won.count %>
-    </li>
-
-    <li>
-      Ratio de réussite = <%= @ratio %> %
+    <li class='mb-4'>
+      Ratio de réussite
+         <p class='flex gap-2 items-center'><%= @ratio %> %
     </li>
   </ul>
+  <hr class='mb-4'>
+  <div id='divisions' class="flex flex-col gap-4">
+    <h3 class>Division actuelle</h3>
+    <div class="flex justify-around bg-gray-900 rounded-lg p-8">
+      <p class='text-xl'>Division Débutant</p>
+      <p>(Top 80- 100%)</p>
+    </div>
+  </div>
 </section>
