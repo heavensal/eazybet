@@ -1,26 +1,23 @@
-<ul class="flex justify-around bg-blue-900 text-white px-5 py-2.5 rounded-lg items-center mb-4
-           sticky top-[64px] z-50 ">
-   <li>
+<ul class="flex justify-around bg-blue-900 text-white px-5 py-2.5 rounded-lg items-center mb-4 sticky top-[64px] z-50">
+  <li class="<%= 'bg-rose-600 rounded-md' if current_page?(root_path) %> px-4 py-2">
     <%= link_to 'A Venir', root_path %>
-   </li>
-    <li><%= link_to 'Joués', played_events_path %></li>
-     <li><%= link_to 'Résultats', finished_events_path %></li>
-  </ul>
+  </li>
+  <li class="<%= 'bg-rose-600 rounded-md' if current_page?(played_events_path) %> px-4 py-2">
+    <%= link_to 'Joués', played_events_path %>
+  </li>
+  <li class="<%= 'bg-rose-600 rounded-md' if current_page?(finished_events_path) %> px-4 py-2">
+    <%= link_to 'Résultats', finished_events_path %>
+  </li>
+</ul>
 
+<ul class='flex flex-col justify-center items-center'>
 <% @events.each do |event| %>
-  <div class="event">
+
+    <li class="event">
     <%# on affiche les matchs joués, pour afficher du front rapidement pour tester, j'ai utilisé le meme partial que pour les matchs à venir %>
     <%# Mais il faut un component différent, car il y a le modal de paris dans celui la, ce qui est pas bon pour les matchs joués %>
-    <%= render "competitions/components/card", event: event, id:event.id, home_team: event.home_team, away_team: event.away_team, home_team_odd: event.home_team_odd, away_team_odd: event.away_team_odd,
-    draw_odd:event.draw_odd,commence_time: event.commence_time, odds:event.odds, comments:event.comments  %>
-    <div>
-      <%# Afficher le pari que j'ai fait sur ce match %>
-      <%# La tu peux m'appeler pour travailler sur une meilleure solution d'affichage, mais pour l'instant, c'est juste pour tester %>
-      <%# Je crée une variable pour contenir le bet que j'ai fait sur ce match %>
-      <% my_bet = event.bets.find_by(user_id: current_user.id) %>
-      <p>
-        J'ai parié <%= my_bet.stake %> coins sur <%= my_bet.odd.name %> avec une cote de <%= my_bet.odd.price %>
-      </p>
-    </div>
-  </div>
+    <%= render "events/components/card_played", event: event, id:event.id, home_team: event.home_team, away_team: event.away_team, home_team_odd: event.home_team_odd, away_team_odd: event.away_team_odd,
+    draw_odd:event.draw_odd,commence_time: event.commence_time, odds:event.odds, comments:event.comments, bet: event.bets.find_by(user_id: current_user.id)  %>
+  </li>
 <% end %>
+</ul>
