@@ -1,7 +1,7 @@
 <li class="flex flex-col gap-2" data-controller="dialog">
   <p class='text-center text-white'><%= odd.name %></p>
   <button class="p-2.5 border border-white text-white bg-transparent rounded-md transition-shadow duration-200 hover:shadow-[0_0_8px_2px_rgba(255,255,255,0.6)] focus:shadow-[0_0_10px_3px_rgba(255,255,255,0.8)]" data-action="click->dialog#open">
-    x <%= odd.price %>
+    x <%= number_with_precision(odd.price, precision: 2) %>
   </button>
   <%= render "modal/modal", odd: odd %>
 </li>
