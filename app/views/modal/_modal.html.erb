@@ -11,26 +11,17 @@
         <p>Gains potentiels</p>
         <div class="flex flex-col gap-4">
           <div class="flex gap-2">
-            <p>Mise</p>
-
               <%= f.hidden_field :odd_id, value: odd.id %>
               <%= f.label :stake, "Mise" %>
-              <%= f.number_field :stake, data: { price_target: "input", action:"input->price#update" }, value: 1, min: 1, step: 0.01, class: "p-2 border border-white rounded-lg" %>
+              <%= f.number_field :stake, data: { price_target: "input", action:"input->price#update" }, value: 1, min: 1, step: 1, class: "p-2 border border-white rounded-lg" %>
           </div>
           <p id="result" data-price-target="result"><%= odd.price %></p>
         </div>
       </div>
 
 
-
-    <div class="flex gap-4">
-      <button class="bg-rose-600 rounded-lg px-2.5 py-2" type="button" data-action="dialog#close">Parier</button>
-      <button class="bg-gray-900 rounded-lg px-2.5 py-2" type="button" data-action="dialog#close">Annuler</button>
-    </div>
-
-
       <div class="flex gap-4">
-          <%= f.submit "Parier", class: "bg-gray-900 rounded-lg px-2.5 py-2 cursor-pointer", data: { action: "dialog#close" } %>
+          <%= f.submit "Parier", class: "bg-rose-600 rounded-lg px-2.5 py-2 cursor-pointer", data: { action: "dialog#close" } %>
         <button class="bg-gray-900 rounded-lg px-2.5 py-2 cursor-pointer" type="button" data-action="dialog#close">Annuler</button>
       </div>
     <% end %>
