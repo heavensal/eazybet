@@ -1,17 +1,27 @@
 <h1 class="font-bold text-4xl">Pages#profile</h1>
 
-<h2>
+<div class="flex justify-between">
+<div class="flex gap-2 items-center">
+  <div id="avatar" class="w-[50px] h-[50px] rounded-full"></div>
+<h2 class="uppercase font-bold leading-[1.2] text-4xl
+mb-8">
   <%= @user.first_name %>
 </h2>
+</div>
 
-<h2>
-  faux avatar ? (par encore de photo possible)
-</h2>
+  <%= link_to edit_user_registration_path, class: "flex items-center gap-2 text-white" do %>
+      <img src="/icons/settings.svg" alt="Paramètres" class="w-6 h-6">
+<% end %>
+</div>
 
-<%= link_to 'Paramètres', edit_user_registration_path %>
 
-<a href="/">Ajouter des amis</a>
-Page amis en cours de développement
+
+
+
+
+
+<a href="/" class="py-2 px-5 flex items-center justify-center bg-rose-600 rounded-lg">Ajouter des amis</a>
+<%# Page amis en cours de développement %>
 
 <section id="statistiques">
   <h2>Statistiques</h2>
