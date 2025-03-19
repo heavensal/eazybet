@@ -1,21 +1,25 @@
 <div  class="fixed top-0 left-0 w-full bg-blue-900 text-white  px-4 py-2 h-[50px] shadow-[0_-4px_4px_rgba(0,0,0,0.25)]  z-1000">
 
-  <ul class="flex justify-between items-center">
+  <ul class="flex justify-between items-center h-full">
     <% if user_signed_in? %>
     <li>
-      <%= link_to 'Déconnexion', destroy_user_session_path, method: :delete, class: "text-white" %>
+      <%= link_to 'Déco', destroy_user_session_path, method: :delete, class: "text-white" %>
+    </li>
+
+    <li class='flex gap-2'>
+      <%= current_user.wallet.diamonds %>
+        <img src="/icons/diamond.svg" alt="diamond">
+    </li>
+
+    <li class='flex gap-2'>
+    <%= current_user.wallet.coins %>
+      <img src="/icons/coin.svg" alt="coin">
     </li>
 
     <li>
-      Diamant: <%= current_user.wallet.diamonds %>
-    </li>
-
-    <li>
-      Coins: <%= current_user.wallet.coins %>
-    </li>
-
-    <li>
-      <%= link_to "Regarder une video", "#", class: "text-white" %>
+     <%= link_to "#", class: "text-white" do %>
+  <img src="/icons/camera.svg" alt="Vidéo" class="w-6 h-6">
+<% end %>
     </li>
 
     <% else %>

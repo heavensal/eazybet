@@ -4,7 +4,7 @@
       <a href="/" class="flex flex-col items-center gap-2">
 
          <div class="">
-            <img src="/icons/matches.svg" alt="Matches" class="w-6 h-6">
+            <img src="/icons/matches.svg" alt="Matches" >
          </div>
      <p>Matches</p>
 
@@ -12,8 +12,10 @@
 
     </li>
      <li>
-      <%= link_to ranking_path do %>
-        <div class=""></div>
+      <%= link_to ranking_path,class: "flex flex-col items-center gap-2"  do%>
+        <div class="">
+          <img src="/icons/ranking.svg" alt="Matches" >
+        </div>
         <p>Classements</p>
       <% end %>
 
@@ -21,7 +23,9 @@
 
      <li>
       <%= link_to profile_path, class: "flex flex-col items-center gap-2" do %>
-        <div class=""></div>
+        <div class="">
+          <img src="/icons/profile.svg" alt="Matches" >
+        </div>
         <p>Profil</p>
       <% end %>
     </li>
