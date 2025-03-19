@@ -10,7 +10,7 @@
 
 <% @events.each do |event| %>
   <div class="event">
-    <%= render "competitions/components/card", id:event.id, home_team: event.home_team, away_team: event.away_team, home_team_odd: event.home_team_odd, away_team_odd: event.away_team_odd,
+    <%= render "competitions/components/card_result", id:event.id, home_team: event.home_team, away_team: event.away_team, home_team_odd: event.home_team_odd, away_team_odd: event.away_team_odd,
     draw_odd:event.draw_odd,commence_time: event.commence_time, odds:event.odds, comments:event.comments  %>
   </div>
 
