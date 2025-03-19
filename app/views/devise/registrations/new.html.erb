@@ -30,12 +30,12 @@
     <em>(<%= @minimum_password_length %> caractères minimum)</em>
     <% end %>
    </div>
-    <%= f.password_field :password, autocomplete: "new-password", class: "p-2 border border-white rounded-lg w-full", placeholder: 'Entrez votre mail'  %>
+    <%= f.password_field :password, autocomplete: "new-password", class: "p-2 border border-white rounded-lg w-full", placeholder: 'Entrez votre mot de passe'  %>
   </div>
 
   <div class="flex flex-col gap-4">
     <%= f.label :password_confirmation, "Confirmation mot de passe"  %>
-    <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "p-2 border border-white rounded-lg w-full", placeholder: 'Entrez votre mail'  %>
+    <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "p-2 border border-white rounded-lg w-full", placeholder: 'Confirmez votre mot de passe'  %>
   </div>
 
 
