@@ -1,22 +1,32 @@
+<%= link_to root_path do %>
+      <img src="/icons/back.svg" alt="Retour" class="w-6 h-6">
+<% end %>
  <div class="flex justify-center">
        <%= render "competitions/components/card", event: @event, id:@event.id, home_team: @event.home_team, away_team: @event.away_team, home_team_odd: @event.home_team_odd, away_team_odd: @event.away_team_odd,
       draw_odd:@event.draw_odd,commence_time: @event.commence_time, odds:@event.odds, comments:@event.comments  %>
  </div>
       <div class="space-y-4 my-4">
         <% @comments.each do |comment| %>
-          <div class="<%= current_user == comment.user ? 'ml-auto' : 'mr-auto' %> w-[70%]">
+          <div class="<%= current_user == comment.user ? 'ml-auto' : 'mr-auto' %> w-[90%]">
             <%= turbo_frame_tag comment, class: "space-y-2" do %>
-              <div class="rounded-lg shadow-md <%= current_user == comment.user ? 'bg-blue-800 text-white' : 'bg-white' %> p-4">
+              <div class="rounded-lg shadow-md <%= current_user == comment.user ? 'bg-blue-900 text-white' : 'bg-white' %> p-4">
                   <h6 class="text-sm <%= current_user == comment.user ? 'text-white' : 'text-gray-500' %>">
                     <%= comment.user.first_name %> - il y a <%= time_ago_in_words(comment.created_at) %>
                   </h6>
                   <p class="text-base"><%= comment.content %></p>
-                  <small>
-                    <%= link_to "Modifier", edit_event_comment_path(@event, comment), class: "text-white-500" if current_user == comment.user %>
-                  </small>
-                  <small>
-                    <%= link_to "Supprimer", comment_path(comment), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "text-red-500" if current_user == comment.user %>
-                  </small>
+                <div class="flex gap-2">
+
+                    <%# remplacer le texte avec l'icon %>
+                    <%#  <img src="/icons/edit.svg" alt="Modifier" class="w-6 h-6"> %>
+                    <%= link_to "Modifier", edit_event_comment_path(@event, comment), class: "text-white-500 text-[14px]" if current_user == comment.user %>
+
+
+
+                        <%# remplacer le texte avec l'icon %>
+                    <%# <img src="/icons/delete.svg" alt="Supprimer" class="w-6 h-6"> %>
+                    <%= link_to "Supprimer", comment_path(comment), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "text-rose-600 text-[14px]" if current_user == comment.user %>
+
+                </div>
               </div>
             <% end %>
           </div>
@@ -29,7 +39,7 @@
             <%= f.text_area :content, class: "p-2 border border-white rounded-lg w-full bg-blue-900 text-white", placeholder: "Ecrire mon commentaire...", rows: 3 %>
           </div>
           <div class="text-center">
-            <%= f.submit "Poster", class: "bg-red-400 hover:bg-red-500 text-white font-medium py-2 px-4 rounded-lg cursor-pointer transition-colors" %>
+            <%= f.submit "Poster", class: "bg-rose-600 hover:bg-rose-700 text-white font-medium py-2 px-4 rounded-lg cursor-pointer transition-colors" %>
           </div>
         <% end %>
       </div>
