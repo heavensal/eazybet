@@ -3,7 +3,7 @@
   <ul class="flex justify-between items-center h-full">
     <% if user_signed_in? %>
     <li>
-      <%= link_to 'Déco', destroy_user_session_path, method: :delete, class: "text-white" %>
+      <%= link_to 'Déco', destroy_user_session_path, data: { turbo_method: :delete, turbo_confirm: "Déconnexion ?"}, class: "text-white" %>
     </li>
 
     <li class='flex gap-2'>
