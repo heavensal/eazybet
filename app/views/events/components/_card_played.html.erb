@@ -10,7 +10,21 @@
     <%= render "events/components/bet", odd: draw_odd, bet: bet %>
     <%= render "events/components/bet", odd: away_team_odd, bet: bet %>
   <% end %>
+
 </ul>
+<div class="flex gap-2 p-2.5">
+
+   <div class="flex flex-col gap-2"
+   >
+     <h3>Mise</h3>
+    <p class='bg-gray-900 rounded-lg px-4 py-2'> <%= bet.stake %></p>
+  </div>
+   <div class="flex flex-col gap-2 w-full"
+   >
+   <h3>Gains potentiels</h3>
+    <p class='bg-gray-900 rounded-lg px-4 py-2'><%= bet.stake * bet.odd.price %></p>
+     </div>
+    </div>
 
   <div class="flex justify-end items-center text-rose-600 p-2.5">
     <%= link_to event_path(event) do %>
