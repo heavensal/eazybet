@@ -40,3 +40,5 @@ fr:
       default: "%d/%m/%Y %H:%M"
       short: "%d %b %H:%M"
       long: "%d %B %Y %H:%M"
+  odds:
+    draw: "Nul"

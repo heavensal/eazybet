@@ -1,9 +1,8 @@
-
 <div class="flex gap-2 items-center mb-8">
-<%= link_to :back do %>
-      <img src="/icons/back.svg" alt="Retour" class="w-6 h-6">
-<% end %>
-<h2  class="uppercase font-bold leading-[1.2] text-2xl ">Modifier <%= resource_name.to_s.humanize %></h2>
+  <%= link_to :back do %>
+    <img src="/icons/back.svg" alt="Retour" class="w-6 h-6">
+  <% end %>
+  <h2 class="uppercase font-bold leading-[1.2] text-2xl ">Modifier mon compte</h2>
 </div>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put,class: 'flex flex-col gap-4 mb-8' }) do |f| %>
@@ -14,7 +13,7 @@
     <%= f.text_field :first_name, autocomplete: "firstname", class: "p-2 border border-white rounded-lg w-full", placeholder: 'Entrez votre prénom'  %>
   </div>
 
-    <div class="flex flex-col gap-4">
+  <div class="flex flex-col gap-4">
     <%= f.label :last_name, "Nom" %>
     <%= f.text_field :last_name, autocomplete: "lastname", class: "p-2 border border-white rounded-lg w-full", placeholder: 'Entrez votre nom'  %>
   </div>
@@ -26,13 +25,14 @@
 
   <div class="flex flex-col gap-4">
     <%= f.label :email %>
-    <%= f.email_field :email, autofocus: true, autocomplete: "email",  class: "p-2 border border-white rounded-lg w-full", placeholder: 'Modifier votre mail' %>
+    <%= f.email_field :email, autocomplete: "email",  class: "p-2 border border-white rounded-lg w-full", placeholder: 'Modifier votre mail' %>
   </div>
 
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
   <% end %>
-<div class="flex flex-col gap-4">
+
+  <div class="flex flex-col gap-4">
     <%= f.label :current_password, 'Mot de passe actuel' %> <i>(nécessaire pour confirmer les changements)</i>
     <%= f.password_field :current_password,class: "p-2 border border-white rounded-lg w-full", autocomplete: "current-password" %>
   </div>
@@ -41,7 +41,6 @@
     <%= f.label :password, 'Nouveau mot de passe' %> <i>(ne pas remplir si vous ne voulez pas le changer)</i>
     <%= f.password_field :password, autocomplete: "new-password",  class: "p-2 border border-white rounded-lg w-full", placeholder: 'Votre nouveau mot de passe' %>
     <% if @minimum_password_length %>
-
       <em><%= @minimum_password_length %> caractères minimum</em>
     <% end %>
   </div>
@@ -51,12 +50,11 @@
     <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "p-2 border border-white rounded-lg w-full", placeholder: 'Confirmez votre mot de passe' %>
   </div>
 
-
-  <div class="bg-rose-600 rounded-lg px-2.5 py-2 max-w-fit">
+  <div class="bg-rose-600 rounded-lg px-2.5 py-2 w-full text-center">
     <%= f.submit "Mettre à jour" %>
   </div>
 <% end %>
 
-
-
-<div class='text-gray-600 text-[14px]'>Pas satisfait ? <%= button_to "Supprimer mon compte", registration_path(resource_name),class: "text-[14px] text-gray-600 underline transition-all duration-400 hover:text-rose-600 ", data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %></div>
+<div class='text-gray-600 text-[14px]'>
+  Pas satisfait ? <%= button_to "Supprimer mon compte", registration_path(resource_name), class: "text-[14px] text-gray-600 underline transition-all duration-400 hover:text-rose-600 ", data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %>
+</div>

@@ -4,13 +4,9 @@ export default class extends Dialog  {
 
   open(event) {
     // Vérifie si l'événement est bien capturé
-    console.log("Opening dialog with:", event.target.dataset);
 
     const team = event.target.dataset.team;
     const price = event.target.dataset.price;
-
-    // Vérifie les données récupérées
-    console.log("Team:", team, "Price:", price);
 
     this.teamTarget.textContent = team;
     this.priceTarget.textContent = price;

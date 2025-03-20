@@ -12,8 +12,7 @@ class EventsController < ApplicationController
   end
 
   def show
-    @event = Event.find(params[:id])
-    @comments = @event.comments
+    @event = Event.includes(:odds, comments: :user).find(params[:id])
     @comment = Comment.new
   end
 end

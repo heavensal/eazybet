@@ -1,14 +1,19 @@
 <%= turbo_frame_tag @comment, class: "space-y-2" do %>
   <%= form_with(model: [@event, @comment], url: event_comment_path(@event, @comment)) do |f| %>
 
-    <div class="rounded-lg shadow-md bg-blue-900 text-white p-4">
+    <div class="rounded-lg shadow-md bg-blue-950 text-white p-4">
       <div>
-        <%= f.text_area :content, class: "w-full rounded-lg border-gray-300 focus:border-blue-500 focus:ring-blue-500", placeholder: "Ecrire mon commentaire...", rows: 3 %>
+        <%= f.text_area :content, autofocus: true, class: "w-full p-1 rounded-lg bg-blue-900 border-gray-300 focus:border-blue-500 focus:ring-blue-500", placeholder: "Ecrire mon commentaire...", rows: 3 %>
       </div>
 
-      <div>
-        <%= f.submit "Modifier", class: "bg-rose-600 hover:bg-rose-700 text-white font-medium py-2 px-4 rounded-lg cursor-pointer transition-colors" %>
-        <%= link_to 'Annuler', event_path(@event), class: "text-red-500" %>
+      <div class="flex gap-2 justify-end">
+
+        <%= f.button class: "cursor-pointer" do %>
+          <img src="/icons/edit.svg" alt="Modifier" class="w-6 h-6">
+        <% end %>
+        <%= link_to comment_path(@comment), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} do %>
+          <img src="/icons/delete.svg" alt="Supprimer" class="w-6 h-6">
+        <% end %>
       </div>
     </div>
 
