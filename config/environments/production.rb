@@ -59,6 +59,7 @@ Rails.application.configure do
 
   # Set host to be used by links generated in mailer templates.
   config.action_mailer.default_url_options = { host: "eazybetcoinapp.com", protocol: "https" }
+  config.force_ssl = true
   config.action_mailer.smtp_settings = {
     address:              "smtp.hostinger.com", # Adresse du serveur SMTP
     port:                 465,                # Port du serveur SMTP
