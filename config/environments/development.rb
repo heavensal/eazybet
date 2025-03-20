@@ -42,7 +42,7 @@ Rails.application.configure do
   config.action_mailer.smtp_settings = {
     address:              "smtp.hostinger.com", # Adresse du serveur SMTP
     port:                 465,                # Port du serveur SMTP
-    domain:               eazybetcoinapp.com,      # Domaine de votre application
+    domain:               "eazybetcoin.com",      # Domaine de votre application
     user_name:            ENV["EMAIL"],         # Nom d'utilisateur SMTP
     password:             ENV["EMAIL_PASSWORD"],         # Mot de passe SMTP
     authentication:       :plain,
