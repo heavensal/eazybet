@@ -4,6 +4,11 @@
       <%= l(commence_time) %>
     </p>
   </div>
+  <div class=""id='result'>
+    <p>2 - 0
+    </p>
+
+  </div>
 <ul id="odds_for_event_<%= id %>" class="grid grid-cols-3 gap-4 p-2.5 items-end">
   <% if odds.any? %>
     <%= render "events/components/bet", odd: home_team_odd, bet: bet %>
@@ -21,7 +26,7 @@
   </div>
    <div class="flex flex-col gap-2 w-full"
    >
-   <h3>Gains potentiels</h3>
+   <h3>Gains</h3>
     <p class='bg-gray-900 rounded-lg px-4 py-2'><%= bet.stake * bet.odd.price %></p>
      </div>
     </div>
