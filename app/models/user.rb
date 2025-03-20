@@ -14,6 +14,11 @@ class User < ApplicationRecord
   has_one :wallet, dependent: :destroy
 
   after_create :create_wallet
+  after_create :force_confirm
+
+  def force_confirm
+    self.confirm
+  end
 
   def create_wallet
     Wallet.create(user: self, diamonds: 0, coins: 1000)
