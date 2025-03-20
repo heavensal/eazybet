@@ -1,7 +1,43 @@
-<p>Hello <%= @resource.email %>!</p>
+<body>
+<p>Bonjour <%= @resource.email %>!</p>
 
-<p>Your account has been locked due to an excessive number of unsuccessful sign in attempts.</p>
+<p>
+  Votre compte a été verrouillé en raison d'un nombre excessif de tentatives de connexion infructueuses.
+ </p>
 
-<p>Click the link below to unlock your account:</p>
+<p>Cliquez sur le lien en-dessous pour débloquez votre compte:</p>
 
-<p><%= link_to 'Unlock my account', unlock_url(@resource, unlock_token: @token) %></p>
+<p><%= link_to 'Dévérouiller mon compte', unlock_url(@resource, unlock_token: @token) %></p>
+</body>
+
+<style>
+  /* Importation de la police depuis Google Fonts */
+  @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap');
+
+  /* Application de la police au corps de l'email */
+  body {
+    font-family: 'Orbitron', sans-serif;
+    color: #333; /* Texte général en gris pour une meilleure lisibilité */
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4; /* Fond léger pour une meilleure lisibilité */
+  }
+
+  /* Style des titres */
+  h1 {
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+
+  /* Style du texte du lien */
+  .link {
+    color: #ec003f;
+    font-weight: bold;
+    text-decoration: none;
+  }
+
+  .link:hover {
+    text-decoration: underline;
+  }
+</style>
