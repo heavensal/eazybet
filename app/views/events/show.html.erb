@@ -3,7 +3,7 @@
 <% end %>
  <div class="flex justify-center">
        <%= render "competitions/components/card", event: @event, id:@event.id, home_team: @event.home_team, away_team: @event.away_team, home_team_odd: @event.home_team_odd, away_team_odd: @event.away_team_odd,
-      draw_odd:@event.draw_odd,commence_time: @event.commence_time, odds:@event.odds, comments:@event.comments  %>
+      draw_odd:@event.draw_odd,commence_time: @event.commence_time, odds:@event.odds, comments:@event.comments, bet: @event.bets.find_by(user_id: current_user.id)  %>
  </div>
       <div class="space-y-4 my-4">
         <% @comments.each do |comment| %>
