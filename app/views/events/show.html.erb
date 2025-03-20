@@ -1,5 +1,5 @@
 <%= link_to :back do %>
-  <img src="/icons/back.svg" alt="Retour" class="w-6 h-6">
+  <%= image_tag 'icons/back.svg', alt: "Retour", class: "w-6 h-6" %>
 <% end %>
 
 <div class="flex justify-center">
@@ -30,11 +30,11 @@
             <%# remplacer le texte avec l'icon %>
             <% if current_user == comment.user %>
               <%= link_to edit_event_comment_path(@event, comment) do %>
-                <img src="/icons/edit.svg" alt="Modifier" class="w-6 h-6">
+                <%= image_tag 'icons/edit.svg', alt: "Modifier", class: "w-6 h-6" %>
               <% end %>
 
               <%= link_to comment_path(comment), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} do %>
-                <img src="/icons/delete.svg" alt="Supprimer" class="w-6 h-6">
+                <%= image_tag 'icons/delete.svg', alt: "Modifier", class: "w-6 h-6" %>
               <% end %>
             <% end %>
 

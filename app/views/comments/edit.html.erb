@@ -9,10 +9,10 @@
       <div class="flex gap-2 justify-end">
 
         <%= f.button class: "cursor-pointer" do %>
-          <img src="/icons/edit.svg" alt="Modifier" class="w-6 h-6">
+          <%= image_tag "/icons/edit.svg", alt: "Modifier", class: "w-6 h-6" %>
         <% end %>
         <%= link_to comment_path(@comment), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} do %>
-          <img src="/icons/delete.svg" alt="Supprimer" class="w-6 h-6">
+          <%= image_tag "/icons/delete.svg", alt: "Supprimer", class: "w-6 h-6" %>
         <% end %>
       </div>
     </div>

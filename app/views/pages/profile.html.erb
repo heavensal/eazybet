@@ -11,7 +11,7 @@
   </div>
 
   <%= link_to edit_user_registration_path  do %>
-    <img src="/icons/settings.svg" alt="Paramètres" class="w-6 h-6">
+    <%= image_tag 'icons/settings.svg', alt: "Paramètres", class: "w-6 h-6" %>
   <% end %>
 </div>
 
@@ -32,21 +32,23 @@
       Coins
       <p class='flex gap-2 items-center'>
         <%= @wallet.coins %>
-        <img src="/icons/coin.svg" alt="coin">
+        <%= image_tag 'icons/coin.svg', alt: "coin" %>
+
       </p>
     </li>
     <li class='mb-4'>
       Diamants
       <p class='flex gap-2 items-center'>
         <%= @wallet.diamonds %>
-        <img src="/icons/diamond.svg" alt="diamond">
+        <%= image_tag 'icons/diamond.svg', alt: "diamond" %>
       </p>
     </li>
     <li class='mb-4'>
       Paris gagnés
       <p class='flex gap-2 items-center'>
         <%= @bets_won.count %>
-        <img src="/icons/win.svg" alt="win">
+        <%= image_tag 'icons/win.svg', alt: "win" %>
+
       </p>
     </li>
     <li class='mb-4'>
@@ -68,7 +70,6 @@
 </section>
 
 <div class="py-2 px-5 flex items-center justify-center bg-rose-600 rounded-lg mb-8 gap-2 md:w-[40%] mx-auto">
-   <img src="/icons/logout.svg" alt="coin">
-      <%= link_to 'Déconnexion', destroy_user_session_path, data: { turbo_method: :delete, turbo_confirm: "Déconnexion ?"} %>
-
+  <%= image_tag 'icons/logout.svg', alt: "logout" %>
+  <%= link_to 'Déconnexion', destroy_user_session_path, data: { turbo_method: :delete, turbo_confirm: "Déconnexion ?"} %>
 </div>
