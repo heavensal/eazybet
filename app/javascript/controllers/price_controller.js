@@ -5,9 +5,6 @@ export default class extends Controller {
 
   connect() {
     this.basePrice = parseFloat(this.resultTarget.textContent) || 0;
-
-
-
   }
 
   update() {
