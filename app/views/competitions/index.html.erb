@@ -1,12 +1,15 @@
 <%# pour chaque competition, on affiche en titre le title et tous ses events %>
-<ul class="flex justify-around bg-blue-900 text-white px-5 py-2.5 rounded-lg items-center mb-4
-           sticky top-[64px] z-50 ">
-   <li>
-    <%= link_to 'A Venir', root_path %>
-   </li>
-    <li><%= link_to 'Joués', played_events_path %></li>
-     <li><%= link_to 'Résultats', finished_events_path %></li>
-  </ul>
+<ul class="flex justify-around bg-blue-900 text-white px-5 py-2.5 rounded-lg items-center mb-4 sticky top-[64px] z-50">
+  <li class="<%= 'bg-rose-600 rounded-md' if current_page?(root_path) %> px-4 py-2">
+    <%= link_to 'A venir', root_path %>
+  </li>
+  <li class="<%= 'bg-rose-600 rounded-md' if current_page?(played_events_path) %> px-4 py-2">
+    <%= link_to 'Joués', played_events_path %>
+  </li>
+  <li class="<%= 'bg-rose-600 rounded-md' if current_page?(finished_events_path) %> px-4 py-2">
+    <%= link_to 'Résultats', finished_events_path %>
+  </li>
+</ul>
 <% @competitions.each do |competition| %>
   <div class="flex items-center border-l-3 border-rose-600 relative">
     <div class="absolute inset-0 bg-gradient-to-r from-rose-600 to-rose-800 opacity-30"></div>
@@ -25,6 +28,6 @@
 
 
 
-<button id='labite' class="fixed bottom-[116px] left-1/2 transform -translate-x-1/2 w-[90%] bg-rose-600 rounded-lg text-white px-5 py-2.5 shadow-lg z-[1100] flex items-center gap-2 justify-center"  >
+<button id='labite' class="fixed bottom-[116px] left-1/2 transform -translate-x-1/2 w-[90%] bg-rose-600 rounded-lg text-white px-5 py-2.5 shadow-lg z-[1100] flex items-center gap-2 justify-center md:max-w-[50%]"  >
     <img src="/icons/camera.svg" alt="coin">
   <p class='flex items-center justify-center text-[14px]'> Regarder une video (+250   <img src="/icons/coin.svg" alt="coin">) - 20</p></button>

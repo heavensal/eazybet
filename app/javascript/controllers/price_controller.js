@@ -5,9 +5,8 @@ export default class extends Controller {
 
   connect() {
     this.basePrice = parseFloat(this.resultTarget.textContent) || 0;
-    console.log(this.basePrice);
-    const res = document.getElementById('result')
-    console.log(res);
+
+
 
   }
 

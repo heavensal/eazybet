@@ -1,13 +1,13 @@
-<ul class="flex justify-around bg-blue-900 text-white px-5 py-2.5 rounded-lg items-center mb-4
+<%# <ul class="flex justify-around bg-blue-900 text-white px-5 py-2.5 rounded-lg items-center mb-4
            sticky top-[64px] z-50 ">
    <li>
     Classements
    </li>
     <li>Amis</li>
      <li>Divisions</li>
-  </ul>
+  </ul> %>
 <ul class="container">
-  <%# <h2>Classements</h2> %>
+  <h2 class="uppercase font-bold leading-[1.2] text-2xl mb-8">Classements</h2>
 
 
     <% User.all.each_with_index do |user, rank| %>
