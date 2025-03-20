@@ -41,7 +41,11 @@ class Bet < ApplicationRecord
   end
 
   def calculate_diamonds
-    (payout - stake) / 1000
+    # il faut arrondir le résultat à 2 chiffres après la virgule et au supérieur
+    # Exemple: 0.992 diamonds => 0.99 diamonds
+    # Exemple: 0.998 diamonds => 1.00 diamonds
+    # Exemple: 0.428 diamonds => 0.43 diamonds
+    ((payout - stake) / 1000.0 * 100).ceil / 100.0
   end
 end
 

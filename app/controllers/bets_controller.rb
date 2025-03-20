@@ -8,7 +8,7 @@ class BetsController < ApplicationController
     @bet.user = current_user
     @bet.status = "pending"
     if @bet.save
-      redirect_to root_path, notice: "Votre pari a bien été enregistré"
+      redirect_back(fallback_location: root_path, notice: "Votre pari a bien été enregistré")
     else
       redirect_back(fallback_location: root_path, alert: "Erreur lors de l'enregistrement du pari")
     end
