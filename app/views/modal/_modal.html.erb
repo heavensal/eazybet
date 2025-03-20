@@ -2,8 +2,8 @@
   <dialog data-dialog-target="dialog" class="bg-blue-900 p-4 w-[90dvw]
   h-[50dvh] my-[10dvh] mx-auto rounded-lg
   absolute text-white  md:w-[50dvw]"
-         >
-    <%= form_with model: Bet.new, url: bets_path, method: :post do |f| %>
+       tabindex="-1"  >
+    <%= form_with model: Bet.new, url: bets_path, method: :post,  html: { autofocus: false }, class: "flex flex-col h-[80%] justify-center" do |f| %>
       <div class="flex justify-around mb-6">
         <p><%= odd.name %></p>
         <p><%= odd.price %></p>
@@ -19,7 +19,13 @@
           </div>
         <div class="flex flex-col gap-2">
            <p>Gains potentiels</p>
-            <p id="result" class="p-2 bg-gray-900 rounded-lg" data-price-target="result"><%= odd.price %></p>
+           <div  class="flex gap-2  bg-gray-900 rounded-lg items-center" >
+              <span class='bg-blue-400 p-2 rounded-l-lg'> <img src="/icons/diamond.svg" alt="diamond"></span>
+              <p id="result" data-price-target="result"><%= odd.price %></p>
+           </div>
+
+
+
         </div>
         </div>
 
