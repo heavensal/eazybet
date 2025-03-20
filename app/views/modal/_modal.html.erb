@@ -20,7 +20,9 @@
         <div class="flex flex-col gap-2">
            <p>Gains potentiels</p>
            <div  class="flex gap-2  bg-gray-900 rounded-lg items-center" >
-              <span class='bg-blue-400 p-2 rounded-l-lg'> <img src="/icons/diamond.svg" alt="diamond"></span>
+              <span class='bg-blue-400 p-2 rounded-l-lg'>
+                <%= image_tag 'icons/diamond.svg', alt: "diamond" %>
+              </span>
               <p id="result" data-price-target="result"><%= odd.price %></p>
            </div>
         </div>

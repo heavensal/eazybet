@@ -10,6 +10,7 @@
       <%= render "competitions/components/odds", odd: draw_odd, bet: bet %>
       <%= render "competitions/components/odds", odd: away_team_odd, bet: bet %>
     <% else %>
+
       <li class="col-span-3 flex justify-center items-center text-white">
         <p>Les cotes ne sont pas encore disponibles</p>
       </li>
@@ -18,8 +19,8 @@
   <div class="flex justify-end items-center text-rose-600 p-2.5">
     <%= link_to event_path(event) do %>
       <div class="rounded-lg bg-gray-900 flex gap-2 py-1 px-2 items-center">
-          <p class="text-rose-600"><%= comments.count %></p>
-        <img src="/icons/comment.svg" alt="Vidéo" class="w-6 h-6">
+        <p class="text-rose-600"><%= comments.size %></p>
+        <%= image_tag "icons/comment.svg", class: "w-6 h-6" %>
       </div>
     <% end %>
   </div>

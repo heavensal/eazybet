@@ -1,4 +1,5 @@
 <li class="flex flex-col gap-2" data-controller="dialog">
+
   <p class='text-center text-white'><%= odd.name %></p>
   <button class="p-2.5 border text-white rounded-md transition-shadow duration-200
     <%= bet&.odd_id == odd.id ? 'bg-rose-600 border-rose-600' : 'bg-transparent border-white' %>
@@ -6,6 +7,8 @@
 
   <%= 'disabled' if bet.present? %>
     data-action="click->dialog#open">
+
+
     x <%= number_with_precision(odd.price, precision: 2) %>
   </button>
   <%= render "modal/modal", odd: odd %>

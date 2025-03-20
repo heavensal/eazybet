@@ -5,12 +5,12 @@
 
     <li class='flex gap-2'>
       <%= current_user.wallet.diamonds %>
-        <img src="/icons/diamond.svg" alt="diamond">
+      <%= image_tag 'icons/diamond.svg', alt: "Commentaires", class: "w-6 h-6" %>
     </li>
 
     <li class='flex gap-2'>
-    <%= current_user.wallet.coins %>
-      <img src="/icons/coin.svg" alt="coin">
+      <%= current_user.wallet.coins %>
+      <%= image_tag 'icons/coin.svg', alt: "Commentaires", class: "w-6 h-6" %>
     </li>
 
     <% else %>
