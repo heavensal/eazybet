@@ -23,9 +23,10 @@
     <header>
       <%= render "layouts/header/header" %>
     </header>
-    <main class="container mx-auto mt-[66px] px-5 pb-[100px] text-white  min-h-screen">
-      <%= yield %>
-    </main>
+ <main class="mx-auto mt-[66px]  px-5 text-white  md:max-w-[80%] ">
+  <%= yield %>
+</main>
+
      <div class="navbar">
          <%= render "layouts/navbar/navbar" %>
       </div>

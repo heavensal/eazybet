@@ -1,12 +1,4 @@
-<ul class="flex justify-around bg-blue-900 text-white px-5 py-2.5 rounded-lg items-center mb-4
-           sticky top-[64px] z-50 ">
-   <li>
-    <%= link_to 'A Venir', root_path %>
-   </li>
-    <li><%= link_to 'Joués', played_events_path %></li>
-     <li><%= link_to 'Résultats', finished_events_path %></li>
-  </ul>
-
+    <%= render "filters/filters"   %>
 
 <% @events.each do |event| %>
   <div class="event">

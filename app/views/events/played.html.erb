@@ -1,16 +1,5 @@
-<ul class="flex justify-around bg-blue-900 text-white px-5 py-2.5 rounded-lg items-center mb-4 sticky top-[64px] z-50">
-  <li class="<%= 'bg-rose-600 rounded-md' if current_page?(root_path) %> px-4 py-2">
-    <%= link_to 'A Venir', root_path %>
-  </li>
-  <li class="<%= 'bg-rose-600 rounded-md' if current_page?(played_events_path) %> px-4 py-2">
-    <%= link_to 'Joués', played_events_path %>
-  </li>
-  <li class="<%= 'bg-rose-600 rounded-md' if current_page?(finished_events_path) %> px-4 py-2">
-    <%= link_to 'Résultats', finished_events_path %>
-  </li>
-</ul>
-
-<ul class='flex flex-col justify-center items-center'>
+ <%= render "filters/filters"   %>
+<ul class='flex flex-col justify-center items-center md:flex-row flex-wrap'>
 <% @events.each do |event| %>
 
     <li class="event">
