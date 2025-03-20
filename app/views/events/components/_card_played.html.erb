@@ -11,14 +11,27 @@
       <%= render "events/components/bet", odd: away_team_odd, bet: bet %>
     <% end %>
   </ul>
-  <div class="flex gap-2 p-2.5">
+  <div class="flex flex-col gap-2 p-2.5">
     <div class="flex flex-col gap-2">
       <h3>Mise</h3>
+       <div class="flex gap-2  bg-gray-900 rounded-lg items-center" >
+         <span class='bg-yellow-400 p-2 rounded-l-lg'>
+                <%= image_tag 'icons/coin.svg', alt: "diamond" %>
+              </span>
       <p class='bg-gray-900 rounded-lg px-4 py-2'><%= bet.stake %></p>
+
+      </div>
     </div>
+
     <div class="flex flex-col gap-2 w-full">
       <h3>Gains potentiels</h3>
-      <p class='bg-gray-900 rounded-lg px-4 py-2'><%= bet.stake * bet.odd.price %></p>
+      <div class="flex gap-2  bg-gray-900 rounded-lg items-center" >
+        <span class='bg-blue-400 p-2 rounded-l-lg'>
+                <%= image_tag 'icons/diamond.svg', alt: "diamond" %>
+              </span>
+           <p class= 'rounded-lg px-4 py-2'><%= bet.stake * bet.odd.price %></p>
+      </div>
+
     </div>
   </div>
   <div class="flex justify-end items-center text-rose-600 p-2.5">
