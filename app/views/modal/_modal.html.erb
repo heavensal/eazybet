@@ -1,23 +1,28 @@
 <div data-controller="price" data-action="click->dialog#backdropClose">
-  <dialog data-dialog-target="dialog" data-dialog-open-value="true" class="bg-blue-900 p-4 text-white"
-          style="width: 90dvw; height:30dvh; position: absolute; margin: 10dvh auto; border-radius: 8px;">
+  <dialog data-dialog-target="dialog" data-dialog-open-value="true" class="bg-blue-900 p-4 w-[90dvw]
+  h-[50dvh] my-[10dvh] mx-auto rounded-lg
+  absolute text-white"
+         >
     <%= form_with model: Bet.new, url: bets_path, method: :post do |f| %>
       <div class="flex justify-around mb-6">
         <p><%= odd.name %></p>
         <p><%= odd.price %></p>
       </div>
 
-      <div data-controller="price " class="flex flex-col gap-4">
-        <p>Gains potentiels</p>
-        <div class="flex flex-col gap-4">
-          <div class="flex gap-2">
+
+
+        <div data-controller="price " class="flex flex-col gap-2 p-2.5">
+          <div class="flex flex-col gap-2">
               <%= f.hidden_field :odd_id, value: odd.id %>
               <%= f.label :stake, "Mise" %>
-              <%= f.number_field :stake, data: { price_target: "input", action:"input->price#update" }, value: 1, min: 1, step: 1, class: "p-2 border border-white rounded-lg" %>
+              <%= f.number_field :stake, data: { price_target: "input", action:"input->price#update" }, value: 1, min: 1, step: 0.1, class: "p-2 bg-gray-900 rounded-lg" %>
           </div>
-          <p id="result" data-price-target="result"><%= odd.price %></p>
+        <div class="flex flex-col gap-2">
+           <p>Gains potentiels</p>
+            <p id="result" class="p-2 bg-gray-900 rounded-lg" data-price-target="result"><%= odd.price %></p>
         </div>
-      </div>
+        </div>
+
 
 
       <div class="flex gap-4">
