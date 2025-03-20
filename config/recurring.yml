@@ -1,10 +1,9 @@
-# production:
-#   periodic_cleanup:
-#     class: CleanSoftDeletedRecordsJob
-#     queue: background
-#     args: [ 1000, { batch_size: 500 } ]
-#     schedule: every hour
-#   periodic_command:
-#     command: "SoftDeletedRecord.due.delete_all"
-#     priority: 2
-#     schedule: at 5am every day
+production:
+  update_event_list:
+    class: UpdateEventListJob
+    queue: default
+    schedule: at 12am every day
+  update_event_scores:
+    class: UpdateEventScoresJob
+    queue: default
+    schedule: at 1am every day

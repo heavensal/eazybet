@@ -6,3 +6,4 @@ pin "@hotwired/stimulus", to: "@hotwired--stimulus.js" # @3.2.2
 pin "@hotwired/stimulus-loading", to: "stimulus-loading.js"
 pin_all_from "app/javascript/controllers", under: "controllers"
 pin "@stimulus-components/dialog", to: "@stimulus-components--dialog.js" # @1.0.1
+pin "ima3", to: "//imasdk.googleapis.com/js/sdkloader/ima3.js"
