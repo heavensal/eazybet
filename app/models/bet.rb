@@ -36,7 +36,7 @@ class Bet < ApplicationRecord
   end
 
   def decrease_wallet_coins
-    user.wallet -= stake
+    user.wallet.coins -= stake
     user.wallet.save!
   end
 
