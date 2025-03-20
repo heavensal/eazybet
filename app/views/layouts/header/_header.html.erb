@@ -2,9 +2,6 @@
 
   <ul class="flex justify-between items-center h-full">
     <% if user_signed_in? %>
-    <li>
-      <%= link_to 'Déco', destroy_user_session_path, data: { turbo_method: :delete, turbo_confirm: "Déconnexion ?"}, class: "text-white" %>
-    </li>
 
     <li class='flex gap-2'>
       <%= current_user.wallet.diamonds %>
@@ -14,12 +11,6 @@
     <li class='flex gap-2'>
     <%= current_user.wallet.coins %>
       <img src="/icons/coin.svg" alt="coin">
-    </li>
-
-    <li>
-     <%= link_to "#", class: "text-white" do %>
-  <img src="/icons/camera.svg" alt="Vidéo" class="w-6 h-6">
-<% end %>
     </li>
 
     <% else %>

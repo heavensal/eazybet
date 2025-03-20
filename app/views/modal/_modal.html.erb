@@ -15,7 +15,7 @@
           <div class="flex flex-col gap-2">
               <%= f.hidden_field :odd_id, value: odd.id %>
               <%= f.label :stake, "Mise" %>
-              <%= f.number_field :stake, data: { price_target: "input", action:"input->price#update" }, value: 1, min: 1, step: 0.1, class: "p-2 bg-gray-900 rounded-lg" %>
+              <%= f.number_field :stake, data: { price_target: "input", action:"input->price#update" }, value: 1, min: 1, step: 0.1, class: "p-2 bg-gray-900 rounded-lg", autofocus: false %>
           </div>
         <div class="flex flex-col gap-2">
            <p>Gains potentiels</p>
