@@ -38,7 +38,16 @@ Rails.application.configure do
   config.action_mailer.perform_caching = false
 
   # Set localhost to be used by links generated in mailer templates.
-  config.action_mailer.default_url_options = { host: "localhost", port: 3000 }
+  config.action_mailer.default_url_options = { host: "eazybetcoinapp.com", protocol: "https" }
+  config.action_mailer.smtp_settings = {
+    address:              "smtp.hostinger.com", # Adresse du serveur SMTP
+    port:                 465,                # Port du serveur SMTP
+    domain:               eazybetcoinapp.com,      # Domaine de votre application
+    user_name:            ENV["EMAIL"],         # Nom d'utilisateur SMTP
+    password:             ENV["EMAIL_PASSWORD"],         # Mot de passe SMTP
+    authentication:       :plain,
+    ssl:                  true
+  }
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log

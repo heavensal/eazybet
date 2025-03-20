@@ -58,14 +58,14 @@ Rails.application.configure do
   # config.action_mailer.raise_delivery_errors = false
 
   # Set host to be used by links generated in mailer templates.
-  config.action_mailer.default_url_options = { host: "example.com" }
+  config.action_mailer.default_url_options = { host: "eazybetcoinapp.com", protocol: "https" }
   config.action_mailer.smtp_settings = {
-    address:              ENV["ADDRESS"], # Adresse du serveur SMTP
+    address:              "smtp.hostinger.com", # Adresse du serveur SMTP
     port:                 465,                # Port du serveur SMTP
-    domain:               ENV["DOMAIN"],      # Domaine de votre application
-    user_name:            ENV["USERNAME"],         # Nom d'utilisateur SMTP
-    password:             ENV["MAIL_PASSWORD"],         # Mot de passe SMTP
-    authentication:       ENV["AUTHENTICATION"],
+    domain:               eazybetcoinapp.com,      # Domaine de votre application
+    user_name:            ENV["EMAIL"],         # Nom d'utilisateur SMTP
+    password:             ENV["EMAIL_PASSWORD"],         # Mot de passe SMTP
+    authentication:       :plain,
     ssl:                  true
   }
 

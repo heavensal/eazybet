@@ -29,7 +29,7 @@
         <span class='bg-blue-400 p-2 rounded-l-lg'>
                 <%= image_tag 'icons/diamond.svg', alt: "diamond" %>
               </span>
-           <p class= 'rounded-lg px-4 py-2'><%= bet.stake * bet.odd.price %></p>
+           <p class= 'rounded-lg px-4 py-2'><%= bet.calculate_diamonds %></p>
       </div>
 
     </div>

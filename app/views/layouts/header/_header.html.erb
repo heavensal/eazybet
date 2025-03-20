@@ -4,7 +4,7 @@
     <% if user_signed_in? %>
 
     <li class='flex gap-2'>
-      <%= current_user.wallet.diamonds %>
+      <%= number_with_precision(current_user.wallet.diamonds, precision: 2) %>
       <%= image_tag 'icons/diamond.svg', alt: "Commentaires", class: "w-6 h-6" %>
     </li>
 

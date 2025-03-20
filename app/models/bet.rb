@@ -13,6 +13,14 @@ class Bet < ApplicationRecord
   before_create :verify_wallet_coins
   after_create :decrease_wallet_coins
 
+  def calculate_diamonds
+    # il faut arrondir le résultat à 2 chiffres après la virgule et au supérieur
+    # Exemple: 0.992 diamonds => 0.99 diamonds
+    # Exemple: 0.998 diamonds => 1.00 diamonds
+    # Exemple: 0.428 diamonds => 0.43 diamonds
+    ((payout - stake) / 1000.0 * 100).ceil / 100.0
+  end
+
   private
 
   def increase_user_wallet
@@ -38,14 +46,6 @@ class Bet < ApplicationRecord
   def decrease_wallet_coins
     user.wallet.coins -= stake
     user.wallet.save!
-  end
-
-  def calculate_diamonds
-    # il faut arrondir le résultat à 2 chiffres après la virgule et au supérieur
-    # Exemple: 0.992 diamonds => 0.99 diamonds
-    # Exemple: 0.998 diamonds => 1.00 diamonds
-    # Exemple: 0.428 diamonds => 0.43 diamonds
-    ((payout - stake) / 1000.0 * 100).ceil / 100.0
   end
 end
 
