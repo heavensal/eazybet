@@ -1,4 +1,5 @@
-<ul class="flex justify-around bg-blue-900 text-white px-5 py-2.5 rounded-lg items-center mb-4 sticky top-[64px] z-50 shadow-[0px_0px_20px_rgba(0,0,0,0.7)]">
+<ul class="flex justify-around bg-[var(--bg-card)] text-white px-5 py-2.5 rounded-lg items-center mb-4 sticky top-[64px] z-50 shadow-[0px_0px_20px_rgba(0,0,0,0.7)]">
+ <% if current_page?(root_path) || current_page?(played_events_path) || current_page?(finished_events_path) %>
   <li class="<%= 'bg-rose-600 rounded-md' if current_page?(root_path) %> px-4 py-2">
     <%= link_to 'A venir', root_path %>
   </li>
@@ -8,4 +9,16 @@
   <li class="<%= 'bg-rose-600 rounded-md' if current_page?(finished_events_path) %> px-4 py-2">
     <%= link_to 'Résultats', finished_events_path %>
   </li>
+  <% else %>
+   <li class="">
+    <a href="#">Classements</a>
+  </li>
+  <li class="">
+    <a href="#">Amis</a>
+  </li>
+  <li class="">
+    <a href="#">Divisions</a>
+  </li>
+
+  <% end %>
 </ul>

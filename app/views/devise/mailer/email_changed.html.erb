@@ -1,7 +1,43 @@
-<p>Hello <%= @email %>!</p>
+<body>
+<p>Bonjour <%= @email %>!</p>
 
 <% if @resource.try(:unconfirmed_email?) %>
-  <p>We're contacting you to notify you that your email is being changed to <%= @resource.unconfirmed_email %>.</p>
+  <p>Nous vous contactons pour vous notifier que votre email est en cours de changement vers
+   <%= @resource.unconfirmed_email %>.</p>
 <% else %>
-  <p>We're contacting you to notify you that your email has been changed to <%= @resource.email %>.</p>
+  <p>Nous vous contactons pour vous notifier que votre mail a bien été modifié et qu'il est maintenant : <%= @resource.email %>.</p>
 <% end %>
+</body>
+
+
+<style>
+  /* Importation de la police depuis Google Fonts */
+  @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap');
+
+  /* Application de la police au corps de l'email */
+  body {
+    font-family: 'Orbitron', sans-serif;
+    color: #333; /* Texte général en gris pour une meilleure lisibilité */
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4; /* Fond léger pour une meilleure lisibilité */
+  }
+
+  /* Style des titres */
+  h1 {
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+
+  /* Style du texte du lien */
+  .link {
+    color: #ec003f;
+    font-weight: bold;
+    text-decoration: none;
+  }
+
+  .link:hover {
+    text-decoration: underline;
+  }
+</style>

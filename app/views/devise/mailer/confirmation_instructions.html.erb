@@ -1,5 +1,41 @@
-<p>Welcome <%= @email %>!</p>
+<body>
+  <h1>Bienvenue <%= @email %>!</h1>
 
-<p>You can confirm your account email through the link below:</p>
+  <p>Vous pouvez confirmer la création de votre compte via ce lien:</p>
 
-<p><%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token) %></p>
+  <p class="link">
+    <%= link_to 'Confirmer mon compte', confirmation_url(@resource, confirmation_token: @token) %>
+  </p>
+</body>
+
+<style>
+  /* Importation de la police depuis Google Fonts */
+  @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap');
+
+  /* Application de la police au corps de l'email */
+  body {
+    font-family: 'Orbitron', sans-serif;
+    color: #333; /* Texte général en gris pour une meilleure lisibilité */
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4; /* Fond léger pour une meilleure lisibilité */
+  }
+
+  /* Style des titres */
+  h1 {
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+
+  /* Style du texte du lien */
+  .link {
+    color: #ec003f;
+    font-weight: bold;
+    text-decoration: none;
+  }
+
+  .link:hover {
+    text-decoration: underline;
+  }
+</style>
