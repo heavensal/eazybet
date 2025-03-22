@@ -1,0 +1,16 @@
+
+      <%= turbo_frame_tag "event_odds_#{@event.id}", class: "grid grid-cols-3 gap-4 p-2.5 items-end" do %>
+
+          <% if @event.odds.any?  %>
+            <%= render "competitions/components/odds", odd: @event.home_team_odd, bet: user_signed_in? ? @event.bets.find_by(user_id: current_user.id) : nil %>
+            <%= render "competitions/components/odds", odd: @event.draw_odd, bet: user_signed_in? ? @event.bets.find_by(user_id: current_user.id) : nil %>
+            <%= render "competitions/components/odds", odd: @event.away_team_odd, bet: user_signed_in? ? @event.bets.find_by(user_id: current_user.id) : nil  %>
+
+          <% else %>
+            <li class="col-span-3 flex justify-center items-center text-white">
+              <p>Les cotes ne sont pas encore disponibles</p>
+            </li>
+
+          <% end %>
+
+      <% end %>

@@ -7,13 +7,11 @@
       <%= competition.title %>
     </h2>
   </div>
-  <ul class="flex overflow-x-auto space-x-4 p-4 no-scrollbar snap-x snap-mandatory">
-    <% competition.events.sorted_by_commence_time.each do |event| %>
-      <%= render "competitions/components/card", event: event, id:event.id, home_team: event.home_team, away_team: event.away_team, home_team_odd: event.home_team_odd, away_team_odd: event.away_team_odd,
-      draw_odd:event.draw_odd,commence_time: event.commence_time, odds:event.odds, comments:event.comments,
-      bet: user_signed_in? ? event.bets.find_by(user_id: current_user.id) : nil  %>
-    <% end %>
-  </ul>
+
+  <%= turbo_frame_tag "competition_events_#{competition.id}", src: competition_events_path(competition) do %>
+    <p class="p-4 text-sm text-gray-400">Chargement des événements...</p>
+  <% end %>
+
 
 <% end %>
 

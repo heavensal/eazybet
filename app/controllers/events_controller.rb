@@ -1,6 +1,12 @@
 class EventsController < ApplicationController
   def index
-    @events = Event.all
+    @competition = Competition.find(params[:competition_id])
+    @events = @competition.events.sorted_by_commence_time
+  end
+
+  def odds
+    @event = Event.find(params[:id])
+    @odds = @event.odds
   end
 
   def played

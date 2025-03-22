@@ -1,21 +1,17 @@
 <li class="flex-shrink-0 border-2 border-blue-900 m-2 w-[300px] bg-blue-900 rounded-lg grid grid-rows-[20%,60%,20%] text-sm snap-center">
+
   <div class="px-2.5 h-[30px] flex justify-end bg-gray-900 rounded-t-lg items-center">
     <p class="text-white">
       <%= l(commence_time) %>
     </p>
   </div>
-  <ul id="odds_for_event_<%= id %>" class="grid grid-cols-3 gap-4 p-2.5 items-end">
-    <% if odds.any?  %>
-      <%= render "competitions/components/odds", odd: home_team_odd, bet: bet %>
-      <%= render "competitions/components/odds", odd: draw_odd, bet: bet %>
-      <%= render "competitions/components/odds", odd: away_team_odd, bet: bet %>
-    <% else %>
 
-      <li class="col-span-3 flex justify-center items-center text-white">
-        <p>Les cotes ne sont pas encore disponibles</p>
-      </li>
-    <% end %>
-  </ul>
+  <%= turbo_frame_tag "event_odds_#{event.id}", src: odds_event_path(event), class: "grid grid-cols-3 gap-4 p-2.5 items-end" do %>
+    <p>
+      Chargement des cotes...
+    </p>
+  <% end %>
+
   <div class="flex justify-end items-center text-rose-600 p-2.5">
     <%= link_to event_path(event) do %>
       <div class="rounded-lg bg-gray-900 flex gap-2 py-1 px-2 items-center">
@@ -24,4 +20,5 @@
       </div>
     <% end %>
   </div>
+
 </li>

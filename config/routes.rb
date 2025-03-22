@@ -17,16 +17,18 @@ Rails.application.routes.draw do
   get "ranking" => "pages#ranking"
 
   resources :bets
-  resources :events, only: [ :index, :show ] do
-    collection do
-      get :played
-      get :finished
+  resources :competitions, only: [ :index, :show ] do
+    resources :events, only: [ :index ] do
     end
+  end
+  resources :events, only: [ :show ] do
+    get :odds, on: :member
+    get :played, on: :collection
+    get :finished, on: :collection
     resources :comments, except: [ :destroy ]
   end
   resources :comments, only: [ :destroy ]
   resources :odds, only: [ :index, :show ]
-  resources :competitions, only: [ :index, :show ]
   resources :scores, only: [ :index, :show ]
 
   namespace :admin do
