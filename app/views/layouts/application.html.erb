@@ -19,17 +19,17 @@
 
       <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
   </head>
-  <body class='bg-gray-900 pb-40'>
-    <header>
+  <body class='bg-gray-900  min-h-screen'>
+<header class="sticky top-0 w-full bg-[var(--bg-card)] text-white shadow-[0_0_10px_rgba(0,0,0,0.4)] z-1000 px-4 py-2">
       <%= render "layouts/header/header" %>
     </header>
 
-    <main class="mx-auto mt-[66px]  px-5 text-white  md:max-w-[80%] ">
+    <main class="mx-auto  px-5 text-white  md:max-w-[80%] ">
       <%= yield %>
     </main>
 
-    <div class="navbar">
+ <footer class="fixed bottom-0 left-0 w-full  bg-[var(--bg-card)] text-white shadow-[0_-4px_4px_rgba(0,0,0,0.25)] z-50 ">
         <%= render "layouts/navbar/navbar" %>
-    </div>
+    </footer>
   </body>
 </html>
