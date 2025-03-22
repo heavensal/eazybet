@@ -1,22 +1,25 @@
-<%# <ul class="flex justify-around bg-blue-900 text-white px-5 py-2.5 rounded-lg items-center mb-4
-           sticky top-[64px] z-50 ">
-   <li>
-    Classements
-   </li>
-    <li>Amis</li>
-     <li>Divisions</li>
-  </ul> %>
-<ul class="container">
-  <h2 class="uppercase font-bold leading-[1.2] text-2xl mb-8">Classements</h2>
+<div class="p-8">
+ <h1 class='text-[var(--ezb-red)] text-center mb-8 text-[2rem]'> 🎁 Airdrop</h1>
+  <%= render "filters/filters"   %>
 
 
+<section class="bg-[var(--bg-card)] p-8 rounded-2xl mb-8">
+ <h2 class='text-[var(--ezb-red)] text-center mb-8 text-2xl'>  🏆 Classement de votre Division 🏆</h2>
+ <div class="bg-[var(--bg-card-dark)] border-[var(--blue-debutant)] border-2 text-center flex justify-center gap-4 flex-col mb-4 rounded-lg p-4">
+  <p class="text-[var(--blue-debutant)] ">Division Débutant</p>
+  <p>Top 80-100%</p>
+ </div>
+
+  <ul class="flex flex-col gap-4">
     <% User.all.each_with_index do |user, rank| %>
-  <li class="bg-blue-900 mb-4 flex items-center justify-between px-4 py-4 rounded-lg border-l-[3px] border-cyan-400">  <!-- Add margin-bottom and padding here -->
-    <p class="flex-1"><%= rank + 1 %></p> <!-- Flex-1 to evenly distribute and center text -->
-    <p class="flex-1 "><%= user.first_name %></p>
-    <p class="flex-1 text-right"><%= user.wallet.diamonds %></p>
+  <li class="grid grid-cols-[60px_1fr_80px] p-2 border-[var(--blue-debutant)] border-l-4 bg-[var(--bg-card-dark)] rounded-lg hover:bg-[var(--bg-card-hover)] transition-transform duration-200 hover:translate-x-[5px]">
+    <p class="text-[0.85rem]" ><%= rank + 1 %></p>
+    <p class="text-[0.85rem]"><%= user.first_name %></p>
+    <p class="text-right text-[0.85rem]"><%= user.wallet.diamonds %> 💎</p>
   </li>
 <% end %>
 
 
 </ul>
+</section>
+</div>
