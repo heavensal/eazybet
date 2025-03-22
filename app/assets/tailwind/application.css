@@ -1,6 +1,20 @@
 @import "tailwindcss";
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap');
 
+
+:root {
+  --bg-card: #0f3460;
+  --bg-header-card: #16213e;
+  --ezb-red: #e94560;
+  --ezb-red-hover:  #ff6b81;
+  --ezb-blue: rgb(0, 255, 255);
+  --blue-hover: #1a4980;
+  --blue-debutant: #2196f3;
+  --profile-stat-text: rgb(160, 174, 192);
+}
+
+
+
 @layer base {
   body {
     @apply font-[Orbitron];
