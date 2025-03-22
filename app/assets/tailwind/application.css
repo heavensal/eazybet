@@ -4,7 +4,8 @@
 
 :root {
   --bg-card: #0f3460;
-  --bg-header-card: #16213e;
+  --bg-card-dark: #16213e;
+  --bg-card-hover:#1a2846;
   --ezb-red: #e94560;
   --ezb-red-hover:  #ff6b81;
   --ezb-blue: rgb(0, 255, 255);
