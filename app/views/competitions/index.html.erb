@@ -9,7 +9,8 @@
   </div>
   <ul class="flex overflow-x-auto space-x-4 p-4 no-scrollbar snap-x snap-mandatory">
     <% competition.events.sorted_by_commence_time.each do |event| %>
-      <%= render "competitions/components/card", event: event, id:event.id, home_team: event.home_team, away_team: event.away_team, home_team_odd: event.home_team_odd, away_team_odd: event.away_team_odd,
+
+      <%= render "competitions/components/card", competition: competition.title, event: event, id:event.id, home_team: event.home_team, away_team: event.away_team, home_team_odd: event.home_team_odd, away_team_odd: event.away_team_odd,
       draw_odd:event.draw_odd,commence_time: event.commence_time, odds:event.odds, comments:event.comments,
       bet: user_signed_in? ? event.bets.find_by(user_id: current_user.id) : nil  %>
     <% end %>
