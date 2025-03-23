@@ -15,7 +15,10 @@
   <% end %>
 
 
-    <%= link_to event_path(event),   class: "w-full p-4 flex  items-center " do %>
+
+
+    <%= link_to event_path(event), class: "w-full p-4 flex  items-center ", data: { turbo: false }  do %>
+
       💬<%= comments.size %>
     <% end %>
 
