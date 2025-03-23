@@ -15,7 +15,7 @@
   <% end %>
 
   <div class="flex  items-center p-2.5">
-    <%= link_to event_path(event) do %>
+    <%= link_to event_path(event), data: { turbo: false } do %>
       💬<%= comments.size %>
     <% end %>
   </div>
