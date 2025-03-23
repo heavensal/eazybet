@@ -1,6 +1,12 @@
-<div class="flex gap-2 items-center mb-8">
+<div class="mb-10">
+  <div class="flex flex-col gap-2  mb-8">
   <%= link_to :back do %>
-    <%= image_tag '/icons/back.svg', alt: 'Retour', class: 'w-6 h-6' %>
+ <svg fill="currentColor" xmlns="http://www.w3.org/2000/svg"
+	 width="24px" height="24px" viewBox="0 0 52 52" enable-background="new 0 0 52 52" xml:space="preserve">
+<path d="M48.6,23H15.4c-0.9,0-1.3-1.1-0.7-1.7l9.6-9.6c0.6-0.6,0.6-1.5,0-2.1l-2.2-2.2c-0.6-0.6-1.5-0.6-2.1,0
+	L2.5,25c-0.6,0.6-0.6,1.5,0,2.1L20,44.6c0.6,0.6,1.5,0.6,2.1,0l2.1-2.1c0.6-0.6,0.6-1.5,0-2.1l-9.6-9.6C14,30.1,14.4,29,15.3,29
+	h33.2c0.8,0,1.5-0.6,1.5-1.4v-3C50,23.8,49.4,23,48.6,23z"/>
+</svg>
   <% end %>
   <h2 class="uppercase font-bold leading-[1.2] text-2xl ">Modifier mon compte</h2>
 </div>
@@ -50,11 +56,13 @@
     <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "p-2 border border-white rounded-lg w-full", placeholder: 'Confirmez votre mot de passe' %>
   </div>
 
-  <div class="bg-rose-600 rounded-lg px-2.5 py-2 w-full text-center">
+  <div class="bg-[var(--ezb-red)] hover:bg-[var(--ezb-red-hover)] rounded-lg px-2.5 py-2 w-full text-center">
     <%= f.submit "Mettre à jour" %>
   </div>
 <% end %>
 
-<div class='text-gray-600 text-[14px]'>
+<div class='text-gray-600 text-[14px] '>
   Pas satisfait ? <%= button_to "Supprimer mon compte", registration_path(resource_name), class: "text-[14px] text-gray-600 underline transition-all duration-400 hover:text-rose-600 ", data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %>
+</div>
+
 </div>

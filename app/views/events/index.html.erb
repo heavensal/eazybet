@@ -14,6 +14,7 @@
         commence_time: event.commence_time,
         odds:event.odds,
         comments:event.comments,
+        competition: event.competition,
         bet: user_signed_in? ? event.bets.find_by(user_id: current_user.id) : nil  %>
         <!-- events/odds.html.erb -->
 
