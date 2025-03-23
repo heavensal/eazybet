@@ -15,9 +15,9 @@
   </section>
 
 
-<a href="/" class="p-4 flex items-center justify-center bg-[var(--ezb-red)] rounded-lg mb-6 text-[1.2rem] font-bold hover:bg-[var(--ezb-red-hover)] transform transition-colors duration-300">
+<p id='openModalFriend' class="p-4 flex items-center justify-center bg-[var(--ezb-red)] rounded-lg mb-6 text-[1.2rem] font-bold hover:bg-[var(--ezb-red-hover)] transform transition-colors duration-300 cursor-pointer">
 
-   👥 Ajouter des amis</a>
+   👥 Ajouter des amis</p>
 
 
 
@@ -59,7 +59,7 @@
   <hr class='mb-4'>
   <div id='divisions' class="flex flex-col gap-4 ">
     <p class='text-[var(--profile-stat-text)]'>Division actuelle</p>
-    <div class="flex justify-center bg-[var(--bg-card-dark)] rounded-lg p-4  border-[var(--ezb-blue)] border-2">
+    <div class="flex justify-center bg-[var(--bg-card-dark)] rounded-lg p-4  border-[var(--ezb-blue)] border-2 gap-4">
     <p class="text-[1.2rem] font-bold text-[var(--blue-debutant)]
    ">Division Débutant</p>
       <p class='text-[0.9rem]'>
@@ -101,14 +101,17 @@
 </section>
 </div>
 
-
+<%= render "modal/modal-friend" %>
  <%= render "modal/modal-profile" %>
 
 <script>
   document.addEventListener("DOMContentLoaded", () => {
     const openModalButton = document.getElementById("openModal");
+    const openModalFriend = document.getElementById("openModalFriend");
     const closeModalButton = document.getElementById("closeModal");
+    const closeModalFriend = document.getElementById("closeModalFriend");
     const modal = document.getElementById("profileModal");
+    const modalFriend = document.getElementById('friendModal')
 
     // Fonction pour désactiver le défilement
     const disableScroll = () => {
@@ -126,10 +129,21 @@
         disableScroll(); // Désactive le scroll lorsque la modal est ouverte
       });
     }
-
+ if (openModalFriend && modalFriend) {
+      openModalFriend.addEventListener("click", () => {
+        modalFriend.showModal();
+        disableScroll(); // Désactive le scroll lorsque la modal est ouverte
+      });
+    }
     if (closeModalButton && modal) {
       closeModalButton.addEventListener("click", () => {
         modal.close();
+        enableScroll(); // Réactive le scroll lorsque la modal est fermée
+      });
+    }
+       if (closeModalFriend && modalFriend) {
+      closeModalFriend.addEventListener("click", () => {
+        modalFriend.close();
         enableScroll(); // Réactive le scroll lorsque la modal est fermée
       });
     }
@@ -138,6 +152,12 @@
     modal?.addEventListener("click", (event) => {
       if (event.target === modal) {
         modal.close();
+        enableScroll(); // Réactive le scroll si on ferme la modal en cliquant en dehors
+      }
+    });
+     modalFriend?.addEventListener("click", (event) => {
+      if (event.target === modalFriend) {
+        modalFriend.close();
         enableScroll(); // Réactive le scroll si on ferme la modal en cliquant en dehors
       }
     });

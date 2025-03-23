@@ -5,7 +5,7 @@
 <% elsif odd == @event.away_team_odd %>
   <% bg_color = "bg-[var(--ezb-blue)]" %>
    <% txt_color= "text-black" %>
-  <% txt_color= "text-black" %>
+
 <% end %>
 
 <p class="rounded-full <%= bg_color %> h-[48px] w-[48px] flex items-center justify-center <%= txt_color %> text-sm
@@ -27,13 +27,3 @@
 
 
   <%= render "modal/modal-bet" %>
-
-<script>
- document.addEventListener("turbo:load", () => {
-  const openModalButton = document.getElementById("openBetModal");
-  const modal = document.getElementById("betModal");
-
-  console.log("Bouton trouvé :", openModalButton);
-  console.log("Modal trouvée :", modal);
-});
-</script>
