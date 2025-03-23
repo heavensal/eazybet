@@ -16,12 +16,24 @@
 <% end %>
 </p>
 
-  <p class='text-center text-white'><%= odd.name == "Draw" ? I18n.t("odds.draw") : odd.name %></p>
-  <button class="p-2.5 border text-white text-sm rounded-md transition-shadow duration-200
-    <%= bet&.odd_id == odd.id ? 'bg-rose-600 border-rose-600' : 'bg-transparent border-white' %>
+  <p class='text-center text-white line-clamp-2'><%= odd.name == "Draw" ? I18n.t("odds.draw") : odd.name %></p>
+  <button id="openBetModal"  class="p-2.5 border text-white text-sm rounded-md transition-shadow duration-200
+    <%= bet&.odd_id == odd.id ? 'bg-[var(--ezb-red)] border-[var(--ezb-red)]' : 'bg-transparent border-white' %>
     hover:shadow-[0_0_8px_2px_rgba(255,255,255,0.6)] hover:text-black  hover:bg-white focus:shadow-[0_0_10px_3px_rgba(255,255,255,0.8)]"
 
-  <%= 'disabled' if bet.present? %> data-action="click->dialog#open">x <%= number_with_precision(odd.price, precision: 2) %>
+  <%= 'disabled' if bet.present? %> >x <%= number_with_precision(odd.price, precision: 2) %>
   </button>
-  <%= render "modal/modal", odd: odd %>
 </li>
+
+
+  <%= render "modal/modal-bet" %>
+
+<script>
+ document.addEventListener("turbo:load", () => {
+  const openModalButton = document.getElementById("openBetModal");
+  const modal = document.getElementById("betModal");
+
+  console.log("Bouton trouvé :", openModalButton);
+  console.log("Modal trouvée :", modal);
+});
+</script>
