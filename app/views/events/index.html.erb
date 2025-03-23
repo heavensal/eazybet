@@ -1,6 +1,5 @@
 <%= turbo_frame_tag "competition_events_#{@competition.id}" do %>
-  <ul class="flex overflow-x-auto space-x-4 p-4 no-scrollbar snap-x snap-mandatory">
-    <% @events.each do |event| %>
+<ul class="flex overflow-x-auto scroll-snap-x scroll-snap-mandatory py-4 px-2 -mx-2 scroll-smooth touch-auto scrollbar-none gap-4">    <% @events.each do |event| %>
 
       <%= render "competitions/components/card",
         event: event, id:event.id,
