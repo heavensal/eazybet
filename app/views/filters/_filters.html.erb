@@ -1,12 +1,12 @@
-<ul class="flex justify-around bg-[var(--bg-card)] text-white  rounded-lg items-center mb-4 sticky top-[70px] z-50 shadow-[0px_0px_20px_rgba(0,0,0,0.7)]">
+<ul class="flex bg-[#0f3460] rounded-lg overflow-hidden mb-4 shadow-[0_0_15px_rgba(0,0,0,0.4)]">
  <% if current_page?(root_path) || current_page?(played_events_path) || current_page?(finished_events_path) %>
-  <li class="<%= 'bg-rose-600 rounded-md' if current_page?(root_path) %> px-4 py-2">
+  <li class="<%= 'bg-[var(--ezb-red)] shadow-[0_0_15px_[var(--ezb-red)],0_0_30px_[var(--ezb-red)],0_0_45px_[var(--ezb-red)]] font-bold text-white' if current_page?(root_path) %> flex-1 p-3 text-center cursor-pointer transition-all duration-300 text-[#e0e0e0] relative overflow-hidden">
     <%= link_to 'A venir', root_path %>
   </li>
-  <li class="<%= 'bg-rose-600 rounded-md' if current_page?(played_events_path) %> px-4 py-2">
+  <li class="<%= 'bg-[var(--ezb-red)] shadow-[0_0_15px_[var(--ezb-red)],0_0_30px_[var(--ezb-red)],0_0_45px_[var(--ezb-red)]] font-bold text-white' if current_page?(played_events_path) %> flex-1 p-3 text-center cursor-pointer transition-all duration-300 text-[#e0e0e0] relative overflow-hidden">
     <%= link_to 'Joués', played_events_path %>
   </li>
-  <li class="<%= 'bg-rose-600 rounded-md' if current_page?(finished_events_path) %> px-4 py-2">
+  <li class="<%= 'bg-[var(--ezb-red)] shadow-[0_0_15px_[var(--ezb-red)],0_0_30px_[var(--ezb-red)],0_0_45px_[var(--ezb-red)]] font-bold text-white' if current_page?(finished_events_path) %> flex-1 p-3 text-center cursor-pointer transition-all duration-300 text-[#e0e0e0] relative overflow-hidden">
     <%= link_to 'Résultats', finished_events_path %>
   </li>
   <% else %>
