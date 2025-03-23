@@ -1,73 +1,58 @@
 require 'rails_helper'
 
+##### TEST #####
+#
+# Path: spec/models/bet_spec.rb
+#
+# Un pari est toujours associé à un utilisateur
+# Un pari est toujours associé à un odd
+# Un pari ne peut pas avoir un montant négatif
+# Un pari ne peut pas avoir un montant supérieur au nombre de coins du wallet de l'utilisateur
+# Un pari ne peut pas être créé si l'odd est déjà terminé (won ou lost)
+# Un pari ne peut pas être créé si l'utilisateur a déjà parié sur cet odd
+# Un pari a toujours une mise (:stake)
+# Un pari a toujours un status (:status)
+# Un pari a toujours un gain (:payout)
+# Un pari est gagnant si l'odd associé est gagnant
+# Un pari est perdant si l'odd associé est perdant
+# Bet story:
+#  - Un utilisateur crée un pari sur un odd qui est pending
+#    - L'utilisateur a assez de coins
+#    - L'utilisateur n'a pas déjà parié sur cet odd
+#    - Le odd est toujours pending
+#  - L'utilisateur utilise ses coins pour créer le pari, on débite son wallet
+#  - Le pari est créé
+#  - On crée les scores de l'event
+#  - On détermine le status du pari
+#  - On met à jour le status du pari
+#    - Si l'odd est gagnant, le pari est gagnant
+#    - Si l'odd est perdant, le pari est perdant
+#    - Si l'odd est annulé, le pari est annulé
+#  - On met à jour le wallet de l'utilisateur
+#    - Si le pari est gagnant, on crédite le wallet de l'utilisateur
+#    - Si le pari est perdant, on ne fait rien
 RSpec.describe Bet, type: :model do
-  let(:user) { User.create(email: "test@gmail.com", password: "123456", first_name: "Test", last_name: "User", phone_number: "1234567890", role: "user") }
+  let(:user) { create(:user) }
+  let(:wallet) { user.wallet.tap { |w| w.update(coins: 200) } }
+  let(:competition) { create(:competition) }
+  let(:event) { create(:event, competition: competition) }
+  let(:odd) { event.odds.first || create(:odd, event: event, price: 2.0) }
 
-  let(:wallet) { Wallet.create(coins: 1000, user: user, diamonds: 0) }
+  it 'a toujours un utilisateur, un odd, et doit avoir le payout = odd.price * stake' do
+    bet = Bet.create(user: user, odd: odd, stake: 10, status: 'pending')
+    expect(bet.payout).to eq(odd.price * 10)
+  end
 
-  let(:competition) { Competition.create(key: "premier_league", group: "England", title: "Premier League", description: "The Premier League, often referred to as the English Premier League or the EPL outside England, is the top level of the English football league system.", active: true, has_outrights: true) }
-
-  let(:event) { Event.create(id: "blablablaidevent", commence_time: Time.now + 1.day, home_team: "Arsenal", away_team: "Chelsea", status: "pending", competition: competition) }
-
-  let(:odd) { Odd.create(name: "Arsenal", price: 1.5, status: "pending", event: event) }
-  let(:odd2) { Odd.create(name: "Chelsea", price: 2.5, status: "pending", event: event) }
-  let(:odd3) { Odd.create(name: "Draw", price: 3.5, status: "pending", event: event) }
-
-  it "cannot be created if the user doesn't have enough coins" do
-    bet = Bet.new(odd: odd, user: user, stake: 1001, payout: 1501, status: "pending")
+  it 'ne peut pas avoir un montant négatif' do
+    bet = Bet.new(user: user, odd: odd, stake: -1, status: 'pending')
     expect(bet).not_to be_valid
+    expect(bet.errors[:stake]).to include("must be greater than or equal to 0")
+  end
+
+  it 'ne peut pas avoir un montant supérieur au nombre de coins du wallet de l\'utilisateur' do
+    wallet.update(coins: 100)
+    bet = Bet.new(user: user, odd: odd, stake: 200, status: 'pending')
+    expect(bet).not_to be_valid
+    expect(bet.errors[:stake]).to include("is greater than your available balance")
   end
 end
-
-
-# create_table "competitions", force: :cascade do |t|
-#   t.string "key"
-#   t.string "group"
-#   t.string "title"
-#   t.string "description"
-#   t.boolean "active"
-#   t.boolean "has_outrights"
-#   t.datetime "created_at", null: false
-#   t.datetime "updated_at", null: false
-# end
-#
-# create_table "events", id: :string, force: :cascade do |t|
-#   t.datetime "commence_time"
-#   t.string "home_team", null: false
-#   t.string "away_team", null: false
-#   t.string "status", default: "pending", null: false
-#   t.bigint "competition_id", null: false
-#   t.datetime "created_at", null: false
-#   t.datetime "updated_at", null: false
-#   t.index ["competition_id"], name: "index_events_on_competition_id"
-# end
-#
-# create_table "odds", force: :cascade do |t|
-# t.string "name", null: false
-# t.decimal "price", precision: 8, scale: 2, null: false
-# t.string "status", default: "pending", null: false
-# t.string "event_id", null: false
-# t.datetime "created_at", null: false
-# t.datetime "updated_at", null: false
-# end
-
-# create_table "wallets", force: :cascade do |t|
-#   t.decimal "coins"
-#   t.decimal "diamonds", precision: 8, scale: 2, default: "0.0"
-#   t.bigint "user_id", null: false
-#   t.datetime "created_at", null: false
-#   t.datetime "updated_at", null: false
-#   t.index ["user_id"], name: "index_wallets_on_user_id"
-# end
-
-# create_table "bets", force: :cascade do |t|
-#   t.bigint "odd_id", null: false
-#   t.bigint "user_id", null: false
-#   t.decimal "stake", precision: 8, scale: 2, null: false
-#   t.decimal "payout", precision: 8, scale: 2, null: false
-#   t.string "status"
-#   t.datetime "created_at", null: false
-#   t.datetime "updated_at", null: false
-#   t.index ["odd_id"], name: "index_bets_on_odd_id"
-#   t.index ["user_id"], name: "index_bets_on_user_id"
-# end

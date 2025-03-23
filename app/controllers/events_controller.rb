@@ -1,7 +1,8 @@
 class EventsController < ApplicationController
   def index
     @competition = Competition.find(params[:competition_id])
-    @events = @competition.events.sorted_by_commence_time
+    # récupérer les events de la competition et sur lesquels l'utilisateur n'a pas encore parié
+    @events = @competition.events.where.not(id: current_user.bets.pluck(:odd_id))
   end
 
   def odds

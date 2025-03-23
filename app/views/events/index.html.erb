@@ -1,18 +1,22 @@
+
+<%# Répond au fetch des matchs d'une compétition, affiche la liste suivante d'événement %>
 <%= turbo_frame_tag "competition_events_#{@competition.id}" do %>
   <ul class="flex overflow-x-auto space-x-4 p-4 no-scrollbar snap-x snap-mandatory">
     <% @events.each do |event| %>
 
       <%= render "competitions/components/card",
+        competition: event.competition.title,
         event: event, id:event.id,
         home_team: event.home_team,
         away_team: event.away_team,
-        home_team_odd: event.home_team_odd,
-        away_team_odd: event.away_team_odd,
-        draw_odd:event.draw_odd,
+        home_team_odd: event.odds[0],
+        away_team_odd: event.odds[2],
+        draw_odd: event.odds[1],
         commence_time: event.commence_time,
         odds:event.odds,
         comments:event.comments,
         bet: user_signed_in? ? event.bets.find_by(user_id: current_user.id) : nil  %>
+        <!-- events/odds.html.erb -->
 
     <% end %>
   </ul>
