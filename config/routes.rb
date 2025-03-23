@@ -13,21 +13,24 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   root "competitions#index"
+
   get "challenges" => "pages#challenges"
   get "shop" => "pages#shop"
 
-
   resources :bets
+
   resources :competitions, only: [ :index, :show ] do
     resources :events, only: [ :index ] do
     end
   end
+
   resources :events, only: [ :show ] do
     get :odds, on: :member
     get :played, on: :collection
     get :finished, on: :collection
     resources :comments, except: [ :destroy ]
   end
+
   resources :comments, only: [ :destroy ]
   resources :odds, only: [ :index, :show ]
   resources :scores, only: [ :index, :show ]
@@ -36,6 +39,7 @@ Rails.application.routes.draw do
   resource :user, only: [ :show ] do
     get :profile, on: :member
   end
+
   resources :users, only: [] do
     get :search, on: :collection
     get :ranking, on: :collection

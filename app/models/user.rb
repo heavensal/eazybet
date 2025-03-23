@@ -7,6 +7,33 @@ class User < ApplicationRecord
   has_many :bets, dependent: :destroy
   has_many :comments, dependent: :destroy
 
+    # Sent = demandes que tu as envoyées
+    has_many :sent_friendships, class_name: "Friendship", foreign_key: :sender_id, dependent: :destroy
+
+    # Received = demandes que tu as reçues
+    has_many :received_friendships, class_name: "Friendship", foreign_key: :receiver_id, dependent: :destroy
+
+    # Friends que TU as ajoutés et qui ont accepté
+    has_many :friends_sent, -> { where(friendships: { status: "accepted" }) }, through: :sent_friendships, source: :receiver
+
+    # Friends qui T’ONT ajouté et que tu as acceptés
+    has_many :friends_received, -> { where(friendships: { status: "accepted" }) }, through: :received_friendships, source: :sender
+
+    # 👇 Méthode pour avoir tous les amis fusionnés
+    def friends
+      (friends_sent + friends_received).uniq
+    end
+
+    # 👇 Ceux à qui tu as envoyé une demande (en attente)
+    def pending_friends
+      sent_friendships.where(status: "pending").map(&:receiver)
+    end
+
+    # 👇 Ceux qui t’ont envoyé une demande (en attente)
+    def incoming_requests
+      received_friendships.where(status: "pending").map(&:sender)
+    end
+
 
   ############################################################
   # WALLET
@@ -34,4 +61,9 @@ class User < ApplicationRecord
   end
 
   ############################################################
+  # FRIENDS
+  ############################################################
+  def friend_with?(user)
+    friends.include?(user)
+  end
 end

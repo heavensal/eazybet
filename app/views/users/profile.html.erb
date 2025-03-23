@@ -2,17 +2,17 @@
 
 <div class="p-4">
   <section class="p-4 flex justify-between items-center mb-8">
-  <div class='flex gap-2 items-center'>
-    <div id="avatar" class="w-20 h-20 text-[1.8rem] rounded-full bg-[var(--ezb-red)] flex justify-center items-center hover:scale-110 transform transition duration-300 font-bold">   <%= @user.first_name[0] %>
+    <div class='flex gap-2 items-center'>
+      <div id="avatar" class="w-20 h-20 text-[1.8rem] rounded-full bg-[var(--ezb-red)] flex justify-center items-center hover:scale-110 transform transition duration-300 font-bold">
+        <%= @user.first_name[0] %>
+      </div>
+      <h2 class="leading-[1.2] text-2xl">
+        <%= @user.first_name %>
+      </h2>
     </div>
-    <h2 class="leading-[1.2] text-2xl">
-      <%= @user.first_name %>
-    </h2>
-  </div>
-
-
-    <%= image_tag 'icons/settings.svg', alt: "Paramètres", class: "w-6 h-6", id: "openModal"  %>
+    <%= image_tag 'icons/settings.svg', alt: "Paramètres", class: "w-6 h-6", id: "openModal" %>
   </section>
+
 
 
 <p id='openModalFriend' class="p-4 flex items-center justify-center bg-[var(--ezb-red)] rounded-lg mb-6 text-[1.2rem] font-bold hover:bg-[var(--ezb-red-hover)] transform transition-colors duration-300 cursor-pointer">
@@ -65,44 +65,45 @@
       <p class='text-[0.9rem]'>
         (Top 80-100%)
       </p>
-    </div>
-  </div>
-</section>
 
-<section id="statistiques" class='bg-[var(--bg-card)] rounded-lg p-8 mb-4'>
+    </div>
+  </section>
+
+  <section id="statistiques" class='bg-[var(--bg-card)] rounded-lg p-8 mb-4'>
     <h2 class='text-[var(--ezb-red)] text-center mb-8 text-[1.4rem]'>Tâches et Récompenses</h2>
-    <ul  class="grid grid-cols-2 gap-4">
+    <ul class="grid grid-cols-2 gap-4">
       <li class="bg-[var(--bg-card-dark)] rounded-lg flex flex-col gap-2 p-4 justify-between">
         <p>Suivez nous sur Instagram</p>
-        <a href="#" class=' bg-[var(--ezb-red)]  hover:bg-[var(--ezb-red-hover)] hover:scale-110 rounded-sm flex text-center justify-center transform transition duration-300'>Réclamer <br> 1000 🪙</a>
+        <a href="#" class='bg-[var(--ezb-red)] hover:bg-[var(--ezb-red-hover)] hover:scale-110 rounded-sm flex text-center justify-center transform transition duration-300'>Réclamer <br> 1000 🪙</a>
       </li>
-    <li class="bg-[var(--bg-card-dark)] rounded-lg flex flex-col gap-2 p-4 justify-between">
+      <li class="bg-[var(--bg-card-dark)] rounded-lg flex flex-col gap-2 p-4 justify-between">
         <p>Rejoins nous sur Telegram</p>
-        <a href="#" class=' bg-[var(--ezb-red)]  hover:bg-[var(--ezb-red-hover)] hover:scale-110 rounded-sm flex text-center justify-center transform transition duration-300'>
-          Réclamer <br> 1000 🪙</a>
+        <a href="#" class='bg-[var(--ezb-red)] hover:bg-[var(--ezb-red-hover)] hover:scale-110 rounded-sm flex text-center justify-center transform transition duration-300'>Réclamer <br> 1000 🪙</a>
       </li>
-    <li class="bg-[var(--bg-card-dark)] rounded-lg flex flex-col gap-2 p-4 justify-between">
+      <li class="bg-[var(--bg-card-dark)] rounded-lg flex flex-col gap-2 p-4 justify-between">
         <p>Suivez notre compte X</p>
-        <a href="#" class=' bg-[var(--ezb-red)]  hover:bg-[var(--ezb-red-hover)] hover:scale-110 rounded-sm flex text-center justify-center transform transition duration-300'>Réclamer <br> 1000 🪙</a>
+        <a href="#" class='bg-[var(--ezb-red)] hover:bg-[var(--ezb-red-hover)] hover:scale-110 rounded-sm flex text-center justify-center transform transition duration-300'>Réclamer <br> 1000 🪙</a>
       </li>
-    <li class="bg-[var(--bg-card-dark)] rounded-lg flex flex-col gap-2 p-4 justify-between">
+      <li class="bg-[var(--bg-card-dark)] rounded-lg flex flex-col gap-2 p-4 justify-between">
         <p>Suivez nous sur Youtube</p>
-        <a href="#" class=' bg-[var(--ezb-red)]  hover:bg-[var(--ezb-red-hover)] hover:scale-110 rounded-sm flex text-center justify-center transform transition duration-300'>Réclamer <br> 1000 🪙</a>
+        <a href="#" class='bg-[var(--ezb-red)] hover:bg-[var(--ezb-red-hover)] hover:scale-110 rounded-sm flex text-center justify-center transform transition duration-300'>Réclamer <br> 1000 🪙</a>
       </li>
-    <li class="bg-[var(--bg-card-dark)] rounded-lg flex flex-col gap-2 p-4 justify-between">
+      <li class="bg-[var(--bg-card-dark)] rounded-lg flex flex-col gap-2 p-4 justify-between">
         <p>Suivez nous sur TikTok</p>
-        <a href="#" class=' bg-[var(--ezb-red)]  hover:bg-[var(--ezb-red-hover)] hover:scale-110 rounded-sm flex text-center justify-center transform transition duration-300'>Réclamer <br> 1000 🪙</a>
+        <a href="#" class='bg-[var(--ezb-red)] hover:bg-[var(--ezb-red-hover)] hover:scale-110 rounded-sm flex text-center justify-center transform transition duration-300'>Réclamer <br> 1000 🪙</a>
       </li>
-    <li class="bg-[var(--bg-card-dark)] rounded-lg flex flex-col gap-2 p-4 justify-between">
+      <li class="bg-[var(--bg-card-dark)] rounded-lg flex flex-col gap-2 p-4 justify-between">
         <p>Parrainer un ami</p>
-        <a href="#" class=' bg-[var(--ezb-red)]  hover:bg-[var(--ezb-red-hover)] hover:scale-110 rounded-sm flex text-center justify-center transform transition duration-300'>Réclamer <br> 5💎</a>
+        <a href="#" class='bg-[var(--ezb-red)] hover:bg-[var(--ezb-red-hover)] hover:scale-110 rounded-sm flex text-center justify-center transform transition duration-300'>Réclamer <br> 5💎</a>
       </li>
     </ul>
-</section>
+  </section>
 </div>
+
 
 <%= render "modal/modal-friend" %>
  <%= render "modal/modal-profile" %>
+
 
 <script>
   document.addEventListener("DOMContentLoaded", () => {
@@ -113,20 +114,18 @@
     const modal = document.getElementById("profileModal");
     const modalFriend = document.getElementById('friendModal')
 
-    // Fonction pour désactiver le défilement
     const disableScroll = () => {
-      document.body.style.overflow = 'hidden'; // Empêche le scroll
+      document.body.style.overflow = 'hidden';
     };
 
-    // Fonction pour réactiver le défilement
     const enableScroll = () => {
-      document.body.style.overflow = ''; // Réactive le scroll
+      document.body.style.overflow = '';
     };
 
     if (openModalButton && modal) {
       openModalButton.addEventListener("click", () => {
         modal.showModal();
-        disableScroll(); // Désactive le scroll lorsque la modal est ouverte
+        disableScroll();
       });
     }
  if (openModalFriend && modalFriend) {
@@ -138,7 +137,7 @@
     if (closeModalButton && modal) {
       closeModalButton.addEventListener("click", () => {
         modal.close();
-        enableScroll(); // Réactive le scroll lorsque la modal est fermée
+        enableScroll();
       });
     }
        if (closeModalFriend && modalFriend) {
@@ -148,11 +147,10 @@
       });
     }
 
-    // Fermer la modal en cliquant en dehors
     modal?.addEventListener("click", (event) => {
       if (event.target === modal) {
         modal.close();
-        enableScroll(); // Réactive le scroll si on ferme la modal en cliquant en dehors
+        enableScroll();
       }
     });
      modalFriend?.addEventListener("click", (event) => {
