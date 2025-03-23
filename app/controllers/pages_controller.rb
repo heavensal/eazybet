@@ -9,6 +9,13 @@ class PagesController < ApplicationController
   end
 
   def ranking
+    # les users sont triés en fonction du nombre de diamonds qu'ils ont dans leur wallet
     @users = User.all.sort_by { |user| user.wallet.diamonds }.reverse
+  end
+
+  def challenges
+  end
+
+  def shop
   end
 end

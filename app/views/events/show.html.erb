@@ -6,10 +6,10 @@
       draw_odd:@event.draw_odd,commence_time: @event.commence_time, odds:@event.odds, comments:@event.comments, bet: @event.bets.find_by(user_id: current_user.id)  %>
  </div>
       <div class="space-y-4 my-4">
-        <% @comments.each do |comment| %>
+        <% @event.comments.each do |comment| %>
           <div class="<%= current_user == comment.user ? 'ml-auto' : 'mr-auto' %> w-[90%]">
             <%= turbo_frame_tag comment, class: "space-y-2" do %>
-              <div class="rounded-lg shadow-md <%= current_user == comment.user ? 'bg-blue-900 text-white' : 'bg-white' %> p-4">
+              <div class="rounded-lg shadow-md <%= current_user == comment.user ? 'bg-blue-900 text-white' : 'bg-white text-black' %> p-4">
                   <h6 class="text-sm <%= current_user == comment.user ? 'text-white' : 'text-gray-500' %>">
                     <%= comment.user.first_name %> - il y a <%= time_ago_in_words(comment.created_at) %>
                   </h6>

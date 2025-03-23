@@ -15,6 +15,9 @@ Rails.application.routes.draw do
   root "competitions#index"
   get "profile" => "pages#profile"
   get "ranking" => "pages#ranking"
+  get "challenges" => "pages#challenges"
+  get "shop" => "pages#shop"
+
 
   resources :bets
   resources :competitions, only: [ :index, :show ] do
