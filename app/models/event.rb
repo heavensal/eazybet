@@ -1,9 +1,11 @@
 class Event < ApplicationRecord
   belongs_to :competition
 
-  has_many :odds, dependent: :destroy
   has_many :comments, dependent: :destroy
+
+  has_many :odds, dependent: :destroy
   has_many :bets, through: :odds
+
   has_many :scores, dependent: :destroy
 
   validates :home_team, presence: true

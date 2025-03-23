@@ -13,8 +13,6 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   root "competitions#index"
-  get "profile" => "pages#profile"
-  get "ranking" => "pages#ranking"
   get "challenges" => "pages#challenges"
   get "shop" => "pages#shop"
 
@@ -33,6 +31,17 @@ Rails.application.routes.draw do
   resources :comments, only: [ :destroy ]
   resources :odds, only: [ :index, :show ]
   resources :scores, only: [ :index, :show ]
+
+  resources :friendships, only: [ :create, :update, :destroy ]
+  resource :user, only: [ :show ] do
+    get :profile, on: :member
+  end
+  resources :users, only: [] do
+    get :search, on: :collection
+    get :ranking, on: :collection
+    get :ranking_friends, on: :collection
+    get :friends, on: :collection
+  end
 
   namespace :admin do
     resources :competitions
