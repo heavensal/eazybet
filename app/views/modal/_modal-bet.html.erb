@@ -1,0 +1,25 @@
+<div data-action="click->dialog#backdropClose">
+  <dialog id="betModal" class="bg-[var(--bg-card-dark)] p-8 rounded-2xl w-[80%] max-w-[400px] text-white absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2">
+    <h3 class="font-bold text-xl flex items-center justify-between"> 🎰 Placer un pari 🎰
+      <button id="closeModal"> ↓</button>
+    </h3>
+    <ul class="flex flex-col gap-2">
+      <li>🏟️ Match: PSG vs Marseille</li>
+      <li>👥 Equipe: Match nul</li>
+      <li>📊 Côte: x3.20</li>
+    </ul>
+    <div class="">
+      <input type="number">
+      <select name="pets" id="pet-select">
+        <option value="coins">Coins 🪙</option>
+        <option value="diamonds">Diamond</option>
+      </select>
+      <p>Gain potentiel: 0 🪙</p>
+    </div>
+
+    <div class="flex flex-col gap-4">
+      <button class="bg-[var(--ezb-red)] p-2 rounded-sm">💰 Confirmer le pari 💰</button>
+      <button id="closeModal" class="border-white p-2 rounded-sm">❌ Annuler ❌</button>
+    </div>
+  </dialog>
+</div>
