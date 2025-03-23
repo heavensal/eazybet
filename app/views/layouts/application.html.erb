@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
   <head>
     <title><%= content_for(:title) || "Eazybet" %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -16,21 +17,23 @@
     <%# Includes all stylesheet files in app/assets/stylesheets %>
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
-
-      <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
   </head>
+
   <body class='bg-gray-900  min-h-screen'>
-<header class="sticky top-0 w-full bg-[var(--bg-card)] text-white shadow-[0_0_10px_rgba(0,0,0,0.4)] z-1000 px-4 py-2">
+
+    <header class="sticky top-0 w-full bg-[var(--bg-card)] text-white shadow-[0_0_10px_rgba(0,0,0,0.4)] z-1000 px-4 py-2">
       <%= render "layouts/header/header" %>
     </header>
 
-    <main class=" text-white  px-4 py-4 pb-[4rem]">
+    <main class="text-white px-4 py-4 pb-[4rem]">
       <%= yield %>
     </main>
 
- <footer class="fixed bottom-0 left-0 w-full  bg-[var(--bg-card)] text-white shadow-[0_-4px_4px_rgba(0,0,0,0.25)] z-50 ">
-        <%= render "layouts/navbar/navbar" %>
+    <footer class="fixed bottom-0 left-0 w-full bg-[var(--bg-card)] text-white shadow-[0_-4px_4px_rgba(0,0,0,0.25)] z-50">
+      <%= render "layouts/navbar/navbar" %>
     </footer>
 
   </body>
+
 </html>
