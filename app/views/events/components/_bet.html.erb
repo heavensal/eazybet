@@ -1,7 +1,7 @@
 <li class="flex flex-col items-center justify-between flex-1 text-center px-2 gap-4" data-controller="dialog">
 
-  <p class="rounded-full h-[48px] w-[48px] flex items-center justify-center text-sm">
-
+  <p class="rounded-full  h-[48px] w-[48px] flex items-center justify-center  text-sm
+">
   <%= odd.name[0] %>
 
 </p>
@@ -11,8 +11,3 @@
 
   <%= render "modal/modal", odd: odd %>
 </li>
-
-<script>
-
-  console.log(<%= raw odd.to_json %>);
-</script>
