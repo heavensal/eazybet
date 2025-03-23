@@ -4,7 +4,7 @@
       <%= l(commence_time) %>
     </p>
   </div>
-  <ul id="odds_for_event_<%= id %>" class="grid grid-cols-3 gap-4 p-2.5 items-end">
+  <ul id="odds_for_event_<%= id %>" class="grid grid-cols-3 gap-4 p-2.5 items-end border-b border-[var(--ezb-red)]">
     <% if odds.any? %>
       <%= render "events/components/bet", odd: home_team_odd, bet: bet %>
       <%= render "events/components/bet", odd: draw_odd, bet: bet %>
@@ -23,3 +23,8 @@
   </div>
 
 </li>
+
+<script>
+  console.log(<%= commence_time %>);
+
+</script>

@@ -2,11 +2,12 @@
 
   <p class="rounded-full  h-[48px] w-[48px] flex items-center justify-center  text-sm
 ">
+<% unless odd.name == 'Draw' %>
   <%= odd.name[0] %>
-
+<% end %>
 </p>
 
-  <p class='text-center text-white'><%= odd.name == "Draw" ? I18n.t("odds.draw") : odd.name %></p>
+  <p class='text-center text-white line-clamp-2'><%= odd.name == "Draw" ? I18n.t("odds.draw") : odd.name %></p>
 
 
   <%= render "modal/modal", odd: odd %>

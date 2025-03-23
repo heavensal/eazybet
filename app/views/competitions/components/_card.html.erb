@@ -1,6 +1,6 @@
-<li class="flex-none w-[calc(100%-1rem)] snap-start max-w-[500px] bg-[#0f3460] rounded-lg shadow-[0_0_5px_rgba(0,0,0,0.3)] mb-4 overflow-hidden transition-all duration-300 ease-[cubic-bezier(0.4,_0,_0.2,_1)] border border-[rgba(255,_255,_255,_0.1)] ">
+<li class="flex-none w-[calc(100%-1rem)] snap-start max-w-[500px] bg-[#0f3460] rounded-lg shadow-[0_0_5px_rgba(0,0,0,0.3)] mb-4 overflow-hidden transition-all duration-300 ease-[cubic-bezier(0.4,_0,_0.2,_1)] border border-[rgba(255,_255,_255,_0.1)] hover:translate-y-[-4px] hover:shadow-[0_10px_20px_rgba(0,0,0,0.2)]">
 
-  <div class="p-2.5 h-[30px] flex justify-between bg-[var(--bg-card-dark)] rounded-t-lg items-center">
+  <div class="p-2.5  flex justify-between bg-[var(--bg-card-dark)] rounded-t-lg items-center font-bold">
     <p><%= competition.title %></p>
 
     <p class="text-white">
@@ -15,9 +15,60 @@
   <% end %>
 
 
-    <%= link_to event_path(event), class: "w-full p-4 flex items-center h-[50px]", data: { turbo: false }  do %>
+
+
+    <%= link_to event_path(event), class: "w-full p-4 flex  items-center ", data: { turbo: false }  do %>
+
       💬<%= comments.size %>
     <% end %>
 
 
 </li>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+
+
+    const openModalButton = document.getElementById("openBetModal");
+    const closeModalButton = document.getElementById("closeModal");
+    const modal = document.getElementById("betModal");
+
+
+
+    // Fonction pour désactiver le défilement
+    const disableScroll = () => {
+      document.body.style.overflow = 'hidden'; // Empêche le scroll
+    };
+
+    // Fonction pour réactiver le défilement
+    const enableScroll = () => {
+      document.body.style.overflow = ''; // Réactive le scroll
+    };
+
+    // Ouvrir la modal
+    if (openModalButton && modal) {
+      openModalButton.addEventListener("click", () => {
+        console.log('test');
+
+        modal.showModal();
+        disableScroll(); // Désactive le scroll
+      });
+    }
+
+    // Fermer la modal avec le bouton
+    if (closeModalButton && modal) {
+      closeModalButton.addEventListener("click", () => {
+        modal.close();
+        enableScroll(); // Réactive le scroll lorsque la modal est fermée
+      });
+    }
+
+    // Fermer la modal en cliquant en dehors
+    modal?.addEventListener("click", (event) => {
+      if (event.target === modal) {
+        modal.close();
+        enableScroll(); // Réactive le scroll si on ferme la modal en cliquant en dehors
+      }
+    });
+  });
+</script>
