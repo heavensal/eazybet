@@ -1,17 +1,3 @@
-<%= render "filters/filters" %>
+ <%= render "filters/filters"   %>
 
-<% @events.each do |event| %>
-  <div class="event">
-    <%= render "competitions/components/card_result", id:event.id, home_team: event.home_team, away_team: event.away_team, home_team_odd: event.home_team_odd, away_team_odd: event.away_team_odd,
-    draw_odd:event.draw_odd,commence_time: event.commence_time, odds:event.odds, comments:event.comments  %>
-  </div>
-
-<ul id="scores">
-  <% event.scores.each do |score| %>
-    <li>
-      <%= score.name %> : <%= score.result %>
-    </li>
-  <% end %>
-</ul>
-
-<% end %>
+ <p class='text-center py-8 text-[rgb(113,128,150)]'>Les résultats de vos paris seront affichés ici lorsque le jeu sera pleinement fonctionnel.</p>
