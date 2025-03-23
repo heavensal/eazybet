@@ -10,7 +10,7 @@
 FactoryBot.define do
   factory :odd do
     name { "Home Team 1" }
-    price { rand(1.0..10.0).round(2) }
+    price { 3.0 }
     status { "pending" }
     association :event
 

@@ -8,7 +8,7 @@ class Bet < ApplicationRecord
   validates :status, presence: true, inclusion: { in: %w[pending won lost] }
 
   # mis à jour du payout en fonction du status du bet
-  after_update :increase_user_wallet, if: -> { status_changed? && %w[won lost].include?(status) }
+  after_update :increase_user_wallet, if: -> { saved_change_to_status? && %w[won lost].include?(status) }
 
   before_create :verify_wallet_coins
   after_create :decrease_wallet_coins

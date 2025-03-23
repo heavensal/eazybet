@@ -7,7 +7,7 @@ class Odd < ApplicationRecord
   validates :status, presence: true, inclusion: { in: %w[pending won lost] }
 
   # mis à jour des bets en fonction du status de l'odd
-  after_update :update_bets, if: -> { status_changed? && %w[won lost].include?(status) }
+  after_update :update_bets, if: -> { saved_change_to_status? && %w[won lost].include?(status) }
 
 
   private
