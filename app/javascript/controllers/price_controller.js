@@ -6,9 +6,12 @@ export default class extends Controller {
 
   connect() {
     this.update();
+    console.log('mabite', this.stakeTarget.value);
+
   }
 
   update() {
+    console.log('mabite2');
     const odd = parseFloat(this.oddTarget.innerText);
     const stake = parseFloat(this.stakeTarget.value);
     this.coinsTarget.innerText = (odd * stake).toFixed(2);
