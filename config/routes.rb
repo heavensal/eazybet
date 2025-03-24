@@ -16,6 +16,7 @@ Rails.application.routes.draw do
 
   get "challenges" => "pages#challenges"
   get "shop" => "pages#shop"
+  get "divisions" => "pages#divisions"
 
   resources :bets
 

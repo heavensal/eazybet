@@ -10,13 +10,18 @@
     <%= link_to 'Résultats', finished_events_path %>
   </li>
   <% else %>
-   <li class="flex-1 p-3 text-center cursor-pointer transition-all duration-300 text-[#e0e0e0] relative overflow-hidden">
-    <a href="#">Classements</a>
+   <li class="<%= 'bg-[var(--ezb-red)] shadow-[0_0_15px_[var(--ezb-red)],0_0_30px_[var(--ezb-red)],0_0_45px_[var(--ezb-red)]] font-bold text-white' if current_page?(ranking_users_path) %> flex-1 p-3 text-center cursor-pointer transition-all duration-300 text-[#e0e0e0] relative overflow-hidden
+   ">
+    <a href="/ranking">Classements</a>
   </li>
-  <li class="flex-1 p-3 text-center cursor-pointer transition-all duration-300 text-[#e0e0e0] relative overflow-hidden">
-    <a href="#">Amis</a>
+  <li class="
+  <%= 'bg-[var(--ezb-red)] shadow-[0_0_15px_[var(--ezb-red)],0_0_30px_[var(--ezb-red)],0_0_45px_[var(--ezb-red)]] font-bold text-white' if current_page?(ranking_friends_users_path) %> flex-1 p-3 text-center cursor-pointer transition-all duration-300 text-[#e0e0e0] relative overflow-hidden">
+  <%= link_to 'Amis', ranking_friends_users_path %>
+
   </li>
-  <li class="flex-1 p-3 text-center cursor-pointer transition-all duration-300 text-[#e0e0e0] relative overflow-hidden">
+  <li class="
+
+  flex-1 p-3 text-center cursor-pointer transition-all duration-300 text-[#e0e0e0] relative overflow-hidden">
     <a href="#">Divisions</a>
   </li>
 
