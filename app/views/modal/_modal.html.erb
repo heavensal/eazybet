@@ -44,7 +44,7 @@
 
           <div class="flex flex-col gap-4 items-center">
             <%= f.submit "💰 Confirmer le pari 💰", class: "bg-[var(--ezb-red)] p-2 rounded-sm cursor-pointer w-[90%] shadow-[var(--ezb-red)] ", data: { action: "dialog#close" } %>
-            <button class="border-white border-2 p-2 rounded-sm cursor-pointer w-[90%]" data-action="dialog#close">❌ Annuler ❌</button>
+            <button class="border-white border-2 p-2 rounded-sm cursor-pointer w-[90%]" type="button" data-action="dialog#close">❌ Annuler ❌</button>
           </div>
         <% end %>
       <% else %>
