@@ -4,7 +4,7 @@
     <% if user_signed_in? %>
 
     <li class='flex gap-2 items-center'>
-      <div class="transform transition duration-300 hover:scale-110 h-10 w-10 bg-[var(--ezb-red)] rounded-full items-center justify-center flex font-bold"> <%= current_user.wallet.coins %></div>
+      <div class="transform transition duration-300 hover:scale-110 h-10 w-10 bg-[var(--ezb-red)] rounded-full items-center justify-center flex font-bold"> <%= current_user.first_name[0] %></div>
      <div class="px-2 py-4 transition-colors duration-300 rounded-full hover:bg-[var(--blue-hover)]">
        <%= number_with_precision(current_user.wallet.diamonds, precision: 2) %>
       💎

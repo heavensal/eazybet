@@ -1,46 +1,61 @@
 <div data-controller="price" data-action="click->dialog#backdropClose">
-  <dialog data-dialog-target="dialog" class="bg-blue-900 p-4 w-[90dvw] h-[75dvh] my-[10dvh] mx-auto rounded-lg fixed text-white md:w-[50dvw]" tabindex="-1">
+  <dialog data-dialog-target="dialog" class="fixed bottom-0 left-0 w-full bg-[#16213e] text-[#e0e0e0]
+border-t-2 border-[#e94560]
+transition-transform duration-300 ease-in-out  z-[1000] translate-y-full  " tabindex="-1">
+ <div class="flex flex-col p-4">
+   <h3 class="font-bold text-xl flex items-center justify-between"> 🎰 Placer un pari 🎰
+      <button id="closeModal"> ↓</button>
+    </h3>
+
+
 
     <% if user_signed_in? %>
-      <%= form_with model: Bet.new, url: bets_path, method: :post, class: "flex flex-col h-[80%] justify-center" do |f| %>
+      <%= form_with model: Bet.new, url: bets_path, method: :post, class: "flex flex-col " do |f| %>
 
-        <div class="flex flex-col gap-2 p-2.5">
+        <div class="flex flex-col gap-2 mb-4">
 
-          <div class="flex flex-col gap-2">
-            <div class="flex justify-around mb-6">
-              <p><%= odd.name == "Draw" ? I18n.t("odds.draw") : odd.name %></p>
-              <p data-price-target="odd"><%= odd.price %></p>
-            </div>
+            <ul class="flex flex-col gap-2">
+      <li class="text-left">🏟️ Match: PSG vs Marseille</li>
+      <li class="text-left">👥 Equipe: <%= odd.name == "Draw" ? I18n.t("odds.draw") : odd.name %></li>
+      <li class="text-left" data-price-target="odd">📊 Côte: <%= odd.price %></li>
+    </ul>
+
 
             <%= f.hidden_field :odd_id, value: odd.id %>
-            <%= f.select :money_type, options_for_select([["Coins 🪙", "coins"], ["Diamants 💎", "diamonds"]], "coins"), class: "p-2 bg-gray-900 rounded-lg" %>
-            <%= f.label :stake, "Mise" %>
-            <%= f.number_field :stake, data: { price_target: "stake", action:"input->price#update" }, value: 1, min: 1, max: current_user.wallet.coins, step: 0.1, class: "p-2 bg-gray-900 rounded-lg", autofocus: false %>
+
+<%= f.number_field :stake,
+  placeholder: 'Montant du pari',
+  data: { price_target: "stake", action: "input->price#update" },
+  value: nil,
+  min: 0,
+  max: current_user.wallet.coins,
+  step: 1,
+  class: "p-2 bg-[var(--bg-card)] border-2 border-white rounded-lg",
+  autofocus: false
+%>
+
+             <%= f.select :money_type,
+  options_for_select([["Coins 🪙", "coins"], ["Diamants 💎", "diamonds"]], "coins"),
+  {},
+  { class: "p-2 bg-[var(--bg-card)] border-2 border-white rounded-lg" }
+%>
           </div>
 
           <div class="flex flex-col gap-2">
-            <p>Gains potentiels</p>
-            <div class="flex gap-2 bg-gray-900 rounded-lg items-center">
-              <span class='bg-blue-400 p-2 rounded-l-lg'>
-                🪙
-              </span>
-              <p id="result" data-price-target="coins">
-              </p>
-            </div>
-            <div class="flex gap-2 bg-gray-900 rounded-lg items-center">
-              <span class='bg-blue-400 p-2 rounded-l-lg'>
-                <%= image_tag 'icons/diamond.svg', alt: "diamonds" %>
-              </span>
-              <p id="result" data-price-target="diamonds">
-              </p>
-            </div>
+           <p class="text-left">Gain potentiel:
+  <span class="result-span" data-price-target="coins">0 🪙</span>
+  <span class="result-span" data-price-target="diamonds" style="display: none;">0 💎</span>
+</p>
+
+
+
           </div>
 
         </div>
 
-        <div class="flex gap-4 justify-center">
-          <%= f.submit "Parier", class: "bg-rose-600 rounded-lg px-2.5 py-2 cursor-pointer", data: { action: "dialog#close" } %>
-          <button class="bg-gray-900 rounded-lg px-2.5 py-2 cursor-pointer" type="button" data-action="dialog#close">Annuler</button>
+        <div class="flex flex-col gap-4 items-center">
+          <%= f.submit "💰 Confirmer le pari 💰", class: "bg-[var(--ezb-red)] p-2 rounded-sm cursor-pointer w-[90%] shadow-[var(--ezb-red)] ", data: { action: "dialog#close" } %>
+          <button class="border-white border-2 p-2 rounded-sm cursor-pointer w-[90%]" data-action="dialog#close">❌ Annuler ❌</button>
         </div>
       <% end %>
 
@@ -51,5 +66,40 @@
       </div>
 
     <% end %>
+ </div>
   </dialog>
 </div>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const select = document.querySelector("select[name='money_type']");
+  const stakeInput = document.querySelector("input[name='bet[stake]']");
+  const oddElement = document.querySelector("[data-price-target='odd']");
+  const spans = document.querySelectorAll(".result-span");
+
+  const updateGain = () => {
+    const stake = parseFloat(stakeInput.value) || 0; // Si vide, mettre 0
+    const odd = parseFloat(oddElement.textContent) || 1; // Si problème, mettre 1
+    const selectedValue = select.value;
+
+    const gain = (stake * odd).toFixed(2); // Calcul des gains
+
+    spans.forEach(span => {
+      if (span.dataset.priceTarget === selectedValue) {
+        span.textContent = `${gain} ${selectedValue === "coins" ? "🪙" : "💎"}`;
+        span.style.display = "inline";
+      } else {
+        span.style.display = "none";
+      }
+    });
+  };
+
+  // Met à jour lors des changements
+  select.addEventListener("change", updateGain);
+  stakeInput.addEventListener("input", updateGain);
+
+  updateGain(); // Exécuter au chargement
+});
+
+
+</script>
