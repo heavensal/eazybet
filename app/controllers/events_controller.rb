@@ -1,4 +1,5 @@
 class EventsController < ApplicationController
+  skip_before_action :authenticate_user!, only: [ :index, :show, :odds ]
   def index
     @competition = Competition.find(params[:competition_id])
     # récupérer les events de la competition et sur lesquels l'utilisateur n'a pas encore parié

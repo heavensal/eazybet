@@ -1,5 +1,4 @@
-<div data-action="click->dialog#backdropClose" >
-  <dialog id="betModal"   class="bg-[var(--bg-card-dark)] p-8 rounded-2xl w-[80%] max-w-[400px] text-white absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2">
-<p>test</p>
-  </dialog>
-</div>
+<dialog id="betModal" class="bg-[var(--bg-card-dark)] p-8 rounded-2xl w-[80%] max-w-[400px] text-white absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2" data-dialog-target="dialog">
+  <p>test</p>
+  <button type="button" data-action="dialog#close" autofocus>Cancel</button>
+</dialog>

@@ -1,7 +1,8 @@
 
 <%# Répond au fetch des matchs d'une compétition, affiche la liste suivante d'événement %>
 <%= turbo_frame_tag "competition_events_#{@competition.id}" do %>
-<ul class="flex overflow-x-auto scroll-snap-x scroll-snap-mandatory py-4 px-2 -mx-2 scroll-smooth touch-auto scrollbar-none gap-4">    <% @events.each do |event| %>
+  <ul class="flex overflow-x-auto scroll-snap-x scroll-snap-mandatory py-4 px-2 -mx-2 scroll-smooth touch-auto scrollbar-none gap-4">
+    <% @events.each do |event| %>
 
       <%= render "competitions/components/card",
         competition: event.competition.title,

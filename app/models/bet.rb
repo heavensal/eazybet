@@ -45,11 +45,9 @@ class Bet < ApplicationRecord
 
   ##### Mise à jour du wallet de l'utilisateur #####
   def check_wallet_balance
-    amount = self.stake.to_f
-
-    if self.money_type == "coins" && self.user.wallet.coins < amount
+    if self.money_type == "coins" && self.user.wallet.coins < self.stake.to_f
       errors.add(:base, "Pas assez de coins")
-    elsif self.money_type == "diamonds" && self.user.wallet.diamonds < amount
+    elsif self.money_type == "diamonds" && self.user.wallet.diamonds < self.stake.to_f
       errors.add(:base, "Pas assez de diamonds")
     end
   end

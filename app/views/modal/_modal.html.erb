@@ -1,17 +1,19 @@
 <div data-controller="price" data-action="click->dialog#backdropClose">
-  <dialog data-dialog-target="dialog" class="bg-blue-900 p-4 w-[90dvw] h-[50dvh] my-[10dvh] mx-auto rounded-lg absolute text-white md:w-[50dvw]" tabindex="-1">
+  <dialog data-dialog-target="dialog" class="bg-blue-900 p-4 w-[90dvw] h-[75dvh] my-[10dvh] mx-auto rounded-lg fixed text-white md:w-[50dvw]" tabindex="-1">
 
     <% if user_signed_in? %>
-      <%= form_with model: Bet.new, url: bets_path, method: :post, html: { autofocus: false }, class: "flex flex-col h-[80%] justify-center" do |f| %>
-        <div class="flex justify-around mb-6">
-          <p><%= odd.name == "Draw" ? I18n.t("odds.draw") : odd.name %></p>
-          <p data-price-target="odd"><%= odd.price %></p>
-        </div>
+      <%= form_with model: Bet.new, url: bets_path, method: :post, class: "flex flex-col h-[80%] justify-center" do |f| %>
 
         <div class="flex flex-col gap-2 p-2.5">
 
           <div class="flex flex-col gap-2">
+            <div class="flex justify-around mb-6">
+              <p><%= odd.name == "Draw" ? I18n.t("odds.draw") : odd.name %></p>
+              <p data-price-target="odd"><%= odd.price %></p>
+            </div>
+
             <%= f.hidden_field :odd_id, value: odd.id %>
+            <%= f.select :money_type, options_for_select([["Coins 🪙", "coins"], ["Diamants 💎", "diamonds"]], "coins"), class: "p-2 bg-gray-900 rounded-lg" %>
             <%= f.label :stake, "Mise" %>
             <%= f.number_field :stake, data: { price_target: "stake", action:"input->price#update" }, value: 1, min: 1, max: current_user.wallet.coins, step: 0.1, class: "p-2 bg-gray-900 rounded-lg", autofocus: false %>
           </div>
@@ -20,9 +22,16 @@
             <p>Gains potentiels</p>
             <div class="flex gap-2 bg-gray-900 rounded-lg items-center">
               <span class='bg-blue-400 p-2 rounded-l-lg'>
-                <%= image_tag 'icons/diamond.svg', alt: "diamond" %>
+                🪙
               </span>
-              <p id="result" data-price-target="diamond">
+              <p id="result" data-price-target="coins">
+              </p>
+            </div>
+            <div class="flex gap-2 bg-gray-900 rounded-lg items-center">
+              <span class='bg-blue-400 p-2 rounded-l-lg'>
+                <%= image_tag 'icons/diamond.svg', alt: "diamonds" %>
+              </span>
+              <p id="result" data-price-target="diamonds">
               </p>
             </div>
           </div>

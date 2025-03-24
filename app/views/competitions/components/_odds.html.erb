@@ -1,31 +1,29 @@
-<li class="flex flex-col items-center justify-between flex-1 text-center px-2 gap-4" data-controller="dialog">
+<li class="flex flex-col items-center justify-between flex-1 text-center px-2 gap-4" data-controller="dialog" data-action="click->dialog#backdropClose">
   <% if odd == @event.home_team_odd %>
-  <% bg_color = "bg-[var(--ezb-red)]" %>
+    <% bg_color = "bg-[var(--ezb-red)]" %>
 
-<% elsif odd == @event.away_team_odd %>
-  <% bg_color = "bg-[var(--ezb-blue)]" %>
-   <% txt_color= "text-black" %>
+  <% elsif odd == @event.away_team_odd %>
+    <% bg_color = "bg-[var(--ezb-blue)]" %>
+    <% txt_color= "text-black" %>
 
-<% end %>
+  <% end %>
 
-<p class="rounded-full <%= bg_color %> h-[48px] w-[48px] flex items-center justify-center <%= txt_color %> text-sm
-<%= 'shadow-[0_0_5px_rgba(0,0,0,0.3),_0_0_10px_currentColor]' unless odd == @event.draw_odd  %>
- <%= 'opacity-0 pointer-events-none' if odd == @event.draw_odd %>">
-<% unless odd == @event.draw_odd %>
-  <%= odd.name[0] %>
-<% end %>
-</p>
+  <p class="rounded-full <%= bg_color %> h-[48px] w-[48px] flex items-center justify-center <%= txt_color %> text-sm
+    <%= 'shadow-[0_0_5px_rgba(0,0,0,0.3),_0_0_10px_currentColor]' unless odd == @event.draw_odd  %>
+    <%= 'opacity-0 pointer-events-none' if odd == @event.draw_odd %>">
+    <% unless odd == @event.draw_odd %>
+      <%= odd.name[0] %>
+    <% end %>
+  </p>
 
-  <p class='text-center text-white line-clamp-2'><%= odd.name == "Draw" ? I18n.t("odds.draw") : odd.name %></p>
-  <button
-  class="p-2.5 border text-white text-sm rounded-md transition-shadow duration-200
-  <%= bet&.odd_id == odd.id ? 'bg-[var(--ezb-red)] border-[var(--ezb-red)]' : 'bg-transparent border-white' %>
-  hover:shadow-[0_0_8px_2px_rgba(255,255,255,0.6)] hover:text-black hover:bg-white focus:shadow-[0_0_10px_3px_rgba(255,255,255,0.8)]
-  active:bg-[var(--ezb-red)] active:border-[var(--ezb-red)]"
-  <%= 'disabled' if bet.present? %>>
-  x <%= number_with_precision(odd.price, precision: 2) %>
-</button>
+  <p class='text-center text-white line-clamp-2'>
+    <%= odd.name == "Draw" ? I18n.t("odds.draw") : odd.name %>
+  </p>
+  <button class="p-2.5 border text-white text-sm rounded-md transition-shadow duration-200 <%= bet&.odd_id == odd.id ? 'bg-[var(--ezb-red)] border-[var(--ezb-red)]' : 'bg-transparent border-white' %> hover:shadow-[0_0_8px_2px_rgba(255,255,255,0.6)] hover:text-black hover:bg-white focus:shadow-[0_0_10px_3px_rgba(255,255,255,0.8)] active:bg-[var(--ezb-red)] active:border-[var(--ezb-red)]" data-action="dialog#open" <%= 'disabled' if bet.present? %>>
+    x <%= number_with_precision(odd.price, precision: 2) %>
+  </button>
+
+  <%= render "modal/modal",
+    odd: odd
+   %>
 </li>
-
-
-  <%= render "modal/modal-bet" %>
