@@ -15,7 +15,7 @@ transition-transform duration-300 ease-in-out  z-[1000] translate-y-full  " tabi
         <div class="flex flex-col gap-2 mb-4">
 
             <ul class="flex flex-col gap-2">
-      <li class="text-left">🏟️ Match: PSG vs Marseille</li>
+      <li class="text-left">🏟️ Match: <%= @event.home_team_odd.name %> vs <%= @event.away_team_odd.name %></li>
       <li class="text-left">👥 Equipe: <%= odd.name == "Draw" ? I18n.t("odds.draw") : odd.name %></li>
       <li class="text-left" data-price-target="odd">📊 Côte: <%= odd.price %></li>
     </ul>
