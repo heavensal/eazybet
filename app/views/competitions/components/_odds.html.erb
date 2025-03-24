@@ -17,11 +17,10 @@
 </p>
 
   <p class='text-center text-white line-clamp-2'><%= odd.name == "Draw" ? I18n.t("odds.draw") : odd.name %></p>
-  <button
-  class="p-2.5 border text-white text-sm rounded-md transition-shadow duration-200
+<button
+  class="bet-btn p-2.5 border text-white text-sm rounded-md transition-shadow duration-200
   <%= bet&.odd_id == odd.id ? 'bg-[var(--ezb-red)] border-[var(--ezb-red)]' : 'bg-transparent border-white' %>
-  hover:shadow-[0_0_8px_2px_rgba(255,255,255,0.6)] hover:text-black hover:bg-white focus:shadow-[0_0_10px_3px_rgba(255,255,255,0.8)]
-  active:bg-[var(--ezb-red)] active:border-[var(--ezb-red)]"
+  shadow-[0_0_8px_2px_rgba(255,255,255,0.6)] hover:text-black hover:bg-white focus:shadow-[0_0_10px_3px_rgba(255,255,255,0.8)]"
   <%= 'disabled' if bet.present? %>>
   x <%= number_with_precision(odd.price, precision: 2) %>
 </button>
@@ -29,3 +28,19 @@
 
 
   <%= render "modal/modal-bet" %>
+
+<script>
+  document.querySelectorAll(".bet-btn").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      // Supprime la classe de tous les boutons
+      document.querySelectorAll(".bet-btn").forEach(b => {
+        b.classList.remove("bg-[var(--ezb-red)]", "border-[var(--ezb-red)]");
+        b.classList.add("bg-transparent", "border-white");
+      });
+
+      // Ajoute la classe au bouton cliqué
+      btn.classList.add("bg-[var(--ezb-red)]", "border-[var(--ezb-red)]");
+      btn.classList.remove("bg-transparent", "border-white");
+    });
+  });
+</script>
