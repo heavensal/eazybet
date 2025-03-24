@@ -1,6 +1,6 @@
 <%# pour chaque competition, on affiche en titre le title et tous ses events %>
  <%= render "filters/filters"   %>
-<% @competitions.each do |competition| %>
+<% @competitions.each_with_index do |competition, index| %>
   <div class="flex items-center border-l-3 border-[var(--ezb-red)] relative">
     <div class="absolute inset-0" style="background: linear-gradient(90deg, rgba(233, 69, 96, 0.2) 0%, rgba(233, 69, 96, 0) 100%);"></div>
     <h2 class="font-bold text-[var(--ezb-red)] relative z-10 p-4">
@@ -11,18 +11,29 @@
   <%= turbo_frame_tag "competition_events_#{competition.id}", src: competition_events_path(competition) do %>
     <p class="p-4 text-sm text-gray-400">Chargement des événements...</p>
   <% end %>
- <div class="p-3  text-center shadow-lg cursor-pointer transition-all duration-400 ease-in-out border-2 border-white/10 animate-jump animate-infinite animate-duration-[2000ms] animate-ease-in-out mb-4">
-   <p  class='text-sm'>📱 Découvrir l'App Betkoin! 📱</p>
-     <p class='text-sm'>Pariez en temps réel, suivez vos matchs et gagnez plus avec notre application mobile!</p>
-   </div>
+  <div class="p-3 text-center shadow-lg cursor-pointer transition-all duration-400 ease-in-out border-2 border-white/10 animate-jump animate-infinite animate-duration-[2000ms] animate-ease-in-out mb-4 <%= (index+1) % 3 == 0 ? 'hidden' : '' %>">
+    <p class='text-sm'>📱 Découvrir l'App Betkoin! 📱</p>
+    <p class='text-sm'>Pariez en temps réel, suivez vos matchs et gagnez plus avec notre application mobile!</p>
+  </div>
 
 <% end %>
 
-
-<button id='showRewardAdButton' class="fixed bottom-[116px] left-1/2 -translate-x-1/2 z-[999] px-8 py-4
-  bg-gradient-to-r from-[#e94560] to-[#ff6b81] border-none rounded-full
-  text-white font-bold shadow-lg shadow-[rgba(233,69,96,0.3)] cursor-pointer
-  transition-all duration-300 ease-in-out whitespace-nowrap max-w-[90%] text-center
-animate-bounce animate-infinite animate-duration-3000 animate-ease-in-out" >
-  🎥 Regarder une vidéo (+250 🪙) • 20
-</button>
+<div data-controller="dialog" data-action="click->dialog#backdropClose">
+  <dialog data-dialog-target="dialog" class="bg-white p-4 rounded-lg shadow-lg max-w-[90%] w-[560px] mx-auto">
+    <iframe
+      width="560"
+      height="315"
+      src="https://www.youtube.com/embed/48yxrkKt91M"
+      frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen>
+    </iframe>
+  </dialog>
+  <button id='showRewardAdButton' class="fixed bottom-[116px] left-1/2 -translate-x-1/2 z-[999] px-8 py-4
+    bg-gradient-to-r from-[#e94560] to-[#ff6b81] border-none rounded-full
+    text-white font-bold shadow-lg shadow-[rgba(233,69,96,0.3)] cursor-pointer
+    transition-all duration-300 ease-in-out whitespace-nowrap max-w-[90%] text-center
+  animate-bounce animate-infinite animate-duration-3000 animate-ease-in-out" type="button" data-action="dialog#open">
+    🎥 Regarder une vidéo (+250 🪙) • 20
+  </button>
+</div>
