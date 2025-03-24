@@ -1,21 +1,21 @@
 <ul class="flex bg-[#0f3460] rounded-lg overflow-hidden mb-4 shadow-[0_0_15px_rgba(0,0,0,0.4)]">
  <% if current_page?(root_path) || current_page?(played_events_path) || current_page?(finished_events_path) %>
-  <li class="<%= 'bg-[var(--ezb-red)] shadow-[0_0_15px_[var(--ezb-red)],0_0_30px_[var(--ezb-red)],0_0_45px_[var(--ezb-red)]] font-bold text-white' if current_page?(root_path) %> flex-1 p-3 text-center cursor-pointer transition-all duration-300 text-[#e0e0e0] relative overflow-hidden">
+  <li class="<%= 'bg-[var(--ezb-red)] shadow-[0_0_15px_#e94560,_0_0_30px_#e94560,_0_0_45px_#e94560] font-bold text-white' if current_page?(root_path) %> flex-1 p-3 text-center cursor-pointer transition-all duration-300 text-[#e0e0e0] relative overflow-hidden">
     <%= link_to 'A venir', root_path %>
   </li>
-  <li class="<%= 'bg-[var(--ezb-red)] shadow-[0_0_15px_[var(--ezb-red)],0_0_30px_[var(--ezb-red)],0_0_45px_[var(--ezb-red)]] font-bold text-white' if current_page?(played_events_path) %> flex-1 p-3 text-center cursor-pointer transition-all duration-300 text-[#e0e0e0] relative overflow-hidden">
+  <li class="<%= 'bg-[var(--ezb-red)] shadow-[0_0_15px_#e94560,_0_0_30px_#e94560,_0_0_45px_#e94560] font-bold text-white' if current_page?(played_events_path) %> flex-1 p-3 text-center cursor-pointer transition-all duration-300 text-[#e0e0e0] relative overflow-hidden">
     <%= link_to 'Joués', played_events_path %>
   </li>
-  <li class="<%= 'bg-[var(--ezb-red)] shadow-[0_0_15px_[var(--ezb-red)],0_0_30px_[var(--ezb-red)],0_0_45px_[var(--ezb-red)]] font-bold text-white' if current_page?(finished_events_path) %> flex-1 p-3 text-center cursor-pointer transition-all duration-300 text-[#e0e0e0] relative overflow-hidden">
+  <li class="<%= 'bg-[var(--ezb-red)] shadow-[0_0_15px_#e94560,_0_0_30px_#e94560,_0_0_45px_#e94560] font-bold text-white' if current_page?(finished_events_path) %> flex-1 p-3 text-center cursor-pointer transition-all duration-300 text-[#e0e0e0] relative overflow-hidden">
     <%= link_to 'Résultats', finished_events_path %>
   </li>
   <% else %>
-   <li class="<%= 'bg-[var(--ezb-red)] shadow-[0_0_15px_[var(--ezb-red)],0_0_30px_[var(--ezb-red)],0_0_45px_[var(--ezb-red)]] font-bold text-white' if current_page?(ranking_users_path) %> flex-1 p-3 text-center cursor-pointer transition-all duration-300 text-[#e0e0e0] relative overflow-hidden
+   <li class="<%= 'bg-[var(--ezb-red)] shadow-[0_0_15px_#e94560,_0_0_30px_#e94560,_0_0_45px_#e94560] font-bold text-white' if current_page?(ranking_users_path) %> flex-1 p-3 text-center cursor-pointer transition-all duration-300 text-[#e0e0e0] relative overflow-hidden
    ">
     <a href="/ranking">Classements</a>
   </li>
   <li class="
-  <%= 'bg-[var(--ezb-red)] shadow-[0_0_15px_[var(--ezb-red)],0_0_30px_[var(--ezb-red)],0_0_45px_[var(--ezb-red)]] font-bold text-white' if current_page?(ranking_friends_users_path) %> flex-1 p-3 text-center cursor-pointer transition-all duration-300 text-[#e0e0e0] relative overflow-hidden">
+  <%= 'bg-[var(--ezb-red)] shadow-[0_0_15px_#e94560,_0_0_30px_#e94560,_0_0_45px_#e94560] font-bold text-white' if current_page?(ranking_friends_users_path) %> flex-1 p-3 text-center cursor-pointer transition-all duration-300 text-[#e0e0e0] relative overflow-hidden">
   <%= link_to 'Amis', ranking_friends_users_path %>
 
   </li>
