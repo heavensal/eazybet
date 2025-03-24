@@ -17,9 +17,48 @@
 
 
 
-<button id='labite' class="fixed bottom-[116px] left-1/2 -translate-x-1/2 z-[999] px-8 py-4
+<button id='openModalVideo' class="fixed bottom-[116px] left-1/2 -translate-x-1/2 z-[999] px-8 py-4
   bg-gradient-to-r from-[#e94560] to-[#ff6b81] border-none rounded-full
   text-white font-bold shadow-lg shadow-[rgba(233,69,96,0.3)] cursor-pointer
   transition-all duration-300 ease-in-out whitespace-nowrap max-w-[90%] text-center
  animate-bounce animate-infinite animate-duration-3000 animate-ease-in-out" >
   🎥 Regarder une vidéo (+250 🪙) • 20</button>
+
+ <%= render "modal/modal-video"   %>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const openModalVideo = document.getElementById("openModalVideo");
+    const closeModalVideo = document.getElementById("closeModalVideo");
+    const modalVideo = document.getElementById('videoModal')
+
+    const disableScroll = () => {
+      document.body.style.overflow = 'hidden';
+    };
+
+    const enableScroll = () => {
+      document.body.style.overflow = '';
+    };
+
+    if (openModalVideo && modalVideo) {
+      openModalVideo.addEventListener("click", () => {
+        modalVideo.showModal();
+        disableScroll();
+      });
+    }
+
+
+       if (closeModalVideo && modalVideo) {
+      closeModalVideo.addEventListener("click", () => {
+        modalVideo.close();
+        enableScroll(); // Réactive le scroll lorsque la modal est fermée
+      });
+    }
+
+     modalVideo?.addEventListener("click", (event) => {
+      if (event.target === modalVideo) {
+        modalVideo.close();
+        enableScroll(); // Réactive le scroll si on ferme la modal en cliquant en dehors
+      }
+    });
+  });
+</script>
