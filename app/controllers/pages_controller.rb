@@ -18,4 +18,13 @@ class PagesController < ApplicationController
 
   def shop
   end
+
+  def divisions
+  end
+
+  def cgu
+  end
+
+  def confidentiality
+  end
 end

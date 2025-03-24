@@ -34,8 +34,8 @@ class Bet < ApplicationRecord
     self.status = "pending"
 
     if money_type == "coins"
-      self.coins_to_win = stake * odd_price
-      self.diamonds_to_win = (coins_to_win - stake) / 1000.0
+      self.coins_to_win = stake.to_f * odd_price
+      self.diamonds_to_win = (coins_to_win - stake.to_f) / 1000.0
     else
       self.coins_to_win = 0
       self.diamonds_to_win = stake * odd_price
@@ -54,9 +54,9 @@ class Bet < ApplicationRecord
 
   def decrease_wallet_balance
     if money_type == "coins"
-      user.wallet.update!(coins: user.wallet.coins - amount)
+      user.wallet.update!(coins: user.wallet.coins - self.stake)
     else
-      user.wallet.update!(diamonds: user.wallet.diamonds - amount)
+      user.wallet.update!(diamonds: user.wallet.diamonds - self.stake)
     end
   end
 

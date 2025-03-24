@@ -19,6 +19,10 @@
 
   <body class="bg-gray-900 min-h-screen">
 
+    <div id="applixir_vanishing_div" hidden>
+        <iframe id="applixir_parent" ></iframe>
+    </div>
+
     <header class="sticky top-0 w-full bg-[var(--bg-card)] text-white shadow-[0_0_10px_rgba(0,0,0,0.4)] z-1000 px-4 py-2">
       <%= render "layouts/header/header" %>
     </header>
@@ -31,6 +35,24 @@
       <%= render "layouts/navbar/navbar" %>
     </footer>
 
+    <script type="text/javascript" src="https://cdn.applixir.com/applixir.sdk4.0m.js" ></script>
+    <script type="application/javascript">
+      const options = {
+          zoneId: 2050,                      // Development Zone ID
+          userId: crypto.randomUUID(),       // Recommended UUID4 value
+          accountId: 8771,                   // Your provided Account ID
+          siteId: 9325,                      // Your provided Site ID
+          adStatusCb: adStatusCallback
+      };
+
+      function adStatusCallback(status) {
+          console.log('Ad Status:', status);
+      }
+
+      document.getElementById('showRewardAdButton').onclick = function () {
+          invokeApplixirVideoUnit(options);  // Play the video ad
+      };
+    </script>
   </body>
 
 

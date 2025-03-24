@@ -1,17 +1,23 @@
-<div data-action="click->dialog#backdropClose" >
-  <dialog id="profileModal"   class="bg-[var(--bg-card-dark)] p-8 rounded-2xl w-[80%] max-w-[400px] text-white absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2">
-<ul class="flex flex-col gap-4">
-  <h2 class="text-[rgb(224, 224, 224)] flex justify-between items-center">Paramètres <span id="closeModal" class="cursor-pointer"> ✖</span></h2>
-  <%= link_to edit_user_registration_path  do %>
-      <li class="flex items-center py-3 border-b border-white/10 cursor-pointer">👤 Mon compte</li>
+<div data-action="click->dialog#backdropClose">
+  <dialog id="profileModal" class="bg-[var(--bg-card-dark)] p-8 rounded-2xl w-[80%] max-w-[400px] text-white absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2">
+    <ul class="flex flex-col gap-4">
+      <h2 class="text-[rgb(224, 224, 224)] flex justify-between items-center">
+        Paramètres <span id="closeModal" class="cursor-pointer">✖</span>
+      </h2>
+      <%= link_to edit_user_registration_path do %>
+        <li class="flex items-center py-3 border-b border-white/10 cursor-pointer">👤 Mon compte</li>
       <% end %>
-        <li class="flex items-center py-3 border-b border-white/10 cursor-pointer">🌐 Changer de langue</li>
-          <li class="flex items-center py-3 border-b border-white/10 cursor-pointer">📄 Conditions d'utilisation</li>
-            <li class="flex items-center py-3 border-b border-white/10 cursor-pointer">🔒 Politique de confidentialité</li>
-              <li class="flex items-center py-3 border-b border-white/10 cursor-pointer">📞 Contactez-nous</li>
-                <li class="flex items-center py-3  cursor-pointer">🚪 <%= link_to 'Se deconnecter', destroy_user_session_path, data: { turbo_method: :delete, turbo_confirm: "Se déconnecter ?"} %></li>
-
-</ul>
-
+      <li class="flex items-center py-3 border-b border-white/10 cursor-pointer">🌐 Changer de langue</li>
+      <li class="flex items-center py-3 border-b border-white/10 cursor-pointer">
+        <%= link_to "📄 Conditions d'utilisation", cgu_path %>
+      </li>
+      <li class="flex items-center py-3 border-b border-white/10 cursor-pointer">
+        <%= link_to "🔒 Politique de confidentialité", confidentiality_path %>
+      </li>
+      <li class="flex items-center py-3 border-b border-white/10 cursor-pointer">📞 Contactez-nous</li>
+      <li class="flex items-center py-3 cursor-pointer">
+        🚪 <%= link_to 'Se deconnecter', destroy_user_session_path, data: { turbo_method: :delete, turbo_confirm: "Se déconnecter ?"} %>
+      </li>
+    </ul>
   </dialog>
 </div>
