@@ -1,9 +1,9 @@
 <%# pour chaque competition, on affiche en titre le title et tous ses events %>
  <%= render "filters/filters"   %>
 <% @competitions.each do |competition| %>
-  <div class="flex items-center border-l-3 border-rose-600 relative">
-    <div class="absolute inset-0 bg-gradient-to-r from-rose-600 to-rose-800 opacity-30"></div>
-    <h2 class="font-medium text-rose-600 relative z-10 p-4">
+  <div class="flex items-center border-l-3 border-[var(--ezb-red)] relative">
+    <div class="absolute inset-0" style="background: linear-gradient(90deg, rgba(233, 69, 96, 0.2) 0%, rgba(233, 69, 96, 0) 100%);"></div>
+    <h2 class="font-bold text-[var(--ezb-red)] relative z-10 p-4">
       <%= competition.title %>
     </h2>
   </div>
@@ -17,8 +17,9 @@
 
 
 
-<%# <button id='labite' class="fixed bottom-[116px] left-1/2 transform -translate-x-1/2 w-[90%] bg-rose-600 rounded-lg text-white px-5 py-2.5 shadow-lg z-[1100] flex items-center gap-2 justify-center md:max-w-[50%]"  >
-    image_tag "icons/camera.svg", class: "w-6 h-6"
-  <p class='flex items-center justify-center text-[14px]'> Regarder une video (+250   )
-  image_tag "icons/coin.svg", class: "w-6 h-6"
-   - 20</p></button> %>
+<button id='labite' class="fixed bottom-[116px] left-1/2 -translate-x-1/2 z-[999] px-8 py-4
+  bg-gradient-to-r from-[#e94560] to-[#ff6b81] border-none rounded-full
+  text-white font-bold shadow-lg shadow-[rgba(233,69,96,0.3)] cursor-pointer
+  transition-all duration-300 ease-in-out whitespace-nowrap max-w-[90%] text-center
+ animate-bounce animate-infinite animate-duration-3000 animate-ease-in-out" >
+  🎥 Regarder une vidéo (+250 🪙) • 20</button>

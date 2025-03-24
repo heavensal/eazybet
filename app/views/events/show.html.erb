@@ -1,5 +1,6 @@
-<%= link_to root_path do %>
-  <%= image_tag 'icons/back.svg', alt: "Retour", class: "w-6 h-6" %>
+<div class="p-4">
+  <%= link_to root_path do %>
+  <%= image_tag 'icons/back.svg', alt: "Retour", class: "w-6 h-6 mb-4" %>
 <% end %>
 
 <div class="flex justify-center">
@@ -22,7 +23,7 @@
   <% @event.comments.each do |comment| %>
     <div class="<%= current_user == comment.user ? 'ml-auto' : 'mr-auto' %> w-[90%]">
       <%= turbo_frame_tag comment, class: "space-y-2" do %>
-        <div class="rounded-lg shadow-md <%= current_user == comment.user ? 'bg-blue-900 text-white' : 'bg-white text-black' %> p-4">
+        <div class="rounded-lg shadow-md <%= current_user == comment.user ? 'bg-[var(--bg-card)] text-white' : 'bg-white text-black' %> p-4">
           <h6 class="text-sm <%= current_user == comment.user ? 'text-white' : 'text-gray-500' %>">
             <%= comment.user.first_name %> - il y a <%= time_ago_in_words(comment.created_at) %>
           </h6>
@@ -34,7 +35,7 @@
 
             <%# remplacer le texte avec l'icon %>
             <%# <img src="/icons/delete.svg" alt="Supprimer" class="w-6 h-6"> %>
-            <%= link_to "Supprimer", comment_path(comment), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "text-rose-600 text-[14px]" if current_user == comment.user %>
+            <%= link_to "🗑️ Supprimer", comment_path(comment), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "text-[var(--ezb-red)] text-[14px]" if current_user == comment.user %>
           </div>
         </div>
       <% end %>
@@ -42,13 +43,15 @@
   <% end %>
 </div>
 
-<div class="mt-8">
+<div class="mt-8 mb-10">
   <%= form_with(model: [@event, @comment], url: event_comments_path(@event), class: "space-y-4") do |f| %>
     <div>
-      <%= f.text_area :content, class: "p-2 border border-white rounded-lg w-full bg-blue-900 text-white", placeholder: "Ecrire mon commentaire...", rows: 3 %>
+      <%= f.text_area :content, class: "p-2 border border-white rounded-lg w-full bg-[var(--bg-card)] text-white", placeholder: "Ecrire mon commentaire...", rows: 3 %>
     </div>
     <div class="text-center">
-      <%= f.submit "Poster", class: "bg-rose-600 hover:bg-rose-700 text-white font-medium py-2 px-4 rounded-lg cursor-pointer transition-colors" %>
+      <%= f.submit "Poster", class: "bg-[var(--ezb-red)] hover:bg-[var(--ezb-red-hover)] text-white font-medium py-2 px-4 rounded-lg cursor-pointer transition-colors" %>
     </div>
   <% end %>
+</div>
+
 </div>

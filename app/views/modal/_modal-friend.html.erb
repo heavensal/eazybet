@@ -1,0 +1,65 @@
+<div class="">
+  <dialog id='friendModal' class="bg-[var(--bg-card-dark)] p-8 rounded-2xl w-[80%] max-w-[400px] text-white absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2">
+   <div class="flex flex-col gap-4 ">
+<ul class="flex justify-center">
+  <li id="showFriends" class="flex flex-[1_1_0%] justify-center items-center p-4 cursor-pointer rounded-tl-md">
+    Ami
+  </li>
+  <li id="showAddFriends" class="flex flex-[1_1_0%] justify-center items-center p-4 cursor-pointer rounded-tr-md text-center">
+    Ajouter des amis
+  </li>
+</ul>
+
+<div class="friends_section">
+  <p id="noFriendsText" class="text-center">Vous n'avez pas encore d'amis.</p>
+
+  <div id="addFriendsForm" class="hidden">
+    <input type="text" placeholder="Rechercher des utilisateurs"
+      class="w-full p-2 mb-4 rounded border border-gray-300 bg-[#0f3460] text-[#e0e0e0] placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500">
+    <button class="w-full p-3 bg-[var(--ezb-red)] text-[#e0e0e0] border-none rounded cursor-pointer mb-4 hover:bg-[var(--ezb-red-hover)] transition-colors">
+      Rechercher
+    </button>
+  </div>
+</div>
+
+    <button id="closeModalFriend" class="rounded-lg bg-[var(--bg-card)] p-3 text-center w-full cursor-pointer">Fermer</button>
+   </div>
+  </dialog>
+</div>
+
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const showFriends = document.getElementById("showFriends");
+    const showAddFriends = document.getElementById("showAddFriends");
+    const noFriendsText = document.getElementById("noFriendsText");
+    const addFriendsForm = document.getElementById("addFriendsForm");
+
+    // Fonction pour mettre à jour les styles des onglets
+    function updateTabs(selected, unselected) {
+      selected.classList.add("bg-[var(--ezb-red)]");
+      selected.classList.remove("bg-[var(--bg-card)]");
+
+      unselected.classList.add("bg-[var(--bg-card)]");
+      unselected.classList.remove("bg-[var(--ezb-red)]");
+    }
+
+    // Par défaut, afficher "Ami"
+    addFriendsForm.classList.add("hidden");
+    updateTabs(showFriends, showAddFriends);
+
+    // Afficher la section "Ami"
+    showFriends.addEventListener("click", () => {
+      noFriendsText.classList.remove("hidden");
+      addFriendsForm.classList.add("hidden");
+      updateTabs(showFriends, showAddFriends);
+    });
+
+    // Afficher le formulaire d'ajout d'amis
+    showAddFriends.addEventListener("click", () => {
+      noFriendsText.classList.add("hidden");
+      addFriendsForm.classList.remove("hidden");
+      updateTabs(showAddFriends, showFriends);
+    });
+  });
+</script>
