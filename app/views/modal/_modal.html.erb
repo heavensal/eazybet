@@ -1,14 +1,20 @@
 <div data-controller="price" data-action="click->dialog#backdropClose">
   <dialog id="betModal" data-dialog-target="dialog" class="bg-[var(--bg-card-dark)] p-4 rounded-2xl w-[80%] max-w-[400px] text-white absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 border-2 border-[var(--ezb-red)]" tabindex="-1">
-    <div class="flex flex-col p-4">
-      <h3 class="font-bold text-xl flex items-center justify-between">
-        🎰 Placer un pari 🎰
-        <button id="closeModalBet">↓</button>
-      </h3>
 
-      <% if user_signed_in? %>
-        <%= form_with model: Bet.new, url: bets_path, data: { turbo: false }, method: :post, class: "flex flex-col " do |f| %>
-          <div class="flex flex-col gap-2 mb-4">
+ <div class="flex flex-col p-4">
+
+
+
+
+    <% if user_signed_in? %>
+       <h3 class="font-bold text-xl flex items-center justify-between"> 🎰 Placer un pari 🎰
+      <button id="closeModalBet">↓</button>
+    </h3>
+      <%= form_with model: Bet.new, url: bets_path, method: :post, class: "flex flex-col " do |f| %>
+
+        <div class="flex flex-col gap-2 mb-4">
+
+
             <ul class="flex flex-col gap-2">
               <li class="text-left">🏟️ Match: <%= @event.home_team_odd.name %> vs <%= @event.away_team_odd.name %></li>
               <li class="text-left">👥 Equipe: <%= odd.name == "Draw" ? I18n.t("odds.draw") : odd.name %></li>
@@ -36,10 +42,12 @@
           </div>
 
           <div class="flex flex-col gap-2">
+
             <p class="text-left">Gain potentiel:
               <span class="result-span" data-price-target="coins">0</span>🪙
               <span class="result-span" data-price-target="diamonds">0</span>💎
             </p>
+
           </div>
 
           <div class="flex flex-col gap-4 items-center">
@@ -53,6 +61,16 @@
           <%= link_to "Se connecter", new_user_session_path, class: "bg-rose-600 rounded-lg px-2.5 py-2 cursor-pointer" %>
         </div>
       <% end %>
-    </div>
+
+
+    <% else %>
+      <div class="flex flex-col items-center justify-center h-[80%] gap-4">
+        <p>Connectez-vous pour parier</p>
+        <%= link_to "Se connecter", new_user_session_path, class: "bg-[var(--ezb-red)] rounded-lg px-2.5 py-2 cursor-pointer" %>
+      </div>
+
+    <% end %>
+ </div>
+
   </dialog>
 </div>
