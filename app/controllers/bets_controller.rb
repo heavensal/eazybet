@@ -3,12 +3,9 @@ class BetsController < ApplicationController
     @bets = current_user.bets
   end
   def create
-    @bet = Bet.new(bet_params)
-    @bet.payout = @bet.stake * @bet.odd.price
-    @bet.user = current_user
-    @bet.status = "pending"
+    @bet = current_user.bets.build(bet_params)
     if @bet.save
-      redirect_back(fallback_location: root_path, notice: "Votre pari a bien été enregistré")
+      redirect_to played_events_path, notice: "Votre pari a bien été enregistré"
     else
       redirect_back(fallback_location: root_path, alert: "Erreur lors de l'enregistrement du pari")
     end
@@ -17,6 +14,6 @@ class BetsController < ApplicationController
   private
 
   def bet_params
-    params.require(:bet).permit(:stake, :odd_id)
+    params.require(:bet).permit(:money_type, :stake, :odd_id)
   end
 end

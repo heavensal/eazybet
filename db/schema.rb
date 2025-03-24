@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_03_23_153533) do
+ActiveRecord::Schema[8.0].define(version: 2025_03_24_025610) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -18,10 +18,14 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_23_153533) do
     t.bigint "odd_id", null: false
     t.bigint "user_id", null: false
     t.decimal "stake", precision: 8, scale: 2, null: false
-    t.decimal "payout", precision: 8, scale: 2, null: false
     t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "money_type", default: "coins", null: false
+    t.decimal "coins_to_win", precision: 8, scale: 2, null: false
+    t.decimal "diamonds_to_win", precision: 10, scale: 4, null: false
+    t.decimal "odd_price", precision: 8, scale: 2, null: false
+    t.index ["odd_id", "user_id"], name: "index_bets_on_odd_id_and_user_id", unique: true
     t.index ["odd_id"], name: "index_bets_on_odd_id"
     t.index ["user_id"], name: "index_bets_on_user_id"
   end
@@ -108,7 +112,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_23_153533) do
 
   create_table "wallets", force: :cascade do |t|
     t.decimal "coins"
-    t.decimal "diamonds", precision: 8, scale: 2, default: "0.0"
+    t.decimal "diamonds", precision: 10, scale: 4, default: "0.0"
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
