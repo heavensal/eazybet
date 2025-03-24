@@ -17,6 +17,8 @@ Rails.application.routes.draw do
   get "challenges" => "pages#challenges"
   get "shop" => "pages#shop"
   get "divisions" => "pages#divisions"
+  get "cgu" => "pages#cgu"
+  get "confidentiality" => "pages#confidentiality"
 
   resources :bets
 
@@ -37,11 +39,11 @@ Rails.application.routes.draw do
   resources :scores, only: [ :index, :show ]
 
   resources :friendships, only: [ :create, :update, :destroy ]
-  resource :user, only: [ :show ] do
+  resource :user, only: [] do
     get :profile, on: :member
   end
 
-  resources :users, only: [] do
+  resources :users, only: [ :show ] do
     get :search, on: :collection
     get :ranking, on: :collection
     get :ranking_friends, on: :collection

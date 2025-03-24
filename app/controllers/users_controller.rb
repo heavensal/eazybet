@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_user, only: [ :show ]
 
   def ranking
     @users = User.all.sort_by { |user| user.wallet.diamonds }.reverse

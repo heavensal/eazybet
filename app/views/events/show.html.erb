@@ -28,14 +28,14 @@
             <%= comment.user.first_name %> - il y a <%= time_ago_in_words(comment.created_at) %>
           </h6>
           <p class="text-base"><%= comment.content %></p>
-          <div class="flex gap-2">
+          <div class="flex gap-2 justify-end">
             <%# remplacer le texte avec l'icon %>
             <%#  <img src="/icons/edit.svg" alt="Modifier" class="w-6 h-6"> %>
-            <%= link_to "Modifier", edit_event_comment_path(@event, comment), class: "text-white-500 text-[14px]" if current_user == comment.user %>
+            <%= link_to "✏️", edit_event_comment_path(@event, comment), class: "text-white-500 text-[14px]" if current_user == comment.user %>
 
             <%# remplacer le texte avec l'icon %>
             <%# <img src="/icons/delete.svg" alt="Supprimer" class="w-6 h-6"> %>
-            <%= link_to "🗑️ Supprimer", comment_path(comment), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "text-[var(--ezb-red)] text-[14px]" if current_user == comment.user %>
+            <%= link_to "🗑️", comment_path(comment), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "text-[var(--ezb-red)] text-[14px]" if current_user == comment.user %>
           </div>
         </div>
       <% end %>

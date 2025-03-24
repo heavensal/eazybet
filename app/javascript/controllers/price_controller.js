@@ -9,11 +9,6 @@ export default class extends Controller {
   }
 
   update() {
-    console.log("odd:", this.oddTarget.innerText);
-    console.log("stake:", this.stakeTarget.value);
-    console.log("coins:", this.coinsTarget.innerText);
-
-
     const odd = parseFloat(this.oddTarget.innerText);
     const stake = parseFloat(this.stakeTarget.value) || 0;
     this.coinsTarget.innerText = (odd * stake).toFixed(2);

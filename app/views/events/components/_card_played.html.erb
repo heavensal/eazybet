@@ -11,15 +11,31 @@
       <%= render "events/components/bet", odd: away_team_odd, bet: bet %>
     <% end %>
   </ul>
+
   <div class="flex flex-col p-2">
 
-      <p >Mise: <%= bet.stake %>🪙 sur <%= bet.odd.name %></p>
+    <% if bet.money_type == "coins" %>
+      <p>
+        Mise:
+        <%= bet.stake %> 🪙
+        sur
+        <%= bet.odd.name %>
+      </p>
+      <p>
+        Gains potentiels: <%= bet.coins_to_win %> 🪙 <%= bet.diamonds_to_win %> 💎
+      </p>
 
-     <p >Gains potentiels:<%= bet.diamonds_to_win %> 💎</p>
+    <% else %>
+      <p>
+        Mise:
+        <%= bet.stake %> 💎
+        sur
+        <%= bet.odd.name %>
+      </p>
+      <p>
+        Gains potentiels: <%= bet.diamonds_to_win %> 💎
+      </p>
 
-
-
-
+    <% end %>
   </div>
-
 </li>

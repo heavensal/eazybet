@@ -54,9 +54,9 @@ class Bet < ApplicationRecord
 
   def decrease_wallet_balance
     if money_type == "coins"
-      user.wallet.update!(coins: user.wallet.coins - amount)
+      user.wallet.update!(coins: user.wallet.coins - self.stake)
     else
-      user.wallet.update!(diamonds: user.wallet.diamonds - amount)
+      user.wallet.update!(diamonds: user.wallet.diamonds - self.stake)
     end
   end
 
