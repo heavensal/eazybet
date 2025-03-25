@@ -4,8 +4,7 @@
 
   <section class="bg-[var(--bg-card)] p-8 rounded-2xl mb-8">
     <h2 class='text-[var(--ezb-red)] text-center mb-8 text-2xl '>👥 Classement des Amis 👥</h2>
-   <p id='openModalFriend' class="p-4 flex items-center justify-center bg-[var(--ezb-red)] rounded-lg mb-6 text-[1.2rem] font-bold hover:bg-[var(--ezb-red-hover)] transform transition-colors duration-300 cursor-pointer text-center">
-   ➕ Ajouter des amis</p>
+     <%= link_to '👥 Ajouter des amis', friendships_path, class: "p-4 flex items-center justify-center bg-[var(--ezb-red)] rounded-lg mb-6 text-[1.2rem] font-bold hover:bg-[var(--ezb-red-hover)] transform transition-colors duration-300 cursor-pointer" %>
 
     <ul class="flex flex-col gap-4">
       <% @users.each_with_index do |user, rank| %>

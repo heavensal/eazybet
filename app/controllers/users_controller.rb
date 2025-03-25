@@ -13,6 +13,8 @@ class UsersController < ApplicationController
   # pour la view d'un user
   def show
     @user = User.find(params[:id])
+    # ma relation d'amitié avec le @user si'il y en a une
+    @friendship = Friendship.find_by(sender: current_user, receiver: @user) || Friendship.find_by(sender: @user, receiver: current_user) || Friendship.new
     @wallet = @user.wallet
     @bets = @user.bets
     @bets_won = @bets.where(status: "won")

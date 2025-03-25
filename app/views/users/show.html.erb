@@ -13,13 +13,24 @@
     </div>
   </section>
 
+  <% if current_user.friend_with?(@user) %>
+    <%= link_to "Supprimer l'ami", friendship_path(@friendship), data: {turbo_method: :delete, turbo_confirm: "Êtes-vous sûr ?"}, class: "text-[0.85rem] bg-[var(--ezb-red)] rounded-lg px-2.5 py-2 cursor-pointer" %>
 
+  <% elsif current_user.sent_request_to?(@user) %>
+    <%= link_to "Annuler la demande d'ami", friendship_path(@friendship), data: {turbo_method: :delete, turbo_confirm: "Êtes-vous sûr ?"}, class: "p-4 flex items-center justify-center bg-[var(--ezb-red)] rounded-lg mb-6 text-[1.2rem] font-bold hover:bg-[var(--ezb-red-hover)] transform transition-colors duration-300 w-full" %>
 
-  <%= form_with model: Friendship.new, url: friendships_path, method: :post do |f| %>
-    <%= f.hidden_field :sender_id, value: current_user.id %>
-    <%= f.hidden_field :receiver_id, value: @user.id %>
-    <%= f.hidden_field :status, value: "pending" %>
-    <%= f.submit "Ajouter en ami", class: "p-4 flex items-center justify-center bg-[var(--ezb-red)] rounded-lg mb-6 text-[1.2rem] font-bold hover:bg-[var(--ezb-red-hover)] transform transition-colors duration-300 w-full" %>
+  <% elsif current_user.received_request_from?(@user) %>
+    <%= button_to "Accepter", friendship_path(@friendship), method: :patch, class: "p-4 flex items-center justify-center bg-[var(--ezb-blue)] rounded-lg mb-6 text-[1.2rem] font-bold hover:bg-[var(--blue-hover)] transform transition-colors duration-300 w-full" %>
+    <%= link_to 'Refuser', friendship_path(@friendship), data: {turbo_method: :delete, turbo_confirm: "Êtes-vous sûr ?"}, class: "p-4 flex items-center justify-center bg-[var(--ezb-red)] rounded-lg mb-6 text-[1.2rem] font-bold hover:bg-[var(--ezb-red-hover)] transform transition-colors duration-300 w-full" %>
+
+  <% else %>
+    <%= form_with model: Friendship.new, url: friendships_path, method: :post do |f| %>
+      <%= f.hidden_field :sender_id, value: current_user.id %>
+      <%= f.hidden_field :receiver_id, value: @user.id %>
+      <%= f.hidden_field :status, value: "pending" %>
+      <%= f.submit "Ajouter en ami", class: "p-4 flex items-center justify-center bg-[var(--ezb-red)] rounded-lg mb-6 text-[1.2rem] font-bold hover:bg-[var(--ezb-red-hover)] transform transition-colors duration-300 w-full" %>
+    <% end %>
+
   <% end %>
 
 
