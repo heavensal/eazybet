@@ -6,6 +6,15 @@ class FriendshipsController < ApplicationController
     @received_friendships = current_user.received_friendships
     @sent_friendships = current_user.sent_friendships
     @friendships = current_user.friends
+    if params[:query].present?
+      @users = User.where("first_name ILIKE ? OR email ILIKE ? OR last_name ILIKE ?", "%#{params[:query]}%", "%#{params[:query]}%", "%#{params[:query]}%")
+      .where.not(id: current_user.id)
+    else
+      @users = []
+    end
+  end
+
+  def search
   end
 
   def create

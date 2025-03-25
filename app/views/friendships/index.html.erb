@@ -1,8 +1,43 @@
 <div class="p-8">
   <section class="bg-[var(--bg-card)] p-8 rounded-2xl mb-8">
-    <h2 class='text-[var(--ezb-red)] text-center mb-8 text-2xl'>Mes Amis</h2>
+    <h2 class='text-[var(--ezb-red)] text-center mb-8 text-2xl'>Ajouter un Ami</h2>
 
-    <ul class="flex flex-col gap-4">
+    <%= form_with url: friendships_path, method: :get, local: true do |f| %>
+      <div>
+        <%= f.text_field :query, placeholder: "Rechercher des utilisateurs", class:"w-full p-2 mb-4 rounded border border-gray-300 bg-[#0f3460] text-[#e0e0e0] placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500" %>
+      </div>
+      <div>
+        <%= f.submit "Rechercher", class: "w-full p-3 bg-[var(--ezb-red)] text-[#e0e0e0] border-none rounded cursor-pointer mb-4 hover:bg-[var(--ezb-red-hover)] transition-colors" %>
+      </div>
+    <% end %>
+
+    <% if @users.empty? && params[:query].present? %>
+      <p class="text-center">Aucun utilisateur trouvé</p>
+    <% else %>
+      <ul class="flex flex-col gap-4 my-8">
+        <% @users.each do |user| %>
+          <li class="grid grid-cols-2 p-2 border-[var(--blue-debutant)] border-l-4 bg-[var(--bg-card-dark)] rounded-lg hover:bg-[var(--bg-card-hover)] transition-transform duration-200 hover:translate-x-[5px]">
+              <p class="text-[0.85rem]" ><%= user.first_name %></p>
+              <div class="flex justify-end">
+                <%= form_with model: Friendship.new, url: friendships_path, method: :post do |f| %>
+                  <%= f.hidden_field :sender_id, value: current_user.id %>
+                  <%= f.hidden_field :receiver_id, value: user.id %>
+                  <%= f.hidden_field :status, value: "pending" %>
+                  <%= f.submit "Ajouter en ami", class: "text-[0.85rem] bg-[var(--ezb-red)] rounded-lg px-2.5 py-2 cursor-pointer" %>
+                <% end %>
+              </div>
+          </li>
+        <% end %>
+      </ul>
+
+    <% end %>
+
+
+
+    <h2>
+      <span class='text-[var(--ezb-red)] text-center mb-8 text-2xl'>Mes Amis</span>
+    </h2>
+    <ul class="flex flex-col gap-4 my-8">
 
       <% @received_friendships.each do |request| %>
         <li class="grid grid-cols-[60px_1fr_80px] p-2 border-[var(--blue-debutant)] border-l-4 bg-[var(--bg-card-dark)] rounded-lg hover:bg-[var(--bg-card-hover)] transition-transform duration-200 hover:translate-x-[5px]">

@@ -41,12 +41,13 @@ Rails.application.routes.draw do
   resource :user, only: [] do
     get :profile, on: :member
   end
-  resources :friendships, only: [ :index, :create, :update, :destroy ]
+  resources :friendships, only: [ :index, :create, :update, :destroy ] do
+    get :search, on: :collection
+  end
 
 
 
   resources :users, only: [ :show ] do
-    get :search, on: :collection
     get :ranking, on: :collection
     get :ranking_friends, on: :collection
     get :friends, on: :collection
