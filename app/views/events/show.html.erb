@@ -1,4 +1,4 @@
-<div class="p-4">
+<div class="px-4 pb-16">
   <%= link_to root_path do %>
   <%= image_tag 'icons/back.svg', alt: "Retour", class: "w-6 h-6 mb-4" %>
 <% end %>
@@ -16,7 +16,7 @@
     commence_time: @event.commence_time,
     odds:@event.odds,
     comments:@event.comments,
-    bet: @event.bets.find_by(user_id: current_user.id) %>
+    bet: user_signed_in? ? @event.bets.find_by(user_id: current_user.id) : nil %>
 </div>
 
 <div class="space-y-4 my-4">
@@ -43,15 +43,24 @@
   <% end %>
 </div>
 
-<div class="mt-8 mb-10">
-  <%= form_with(model: [@event, @comment], url: event_comments_path(@event), class: "space-y-4") do |f| %>
-    <div>
-      <%= f.text_area :content, class: "p-2 border border-white rounded-lg w-full bg-[var(--bg-card)] text-white", placeholder: "Ecrire mon commentaire...", rows: 3 %>
-    </div>
-    <div class="text-center">
-      <%= f.submit "Poster", class: "bg-[var(--ezb-red)] hover:bg-[var(--ezb-red-hover)] text-white font-medium py-2 px-4 rounded-lg cursor-pointer transition-colors" %>
-    </div>
-  <% end %>
-</div>
+
+<% if user_signed_in? %>
+  <div class="mt-8 mb-10">
+    <%= form_with(model: [@event, @comment], url: event_comments_path(@event), class: "space-y-4") do |f| %>
+      <div>
+        <%= f.text_area :content, class: "p-2 border border-white rounded-lg w-full bg-[var(--bg-card)] text-white", placeholder: "Ecrire mon commentaire...", rows: 3 %>
+      </div>
+      <div class="text-center">
+        <%= f.submit "Poster", class: "bg-[var(--ezb-red)] hover:bg-[var(--ezb-red-hover)] text-white font-medium py-2 px-4 rounded-lg cursor-pointer transition-colors" %>
+      </div>
+    <% end %>
+  </div>
+
+<% else %>
+  <div class="flex flex-col items-center justify-center h-[80%] gap-4">
+    <p>Connectez-vous pour commenter</p>
+    <%= link_to "Se connecter", new_user_session_path, data: { turbo: false }, class: "bg-[var(--ezb-red)] rounded-lg px-2.5 py-2 cursor-pointer" %>
+  </div>
+<% end %>
 
 </div>

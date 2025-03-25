@@ -1,0 +1,32 @@
+<div class="p-8">
+  <section class="bg-[var(--bg-card)] p-8 rounded-2xl mb-8">
+    <h2 class='text-[var(--ezb-red)] text-center mb-8 text-2xl'>Mes Amis</h2>
+
+    <ul class="flex flex-col gap-4">
+
+      <% @received_friendships.each do |request| %>
+        <li class="grid grid-cols-[60px_1fr_80px] p-2 border-[var(--blue-debutant)] border-l-4 bg-[var(--bg-card-dark)] rounded-lg hover:bg-[var(--bg-card-hover)] transition-transform duration-200 hover:translate-x-[5px]">
+          <p class="text-[0.85rem]" ><%= request.sender.first_name %></p>
+          <%= button_to "Accepter", friendship_path(request), method: :patch, class: "text-[0.85rem] bg-[var(--ezb-red)] rounded-lg px-2.5 py-2 cursor-pointer" %>
+          <%= link_to 'Refuser', friendship_path(request), data: {turbo_method: :delete, turbo_confirm: "Êtes-vous sûr ?"}, class: "text-[0.85rem] bg-[var(--ezb-red)] rounded-lg px-2.5 py-2 cursor-pointer" %>
+        </li>
+      <% end %>
+
+      <% @sent_friendships.each do |request| %>
+        <li class="grid grid-cols-[60px_1fr_80px] p-2 border-[var(--blue-debutant)] border-l-4 bg-[var(--bg-card-dark)] rounded-lg hover:bg-[var(--bg-card-hover)] transition-transform duration-200 hover:translate-x-[5px]">
+          <p class="text-[0.85rem]" ><%= request.receiver.first_name %></p>
+          <p class="text-[0.85rem]">En attente</p>
+          <%= link_to 'Annuler', friendship_path(request), data: {turbo_method: :delete, turbo_confirm: "Êtes-vous sûr ?"}, class: "text-[0.85rem] bg-[var(--ezb-red)] rounded-lg px-2.5 py-2 cursor-pointer" %>
+        </li>
+      <% end %>
+
+      <% @friendships.each do |friendship| %>
+        <li class="grid grid-cols-[60px_1fr_80px] p-2 border-[var(--blue-debutant)] border-l-4 bg-[var(--bg-card-dark)] rounded-lg hover:bg-[var(--bg-card-hover)] transition-transform duration-200 hover:translate-x-[5px]">
+          <p class="text-[0.85rem]" ><%= friendship.friend.first_name %></p>
+          <p class="text-[0.85rem]">Ami</p>
+          <%= link_to 'Supprimer', friendship_path(friendship), data: {turbo_method: :delete, turbo_confirm: "Êtes-vous sûr ?"}, class: "text-[0.85rem] bg-[var(--ezb-red)] rounded-lg px-2.5 py-2 cursor-pointer" %>
+        </li>
+      <% end %>
+    </ul>
+  </section>
+</div>

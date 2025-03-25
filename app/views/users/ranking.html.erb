@@ -11,10 +11,12 @@
 
     <ul class="flex flex-col gap-4">
       <% @users.each_with_index do |user, rank| %>
-        <li class="grid grid-cols-[60px_1fr_80px] p-2 border-[var(--blue-debutant)] border-l-4 bg-[var(--bg-card-dark)] rounded-lg hover:bg-[var(--bg-card-hover)] transition-transform duration-200 hover:translate-x-[5px]">
-          <p class="text-[0.85rem]" ><%= rank + 1 %></p>
-          <p class="text-[0.85rem]"><%= user.first_name %></p>
-          <p class="text-right text-[0.85rem]"><%= user.wallet.diamonds %> 💎</p>
+        <li>
+          <%= link_to user_path(user), class: "grid grid-cols-[60px_1fr_80px] p-2 border-[var(--blue-debutant)] border-l-4 bg-[var(--bg-card-dark)] rounded-lg hover:bg-[var(--bg-card-hover)] transition-transform duration-200 hover:translate-x-[5px]" do %>
+            <p class="text-[0.85rem]" ><%= rank + 1 %></p>
+            <p class="text-[0.85rem]"><%= user.first_name %></p>
+            <p class="text-right text-[0.85rem]"><%= user.wallet.diamonds %> 💎</p>
+          <% end %>
         </li>
       <% end %>
     </ul>

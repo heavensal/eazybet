@@ -13,9 +13,15 @@
     </div>
   </section>
 
-  <a href="/" class="p-4 flex items-center justify-center bg-[var(--ezb-red)] rounded-lg mb-6 text-[1.2rem] font-bold hover:bg-[var(--ezb-red-hover)] transform transition-colors duration-300">
-    👥 Ajouter des amis
-  </a>
+
+
+  <%= form_with model: Friendship.new, url: friendships_path, method: :post do |f| %>
+    <%= f.hidden_field :sender_id, value: current_user.id %>
+    <%= f.hidden_field :receiver_id, value: @user.id %>
+    <%= f.hidden_field :status, value: "pending" %>
+    <%= f.submit "Ajouter en ami", class: "p-4 flex items-center justify-center bg-[var(--ezb-red)] rounded-lg mb-6 text-[1.2rem] font-bold hover:bg-[var(--ezb-red-hover)] transform transition-colors duration-300 w-full" %>
+  <% end %>
+
 
   <section id="statistiques" class='bg-[var(--bg-card)] rounded-lg p-8 mb-4'>
     <h2 class='text-[var(--ezb-red)] text-center mb-8 text-[1.4rem]'>Statistiques</h2>
@@ -58,45 +64,3 @@
     </div>
   </section>
 </div>
-
-<%= render "modal/modal-profile" %>
-
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const openModalButton = document.getElementById("openModal");
-    const closeModalButton = document.getElementById("closeModal");
-    const modal = document.getElementById("profileModal");
-
-    // Fonction pour désactiver le défilement
-    const disableScroll = () => {
-      document.body.style.overflow = 'hidden'; // Empêche le scroll
-    };
-
-    // Fonction pour réactiver le défilement
-    const enableScroll = () => {
-      document.body.style.overflow = ''; // Réactive le scroll
-    };
-
-    if (openModalButton && modal) {
-      openModalButton.addEventListener("click", () => {
-        modal.showModal();
-        disableScroll(); // Désactive le scroll lorsque la modal est ouverte
-      });
-    }
-
-    if (closeModalButton && modal) {
-      closeModalButton.addEventListener("click", () => {
-        modal.close();
-        enableScroll(); // Réactive le scroll lorsque la modal est fermée
-      });
-    }
-
-    // Fermer la modal en cliquant en dehors
-    modal?.addEventListener("click", (event) => {
-      if (event.target === modal) {
-        modal.close();
-        enableScroll(); // Réactive le scroll si on ferme la modal en cliquant en dehors
-      }
-    });
-  });
-</script>
