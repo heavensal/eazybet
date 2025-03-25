@@ -34,6 +34,21 @@ class User < ApplicationRecord
       received_friendships.where(status: "pending").map(&:sender)
     end
 
+    # 👇 Méthode pour savoir si tu es ami avec quelqu’u
+    def friend_with?(user)
+      friends.include?(user)
+    end
+
+    # 👇 Méthode pour savoir si tu as envoyé une demande à quelqu’u
+    def sent_request_to?(user)
+      pending_friends.include?(user)
+    end
+
+    # 👇 Méthode pour savoir si tu as reçu une demande de quelqu’
+    def received_request_from?(user)
+      incoming_requests.include?(user)
+    end
+
 
   ############################################################
   # WALLET

@@ -1,16 +1,14 @@
 <div data-controller="price" data-action="click->dialog#backdropClose">
   <dialog id="betModal" data-dialog-target="dialog" class="bg-[var(--bg-card-dark)] p-4 rounded-2xl w-[80%] max-w-[400px] text-white absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 border-2 border-[var(--ezb-red)]" tabindex="-1">
+    <div class="flex flex-col p-4">
+      <% if user_signed_in? %>
+        <h3 class="font-bold text-xl flex items-center justify-between">
+          🎰 Placer un pari 🎰
+          <button id="closeModalBet" data-action="dialog#close">❌</button>
+        </h3>
 
- <div class="flex flex-col p-4">
-    <% if user_signed_in? %>
-       <h3 class="font-bold text-xl flex items-center justify-between"> 🎰 Placer un pari 🎰
-      <button id="closeModalBet" data-action="dialog#close">❌</button>
-    </h3>
-      <%= form_with model: Bet.new, url: bets_path, method: :post, class: "flex flex-col " do |f| %>
-
-        <div class="flex flex-col gap-2 mb-4">
-
-
+        <%= form_with model: Bet.new, url: bets_path, method: :post, class: "flex flex-col " do |f| %>
+          <div class="flex flex-col gap-2 mb-4">
             <ul class="flex flex-col gap-2">
               <li class="text-left">🏟️ Match: <%= @event.home_team_odd.name %> vs <%= @event.away_team_odd.name %></li>
               <li class="text-left">👥 Equipe: <%= odd.name == "Draw" ? I18n.t("odds.draw") : odd.name %></li>
@@ -29,64 +27,59 @@
               class: "p-2 bg-[var(--bg-card)] border-2 border-white rounded-lg",
               autofocus: false
             %>
-<%= f.select :money_type,
-  options_for_select([["Coins 🪙", "coins"], ["Diamants 💎", "diamonds"]], "coins"),
-  {},
-  { class: "p-2 bg-[var(--bg-card)] border-2 border-white rounded-lg",
-    data: { price_target: "moneyType", action: "change->price#update" } }
-%>
+
+            <%= f.select :money_type,
+              options_for_select([["Coins 🪙", "coins"], ["Diamants 💎", "diamonds"]], "coins"),
+              {},
+              { class: "p-2 bg-[var(--bg-card)] border-2 border-white rounded-lg",
+                data: { price_target: "moneyType", action: "change->price#update" } }
+            %>
           </div>
 
           <div class="flex flex-col gap-2">
 
+
             <p class="text-left mb-4">Gain potentiel:
              <span class="result-span" data-price-target="coins" style="display: inline;">0 🪙</span>
   <span class="result-span" data-price-target="diamonds" style="display: none;">0 💎</span>
-            </p>
 
+            </p>
           </div>
 
           <div class="flex flex-col gap-4 items-center">
             <%= f.submit "💰 Confirmer le pari 💰", class: "bg-[var(--ezb-red)] p-2 rounded-sm cursor-pointer w-[90%] shadow-[var(--ezb-red)] ", data: { action: "dialog#close" } %>
             <button class="border-white border-2 p-2 rounded-sm cursor-pointer w-[90%]" type="button" data-action="dialog#close">❌ Annuler ❌</button>
           </div>
+        <% end %>
+      <% else %>
+        <div class="flex flex-col items-center justify-center h-[80%] gap-4">
+          <p>Connectez-vous pour parier</p>
+          <%= link_to "Se connecter", new_user_session_path, data: { turbo: false }, class: "bg-[var(--ezb-red)] rounded-lg px-2.5 py-2 cursor-pointer" %>
+        </div>
       <% end %>
-
-    <% else %>
-      <div class="flex flex-col items-center justify-center h-[80%] gap-4">
-        <p>Connectez-vous pour parier</p>
-        <%= link_to "Se connecter", new_user_session_path, class: "bg-[var(--ezb-red)] rounded-lg px-2.5 py-2 cursor-pointer" %>
-      </div>
-    <% end %>
-
-
- </div>
-
+    </div>
   </dialog>
 </div>
 
-
 <script>
   document.addEventListener("DOMContentLoaded", () => {
-    const select = document.querySelector("[name='bet[money_type]']"); // Sélectionne le `<select>`
-    const spans = document.querySelectorAll(".result-span"); // Tous les spans à mettre à jour
-console.log(select);
+    const select = document.querySelector("[name='bet[money_type]']");
+    const spans = document.querySelectorAll(".result-span");
+    console.log(select);
 
     select.addEventListener("change", (event) => {
-      const selectedValue = event.target.value; // "coins" ou "diamonds"
-console.log(selectedValue, 'c moi');
+      const selectedValue = event.target.value;
+      console.log(selectedValue, 'c moi');
 
-      // Met à jour les spans : cache ceux qui ne sont pas sélectionnés et affiche le bon
       spans.forEach(span => {
         if (span.dataset.priceTarget === selectedValue) {
-          span.style.display = "inline"; // Affiche le bon span
+          span.style.display = "inline";
         } else {
-          span.style.display = "none"; // Cache les autres
+          span.style.display = "none";
         }
       });
     });
 
-    // Déclencher l'événement au chargement de la page pour afficher la valeur par défaut
     select.dispatchEvent(new Event("change"));
   });
 </script>
