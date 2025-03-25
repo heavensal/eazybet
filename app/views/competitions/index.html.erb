@@ -11,9 +11,15 @@
   <%= turbo_frame_tag "competition_events_#{competition.id}", src: competition_events_path(competition) do %>
     <p class="p-4 text-sm text-gray-400">Chargement des événements...</p>
   <% end %>
-  <div class="p-3 text-center shadow-lg cursor-pointer transition-all duration-400 ease-in-out border-2 border-white/10 animate-jump animate-infinite animate-duration-[2000ms] animate-ease-in-out mb-4 <%= (index+1) % 3 == 0 ? 'hidden' : '' %>">
-    <p class='text-sm'>📱 Découvrir l'App Betkoin! 📱</p>
+  <div class="p-3 text-center shadow-lg cursor-pointer transition-all duration-400 ease-in-out border-2 border-white/10 animate-jump animate-infinite animate-duration-[2000ms] animate-ease-in-out mb-4
+  bg-[url('https://images.unsplash.com/photo-1489944440615-453fc2b6a9a9?auto=format&fit=crop&q=80&w=800')] bg-cover bg-center bg-no-repeat
+  animate-jump animate-infinite animate-duration-[3000ms]
+   <%= (index+1) % 3 == 0 ? 'hidden' : '' %> relative -z-10">
+     <div class="absolute inset-0 bg-[linear-gradient(45deg,rgba(15,52,96,0.5),rgba(22,33,62,0.5))] bg-cover bg-center bg-no-repeat -z-8"></div>
+   <div class="relative z-10">
+    <p class='font-bold'>📱 Découvrir l'App Betkoin! 📱</p>
     <p class='text-sm'>Pariez en temps réel, suivez vos matchs et gagnez plus avec notre application mobile!</p>
+  </div>
   </div>
 
 <% end %>
@@ -29,11 +35,13 @@
       allowfullscreen>
     </iframe>
   </dialog>
-  <button id='showRewardAdButton' class="fixed bottom-[116px] left-1/2 -translate-x-1/2 z-[999] px-8 py-4
-    bg-gradient-to-r from-[#e94560] to-[#ff6b81] border-none rounded-full
+ <button id='showRewardAdButton' class="fixed bottom-[116px] left-1/2 -translate-x-1/2 z-[999] px-8 py-4
+    bg-gradient-to-r from-[var(--ezb-red)] to-[var(--ezb-red-hover)] border-none rounded-full
     text-white font-bold shadow-lg shadow-[rgba(233,69,96,0.3)] cursor-pointer
-    transition-all duration-300 ease-in-out whitespace-nowrap max-w-[90%] text-center
-  animate-bounce animate-infinite animate-duration-3000 animate-ease-in-out" type="button" data-action="dialog#open">
+    transition-all duration-300 ease-in-out whitespace-nowrap max-w-[90%] w-fit text-center
+    animate-bounce animate-infinite animate-duration-3000 animate-ease-in-out"
+    type="button" data-action="dialog#open">
     🎥 Regarder une vidéo (+250 🪙) • 20
-  </button>
+</button>
+
 </div>

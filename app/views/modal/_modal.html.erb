@@ -2,13 +2,9 @@
   <dialog id="betModal" data-dialog-target="dialog" class="bg-[var(--bg-card-dark)] p-4 rounded-2xl w-[80%] max-w-[400px] text-white absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 border-2 border-[var(--ezb-red)]" tabindex="-1">
 
  <div class="flex flex-col p-4">
-
-
-
-
     <% if user_signed_in? %>
        <h3 class="font-bold text-xl flex items-center justify-between"> 🎰 Placer un pari 🎰
-      <button id="closeModalBet">↓</button>
+      <button id="closeModalBet" data-action="dialog#close">❌</button>
     </h3>
       <%= form_with model: Bet.new, url: bets_path, method: :post, class: "flex flex-col " do |f| %>
 
@@ -33,19 +29,19 @@
               class: "p-2 bg-[var(--bg-card)] border-2 border-white rounded-lg",
               autofocus: false
             %>
-
-            <%= f.select :money_type,
-              options_for_select([["Coins 🪙", "coins"], ["Diamants 💎", "diamonds"]], "coins"),
-              {},
-              { class: "p-2 bg-[var(--bg-card)] border-2 border-white rounded-lg" }
-            %>
+<%= f.select :money_type,
+  options_for_select([["Coins 🪙", "coins"], ["Diamants 💎", "diamonds"]], "coins"),
+  {},
+  { class: "p-2 bg-[var(--bg-card)] border-2 border-white rounded-lg",
+    data: { price_target: "moneyType", action: "change->price#update" } }
+%>
           </div>
 
           <div class="flex flex-col gap-2">
 
             <p class="text-left">Gain potentiel:
-              <span class="result-span" data-price-target="coins">0</span>🪙
-              <span class="result-span" data-price-target="diamonds">0</span>💎
+             <span class="result-span" data-price-target="coins" style="display: inline;">0 🪙</span>
+  <span class="result-span" data-price-target="diamonds" style="display: none;">0 💎</span>
             </p>
 
           </div>
@@ -59,7 +55,7 @@
     <% else %>
       <div class="flex flex-col items-center justify-center h-[80%] gap-4">
         <p>Connectez-vous pour parier</p>
-        <%= link_to "Se connecter", new_user_session_path, class: "bg-rose-600 rounded-lg px-2.5 py-2 cursor-pointer" %>
+        <%= link_to "Se connecter", new_user_session_path, class: "bg-[var(--ezb-red)] rounded-lg px-2.5 py-2 cursor-pointer" %>
       </div>
     <% end %>
 

@@ -1,5 +1,5 @@
-<div data-action="click->dialog#backdropClose">
-  <dialog id="profileModal" class="bg-[var(--bg-card-dark)] p-8 rounded-2xl w-[80%] max-w-[400px] text-white absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2">
+<div data-controller="profile"  data-action="click->dialog#backdropClose">
+  <dialog data-dialog-target="dialog"  id="profileModal" class="bg-[var(--bg-card-dark)] p-8 rounded-2xl w-[80%] max-w-[400px] text-white absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2">
     <ul class="flex flex-col gap-4">
       <h2 class="text-[rgb(224, 224, 224)] flex justify-between items-center">
         Paramètres <span id="closeModal" class="cursor-pointer">✖</span>
