@@ -4,7 +4,7 @@
  <div class="flex flex-col p-4">
     <% if user_signed_in? %>
        <h3 class="font-bold text-xl flex items-center justify-between"> 🎰 Placer un pari 🎰
-      <button id="closeModalBet">↓</button>
+      <button id="closeModalBet" data-action="dialog#close">❌</button>
     </h3>
       <%= form_with model: Bet.new, url: bets_path, method: :post, class: "flex flex-col " do |f| %>
 
@@ -29,19 +29,19 @@
               class: "p-2 bg-[var(--bg-card)] border-2 border-white rounded-lg",
               autofocus: false
             %>
-
-            <%= f.select :money_type,
-              options_for_select([["Coins 🪙", "coins"], ["Diamants 💎", "diamonds"]], "coins"),
-              {},
-              { class: "p-2 bg-[var(--bg-card)] border-2 border-white rounded-lg" }
-            %>
+<%= f.select :money_type,
+  options_for_select([["Coins 🪙", "coins"], ["Diamants 💎", "diamonds"]], "coins"),
+  {},
+  { class: "p-2 bg-[var(--bg-card)] border-2 border-white rounded-lg",
+    data: { price_target: "moneyType", action: "change->price#update" } }
+%>
           </div>
 
           <div class="flex flex-col gap-2">
 
             <p class="text-left">Gain potentiel:
-              <span class="result-span" data-price-target="coins">0</span>🪙
-              <span class="result-span" data-price-target="diamonds">0</span>💎
+             <span class="result-span" data-price-target="coins" style="display: inline;">0 🪙</span>
+  <span class="result-span" data-price-target="diamonds" style="display: none;">0 💎</span>
             </p>
 
           </div>
