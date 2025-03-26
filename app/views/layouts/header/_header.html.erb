@@ -3,21 +3,65 @@
   <ul class="flex justify-between items-center h-full">
     <% if user_signed_in? %>
 
-    <li class='flex gap-2 items-center'>
+    <li class='flex gap-2 items-center'
+    >
       <a href="/user/profile" class="transform transition duration-300 hover:scale-110 h-10 w-10 bg-[var(--ezb-red)] rounded-full items-center justify-center flex font-bold"> <%= current_user.first_name[0] %></a>
-     <div class="px-2 py-4 transition-colors duration-300 rounded-full hover:bg-[var(--blue-hover)]">
+
+     <div    data-controller="dialog" data-action="click->dialog#backdropClose">
+      <dialog data-dialog-target="dialog" class="bg-black p-4 rounded-2xl w-full  text-white absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2">
+   <div class="p-4 flex flex-col gap-4 justify-center">
+    <button data-action="dialog#close" class='text-right text-lg' type="button"> ✖</button>
+    <h2 class="text-[var(--premium-yellow)] text-2xl font-bold text-center" style="text-shadow: 0 0 20px rgba(230, 184, 0, 0.7);">Découvrir les Cryptomonnaies </h2>
+   <div class="bg-[var(--bg-card)] border-2 border-[var(--premium-yellow)] p-4 flex flex-col gap-4  rounded-lg" style="box-shadow: rgba(230, 184, 0, 0.5) 0px 5px 15px;">
+      <p class="text-center" >   <%= number_with_precision(current_user.wallet.diamonds, precision: 2) %>
+      💎</p>
+      <button class=' bg-[var(--premium-yellow)] rounded-lg py-4 px-8' style="box-shadow: rgba(230, 184, 0, 0.5) 0px 5px 15px;">  Retirer vos Diamants 💎</button>
+    </div>
+
+    <div class=" rounded-2xl bg-[var(--bg-card)] border-1 border-[var(--premium-yellow)] p-4 flex flex-col gap-4 justify-center" style="box-shadow: rgba(230, 184, 0, 0.5) 0px 5px 15px;">
+      <h3 class="text-[var(--premium-yellow)] text-center">🚀 Airdrop Crypto à venir ! 🚀</h3>
+      <p class="text-center">Un airdrop crypto sera bientôt disponible pour tous les utilisateurs de Betkoin. Restez connecté pour ne pas manquer cette opportunité exceptionnelle !</p>
+      <p class="text-center font-bold text-[var(--premium-yellow)]">Plus d'informations prochainement...</p>
+    </div>
+
+    <div class="flex flex-col gap-4 justify-center text-center ">
+      <p class="text-center">Les cryptomonnaies révolutionnent le monde financier en offrant une alternative décentralisée aux monnaies traditionnelles. Basées sur la technologie blockchain, elles permettent des transactions sécurisées, transparentes et rapides sans l'intervention d'institutions bancaires.</p>
+      <p class=" text-[var(--premium-yellow)] " style="text-shadow: 0 0 20px rgba(230, 184, 0, 0.7);">Avantages des Cryptomonnaies</p>
+      <ul class="flex flex-col gap-4 justify-center">
+        <li>Transactions rapides et sécurisées</li>
+        <li>Décentralisation</li>
+        <li>Transparence grâce à la blockchain</li>
+        <li>Réduction des coûts de transaction</li>
+        <li>Potentiel d'investissement élevé</li>
+      </ul>
+    </div>
+      <p class="text-center">Intéressé pour en savoir plus ? Explorez les différentes cryptomonnaies disponibles et découvrez comment elles peuvent transformer votre façon de gérer vos finances.</p>
+    <button class=" bg-[var(--premium-yellow)] rounded-lg py-4 px-8" style="box-shadow: rgba(230, 184, 0, 0.5) 0px 5px 15px;">                Connecter votre Wallet
+</button>
+   </div>
+  </dialog>
+
+   <button class="px-2 py-4 transition-colors duration-300 rounded-full hover:bg-[var(--blue-hover)]" data-action="dialog#open"  type="button">
        <%= number_with_precision(current_user.wallet.diamonds, precision: 2) %>
       💎
      </div>
-
+</button>
     </li>
 
-    <li class='flex gap-2'>
-      <div class="px-2 py-4 transition-colors duration-300 rounded-full hover:bg-[var(--blue-hover)]">
+    <li class='flex gap-2' data-controller="dialog" data-action="click->dialog#backdropClose">
+       <dialog data-dialog-target="dialog" class="bg-[var(--bg-card-dark)] p-4 rounded-2xl w-[80%] max-w-[400px] text-white absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 border-2 border-[var(--ezb-red)]">
+    <iframe
+      src="https://www.youtube.com/embed/48yxrkKt91M"
+      frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen>
+    </iframe>
+  </dialog>
+      <button class="px-2 py-4 transition-colors duration-300 rounded-full hover:bg-[var(--blue-hover)]" data-action="dialog#open"  type="button">
         +
         <%= current_user.wallet.coins %>
         🪙
-     </div>
+     </button>
     </li>
 
     <% else %>
