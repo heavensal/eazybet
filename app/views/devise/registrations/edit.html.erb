@@ -16,22 +16,22 @@
 
   <div class="flex flex-col gap-4">
     <%= f.label :first_name, "Prénom" %>
-    <%= f.text_field :first_name, autocomplete: "firstname", class: "p-2 border border-white rounded-lg w-full", placeholder: 'Entrez votre prénom'  %>
+    <%= f.text_field :first_name, autocomplete: "firstname", class: "bg-[var(--bg-card)] p-2 border border-white rounded-lg w-full", placeholder: 'Entrez votre prénom'  %>
   </div>
 
   <div class="flex flex-col gap-4">
     <%= f.label :last_name, "Nom" %>
-    <%= f.text_field :last_name, autocomplete: "lastname", class: "p-2 border border-white rounded-lg w-full", placeholder: 'Entrez votre nom'  %>
+    <%= f.text_field :last_name, autocomplete: "lastname", class: "bg-[var(--bg-card)] p-2 border border-white rounded-lg w-full", placeholder: 'Entrez votre nom'  %>
   </div>
 
   <div class="flex flex-col gap-4">
     <%= f.label :phone_number, "Téléphone" %>
-    <%= f.phone_field :phone_number, autocomplete: "phonenumber", class: "p-2 border border-white rounded-lg w-full", placeholder: 'Entrez votre numéro de téléphone'  %>
+    <%= f.phone_field :phone_number, autocomplete: "phonenumber", class: "bg-[var(--bg-card)] p-2 border border-white rounded-lg w-full", placeholder: 'Entrez votre numéro de téléphone'  %>
   </div>
 
   <div class="flex flex-col gap-4">
     <%= f.label :email %>
-    <%= f.email_field :email, autocomplete: "email",  class: "p-2 border border-white rounded-lg w-full", placeholder: 'Modifier votre mail' %>
+    <%= f.email_field :email, autocomplete: "email",  class: "bg-[var(--bg-card)] p-2 border border-white rounded-lg w-full", placeholder: 'Modifier votre mail' %>
   </div>
 
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
@@ -40,12 +40,12 @@
 
   <div class="flex flex-col gap-4">
     <%= f.label :current_password, 'Mot de passe actuel' %> <i>(nécessaire pour confirmer les changements)</i>
-    <%= f.password_field :current_password,class: "p-2 border border-white rounded-lg w-full", autocomplete: "current-password" %>
+    <%= f.password_field :current_password,class: "bg-[var(--bg-card)] p-2 border border-white rounded-lg w-full", autocomplete: "current-password" %>
   </div>
 
   <div class="flex flex-col gap-4">
     <%= f.label :password, 'Nouveau mot de passe' %> <i>(ne pas remplir si vous ne voulez pas le changer)</i>
-    <%= f.password_field :password, autocomplete: "new-password",  class: "p-2 border border-white rounded-lg w-full", placeholder: 'Votre nouveau mot de passe' %>
+    <%= f.password_field :password, autocomplete: "new-password",  class: "bg-[var(--bg-card)] p-2 border border-white rounded-lg w-full", placeholder: 'Votre nouveau mot de passe' %>
     <% if @minimum_password_length %>
       <em><%= @minimum_password_length %> caractères minimum</em>
     <% end %>
@@ -53,7 +53,7 @@
 
   <div class="flex flex-col gap-4">
     <%= f.label :password_confirmation, 'Confirmer votre nouveau mot de passe' %>
-    <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "p-2 border border-white rounded-lg w-full", placeholder: 'Confirmez votre mot de passe' %>
+    <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "bg-[var(--bg-card)] p-2 border border-white rounded-lg w-full", placeholder: 'Confirmez votre mot de passe' %>
   </div>
 
   <div class="bg-[var(--ezb-red)] hover:bg-[var(--ezb-red-hover)] rounded-lg px-2.5 py-2 w-full text-center">
@@ -61,7 +61,7 @@
   </div>
 <% end %>
 
-<div class='text-gray-600 text-[14px] '>
+<div class=' text-[14px] '>
   Pas satisfait ? <%= button_to "Supprimer mon compte", registration_path(resource_name), class: "text-[14px] text-gray-600 underline transition-all duration-400 hover:text-rose-600 ", data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %>
 </div>
 
