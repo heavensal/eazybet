@@ -5,22 +5,22 @@
 
   <div class="flex flex-col gap-4">
     <%= f.label :first_name, "Prénom" %>
-    <%= f.text_field :first_name, autocomplete: "firstname", class: "p-2 border border-white rounded-lg w-full", placeholder: 'Entrez votre prénom'  %>
+    <%= f.text_field :first_name, autocomplete: "firstname", class: "p-2 border border-white rounded-lg w-full bg-[var(--bg-card)]", placeholder: 'Entrez votre prénom'  %>
   </div>
 
     <div class="flex flex-col gap-4">
     <%= f.label :last_name, "Nom" %>
-    <%= f.text_field :last_name, autocomplete: "lastname", class: "p-2 border border-white rounded-lg w-full", placeholder: 'Entrez votre nom'  %>
+    <%= f.text_field :last_name, autocomplete: "lastname", class: "p-2 border border-white rounded-lg w-full bg-[var(--bg-card)]", placeholder: 'Entrez votre nom'  %>
   </div>
 
   <div class="flex flex-col gap-4">
     <%= f.label :phone_number, "Téléphone" %>
-    <%= f.phone_field :phone_number, autocomplete: "phonenumber", class: "p-2 border border-white rounded-lg w-full", placeholder: 'Entrez votre numéro de téléphone'  %>
+    <%= f.phone_field :phone_number, autocomplete: "phonenumber", class: "p-2 border border-white rounded-lg w-full bg-[var(--bg-card)]", placeholder: 'Entrez votre numéro de téléphone'  %>
   </div>
 
   <div class="flex flex-col gap-4">
     <%= f.label :email %>
-    <%= f.email_field :email, autocomplete: "email", class: "p-2 border border-white rounded-lg w-full", placeholder: 'Entrez votre email'  %>
+    <%= f.email_field :email, autocomplete: "email", class: "p-2 border border-white rounded-lg w-full bg-[var(--bg-card)]", placeholder: 'Entrez votre email'  %>
   </div>
 
   <div class="flex flex-col gap-4">
@@ -30,17 +30,17 @@
     <em>(<%= @minimum_password_length %> caractères minimum)</em>
     <% end %>
    </div>
-    <%= f.password_field :password, autocomplete: "new-password", class: "p-2 border border-white rounded-lg w-full", placeholder: 'Entrez votre mot de passe'  %>
+    <%= f.password_field :password, autocomplete: "new-password", class: "p-2 border border-white rounded-lg w-full bg-[var(--bg-card)]", placeholder: 'Entrez votre mot de passe'  %>
   </div>
 
   <div class="flex flex-col gap-4">
     <%= f.label :password_confirmation, "Confirmation mot de passe"  %>
-    <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "p-2 border border-white rounded-lg w-full", placeholder: 'Confirmez votre mot de passe'  %>
+    <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "p-2 border border-white rounded-lg w-full bg-[var(--bg-card)]", placeholder: 'Confirmez votre mot de passe'  %>
   </div>
 
 
 
-  <div  class="bg-rose-600 rounded-lg px-2.5 py-2 max-w-fit">
+  <div  class="bg-[var(--ezb-red)] rounded-lg px-2.5 py-2 max-w-fit">
     <%= f.submit "S'inscrire", class: "cursor-pointer" %>
   </div>
 <% end %>
