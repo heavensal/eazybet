@@ -1,6 +1,15 @@
 <div class="p-8">
   <section class="bg-[var(--bg-card)] p-8 rounded-2xl mb-8">
-    <h2 class='text-[var(--ezb-red)] text-center mb-8 text-2xl'>Ajouter un Ami</h2>
+   <a href="/user/profile" class='text-white '><svg fill="#FFFFFF" xmlns="http://www.w3.org/2000/svg"
+	 width="24px" height="24px" viewBox="0 0 52 52" enable-background="new 0 0 52 52" xml:space="preserve">
+<path d="M48.6,23H15.4c-0.9,0-1.3-1.1-0.7-1.7l9.6-9.6c0.6-0.6,0.6-1.5,0-2.1l-2.2-2.2c-0.6-0.6-1.5-0.6-2.1,0
+	L2.5,25c-0.6,0.6-0.6,1.5,0,2.1L20,44.6c0.6,0.6,1.5,0.6,2.1,0l2.1-2.1c0.6-0.6,0.6-1.5,0-2.1l-9.6-9.6C14,30.1,14.4,29,15.3,29
+	h33.2c0.8,0,1.5-0.6,1.5-1.4v-3C50,23.8,49.4,23,48.6,23z"/>
+</svg></a>
+    <h2 class='text-[var(--ezb-red)] text-center mb-8 text-2xl '>
+
+
+      Ajouter un Ami</h2>
 
     <%= form_with url: friendships_path, method: :get, local: true do |f| %>
       <div>
@@ -57,7 +66,7 @@
 
       <% @friendships.each do |friendship| %>
         <li class="grid grid-cols-[60px_1fr_80px] p-2 border-[var(--blue-debutant)] border-l-4 bg-[var(--bg-card-dark)] rounded-lg hover:bg-[var(--bg-card-hover)] transition-transform duration-200 hover:translate-x-[5px]">
-          <p class="text-[0.85rem]" ><%= friendship.friend.first_name %></p>
+          <p class="text-[0.85rem]" ><%# friendship.friend.first_name %></p>
           <p class="text-[0.85rem]">Ami</p>
           <%= link_to 'Supprimer', friendship_path(friendship), data: {turbo_method: :delete, turbo_confirm: "Êtes-vous sûr ?"}, class: "text-[0.85rem] bg-[var(--ezb-red)] rounded-lg px-2.5 py-2 cursor-pointer" %>
         </li>
