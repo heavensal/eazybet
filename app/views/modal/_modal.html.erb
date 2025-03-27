@@ -1,5 +1,9 @@
 <div data-controller="price" data-action="click->dialog#backdropClose">
-  <dialog id="betModal" data-dialog-target="dialog" class="bg-[var(--bg-card-dark)] p-4 rounded-2xl w-[80%] max-w-[400px] text-white absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 border-2 border-[var(--ezb-red)]" tabindex="-1">
+<dialog data-dialog-target="dialog"
+  class="bg-[var(--bg-card-dark)] p-4 rounded-2xl w-[80%] max-w-[400px] text-white
+  fixed left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 border-2 border-[var(--ezb-red)]
+  z-[1050] shadow-lg">
+
     <div class="flex flex-col p-4">
       <% if user_signed_in? %>
         <h3 class="font-bold text-xl flex items-center justify-between">
