@@ -10,7 +10,7 @@
         <%= @user.first_name %>
       </h2>
     </div>
-    <%= image_tag 'icons/settings.svg', alt: "Paramètres", class: "w-6 h-6", id: "openModal", data: { action: "dialog#open" }  %>
+      <%= image_tag 'icons/settings.svg', alt: "Paramètres", class: "w-6 h-6 cursor-pointer", id: "openModal", data: { action: "dialog#open", turbo: "false" }  %>
   </section>
 
 
@@ -105,7 +105,7 @@
 
 
 <script>
-  document.addEventListener("DOMContentLoaded", () => {
+  document.addEventListener("turbo:load", () => {
     const openModalButton = document.getElementById("openModal");
     const openModalFriend = document.getElementById("openModalFriend");
     const closeModalButton = document.getElementById("closeModal");

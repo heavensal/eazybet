@@ -65,26 +65,3 @@
     </div>
   </dialog>
 </div>
-
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const select = document.querySelector("[name='bet[money_type]']");
-    const spans = document.querySelectorAll(".result-span");
-    console.log(select);
-
-    select.addEventListener("change", (event) => {
-      const selectedValue = event.target.value;
-      console.log(selectedValue, 'c moi');
-
-      spans.forEach(span => {
-        if (span.dataset.priceTarget === selectedValue) {
-          span.style.display = "inline";
-        } else {
-          span.style.display = "none";
-        }
-      });
-    });
-
-    select.dispatchEvent(new Event("change"));
-  });
-</script>
