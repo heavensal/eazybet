@@ -22,7 +22,11 @@
   </div>
 <% end %>
 <div data-controller="dialog" data-action="click->dialog#backdropClose">
-  <dialog data-dialog-target="dialog" class="bg-[var(--bg-card-dark)] p-4 rounded-2xl w-[80%] max-w-[400px] text-white absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 border-2 border-[var(--ezb-red)]">
+<dialog data-dialog-target="dialog"
+  class="bg-[var(--bg-card-dark)] p-4 rounded-2xl w-[80%] max-w-[400px] text-white
+  fixed left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 border-2 border-[var(--ezb-red)]
+  z-[1050] shadow-lg">
+
     <iframe
       src="https://www.youtube.com/embed/48yxrkKt91M"
       frameborder="0"
@@ -39,3 +43,24 @@
     🎥 Regarder une vidéo (+250 🪙) • 20
   </button>
 </div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+  const modal = document.querySelector("dialog[data-dialog-target='dialog']");
+  const openButton = document.getElementById("showRewardAdButton");
+
+  if (modal && openButton) {
+    openButton.addEventListener("click", () => {
+      modal.showModal(); // Ouvre la modal de manière correcte
+    });
+
+    // Pour fermer en cliquant en dehors de la modal
+    modal.addEventListener("click", (event) => {
+      if (event.target === modal) {
+        modal.close();
+      }
+    });
+  }
+});
+
+</script>
