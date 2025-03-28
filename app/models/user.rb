@@ -11,13 +11,8 @@ class User < ApplicationRecord
   validates :referral_token, uniqueness: true
 
   before_create :generate_referral_token
+  before_create :match_referrer, if: :ref_from_url
   after_create :create_friendship_with_referrer, if: :referrer
-  after_create :reward_referral, if: :referrer
-
-  def reward_referral
-    wallet.update!(diamonds: wallet.diamonds + 5)
-    referrer.wallet.update!(diamonds: referrer.wallet.diamonds + 5)
-  end
 
   def generate_referral_token
     begin
@@ -25,9 +20,14 @@ class User < ApplicationRecord
     end while User.exists?(referral_token: self.referral_token)
   end
 
+  def match_referrer
+    self.referrer = User.find_by(referral_token: ref_from_url)
+  end
+
   def create_friendship_with_referrer
     Friendship.create!(sender: referrer, receiver: self, status: "accepted")
   end
+
 
   has_many :bets, dependent: :destroy
   has_many :comments, dependent: :destroy
