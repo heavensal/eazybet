@@ -1,9 +1,9 @@
 production:
-  update_event_list:
-    class: UpdateEventListJob
-    queue: default
-    schedule: at 12am every day
   update_event_scores:
     class: UpdateEventScoresJob
     queue: default
-    schedule: at 1am every day
+    schedule: every day at 1 am
+  update_event_list:
+    class: UpdateEventListJob
+    queue: default
+    schedule: every day at 2 am

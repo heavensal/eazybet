@@ -4,6 +4,31 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :confirmable
 
+  ##### Parrainage #####
+  has_many :referrals, class_name: "User", foreign_key: "referrer_id"
+  belongs_to :referrer, class_name: "User", optional: true
+
+  validates :referral_token, uniqueness: true
+
+  before_create :generate_referral_token
+  after_create :create_friendship_with_referrer, if: :referrer
+  after_create :reward_referral, if: :referrer
+
+  def reward_referral
+    wallet.update!(diamonds: wallet.diamonds + 5)
+    referrer.wallet.update!(diamonds: referrer.wallet.diamonds + 5)
+  end
+
+  def generate_referral_token
+    begin
+      self.referral_token = SecureRandom.hex(8)
+    end while User.exists?(referral_token: self.referral_token)
+  end
+
+  def create_friendship_with_referrer
+    Friendship.create!(sender: referrer, receiver: self, status: "accepted")
+  end
+
   has_many :bets, dependent: :destroy
   has_many :comments, dependent: :destroy
 

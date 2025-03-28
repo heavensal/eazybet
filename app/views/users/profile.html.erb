@@ -95,7 +95,15 @@
         <a href="#" class='bg-[var(--ezb-red)] hover:bg-[var(--ezb-red-hover)] hover:scale-110 rounded-sm flex text-center justify-center transform transition duration-300' target="_blank">Réclamer <br> 5💎</a>
       </li>
     </ul>
+
+    <div data-controller="clipboard" data-clipboard-success-content-value="Copied!" class="flex gap-4 items-center bg-[var(--bg-card-dark)] rounded-lg p-4 my-4">
+      <input type="text" value="https://www.eazybetcoinapp.com/users/sign_up?ref=<%= @user.referral_token %>" data-clipboard-target="source" class="text-white w-full bg-" />
+
+      <button type="button" data-action="clipboard#copy" data-clipboard-target="button" class="bg-[var(--ezb-red)] text-white rounded-lg p-2 cursor-pointer">Copier</button>
+      </button>
+    </div>
   </section>
+
 </div>
 
 

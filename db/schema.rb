@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_03_24_025610) do
+ActiveRecord::Schema[8.0].define(version: 2025_03_28_023538) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -105,8 +105,11 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_24_025610) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string "unconfirmed_email"
+    t.bigint "referrer_id"
+    t.string "referral_token"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["referrer_id"], name: "index_users_on_referrer_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
@@ -128,5 +131,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_24_025610) do
   add_foreign_key "friendships", "users", column: "sender_id"
   add_foreign_key "odds", "events"
   add_foreign_key "scores", "events"
+  add_foreign_key "users", "users", column: "referrer_id"
   add_foreign_key "wallets", "users"
 end
