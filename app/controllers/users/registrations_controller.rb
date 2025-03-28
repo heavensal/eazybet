@@ -3,17 +3,30 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
-  before_action :assign_referrer, only: [ :create ]
 
   # GET /resource/sign_up
-  # def new
-  #   super
-  # end
+  def new
+    session[:ref] = params[:ref] if params[:ref].present?
+    super
+  end
 
   # POST /resource
-  # def create
-  #   super
-  # end
+  def create
+    build_resource(sign_up_params)
+
+    if session[:ref].present?
+      if referrer = User.find_by(referral_token: session.delete(:ref))
+        resource.referrer = referrer
+      else
+        resource.errors.add(:base, "Le lien de parrainage est invalide.")
+        respond_with resource and return
+      end
+    end
+
+    super
+  end
+
+end
 
   # GET /resource/edit
   # def edit
