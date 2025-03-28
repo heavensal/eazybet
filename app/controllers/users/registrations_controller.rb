@@ -6,9 +6,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
   before_action :assign_referrer, only: [ :create ]
 
   # GET /resource/sign_up
-  # def new
-  #   super
-  # end
+  def new
+    session[:ref] = params[:ref] if params[:ref].present?
+    super
+  end
 
   # POST /resource
   # def create
@@ -65,9 +66,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
   private
 
   def assign_referrer
-    return unless params[:ref].present?
+    return unless session[:ref].present?
     build_resource(sign_up_params) unless resource
-    referrer = User.find_by(referral_token: params[:ref])
+
+    referrer = User.find_by(referral_token: session[:ref])
+
     if referrer
       resource.referrer = referrer
     else
