@@ -1,23 +1,23 @@
 <ul class="flex bg-[#0f3460] rounded-lg overflow-hidden mb-4 shadow-[0_0_15px_rgba(0,0,0,0.4)]">
   <% if current_page?(root_path) || current_page?(played_events_path) || current_page?(finished_events_path) %>
     <li class="<%= 'bg-[var(--ezb-red)] shadow-[0_0_15px_#e94560,_0_0_30px_#e94560,_0_0_45px_#e94560] font-bold text-white' if current_page?(root_path) %> flex-1 p-3 text-center cursor-pointer transition-all duration-300 text-[#e0e0e0] relative overflow-hidden">
-      <%= link_to 'A venir', root_path %>
+      <%= link_to 'A venir', root_path, class: "block w-full h-full" %>
     </li>
     <li class="<%= 'bg-[var(--ezb-red)] shadow-[0_0_15px_#e94560,_0_0_30px_#e94560,_0_0_45px_#e94560] font-bold text-white' if current_page?(played_events_path) %> flex-1 p-3 text-center cursor-pointer transition-all duration-300 text-[#e0e0e0] relative overflow-hidden">
-      <%= link_to 'Joués', played_events_path %>
+      <%= link_to 'Joués', played_events_path, class: "block w-full h-full" %>
     </li>
     <li class="<%= 'bg-[var(--ezb-red)] shadow-[0_0_15px_#e94560,_0_0_30px_#e94560,_0_0_45px_#e94560] font-bold text-white' if current_page?(finished_events_path) %> flex-1 p-3 text-center cursor-pointer transition-all duration-300 text-[#e0e0e0] relative overflow-hidden">
-      <%= link_to 'Résultats', finished_events_path %>
+      <%= link_to 'Résultats', finished_events_path, class: "block w-full h-full" %>
     </li>
   <% else %>
     <li class="<%= 'bg-[var(--ezb-red)] shadow-[0_0_15px_#e94560,_0_0_30px_#e94560,_0_0_45px_#e94560] font-bold text-white' if current_page?(ranking_users_path) %> flex-1 p-3 text-center cursor-pointer transition-all duration-300 text-[#e0e0e0] relative overflow-hidden">
-      <%= link_to 'Classement', ranking_users_path %>
+      <%= link_to 'Classement', ranking_users_path, class: "block w-full h-full" %>
     </li>
     <li class="<%= 'bg-[var(--ezb-red)] shadow-[0_0_15px_#e94560,_0_0_30px_#e94560,_0_0_45px_#e94560] font-bold text-white' if current_page?(ranking_friends_users_path) %> flex-1 p-3 text-center cursor-pointer transition-all duration-300 text-[#e0e0e0] relative overflow-hidden">
-      <%= link_to 'Amis', ranking_friends_users_path %>
+      <%= link_to 'Amis', ranking_friends_users_path, class: "block w-full h-full" %>
     </li>
     <li class="flex-1 p-3 text-center cursor-pointer transition-all duration-300 text-[#e0e0e0] relative overflow-hidden">
-      <%= link_to 'Divisions', divisions_path %>
+      <%= link_to 'Divisions', divisions_path, class: "block w-full h-full" %>
     </li>
   <% end %>
 </ul>
