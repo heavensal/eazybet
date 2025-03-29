@@ -1,5 +1,6 @@
 <%# pour chaque competition, on affiche en titre le title et tous ses events %>
-<%= render "filters/filters"   %>
+<%= render "filters/filters" %>
+
 <% @competitions.each_with_index do |competition, index| %>
   <div class="flex items-center border-l-3 border-[var(--ezb-red)] relative">
     <div class="absolute inset-0" style="background: linear-gradient(90deg, rgba(233, 69, 96, 0.2) 0%, rgba(233, 69, 96, 0) 100%);"></div>
@@ -7,13 +8,15 @@
       <%= competition.title %>
     </h2>
   </div>
-  <%= turbo_frame_tag "competition_events_#{competition.id}", src: competition_events_path(competition) do %>
+
+  <%= turbo_frame_tag "competition_events_#{competition.id}", src: competition_events_path(competition), loading: "lazy" do %>
     <p class="p-4 text-sm text-gray-400">Chargement des événements...</p>
   <% end %>
+
   <div class="p-3 text-center shadow-lg cursor-pointer transition-all duration-400 ease-in-out border-2 border-white/10 animate-jump animate-infinite animate-duration-[2000ms] animate-ease-in-out mb-4
-  bg-[url('https://images.unsplash.com/photo-1489944440615-453fc2b6a9a9?auto=format&fit=crop&q=80&w=800')] bg-cover bg-center bg-no-repeat
-  animate-jump animate-infinite animate-duration-[3000ms]
-   <%= (index+1) % 3 == 0 ? 'hidden' : '' %> relative -z-10">
+    bg-[url('https://images.unsplash.com/photo-1489944440615-453fc2b6a9a9?auto=format&fit=crop&q=80&w=800')] bg-cover bg-center bg-no-repeat
+    animate-jump animate-infinite animate-duration-[3000ms]
+    <%= (index+1) % 3 == 0 ? 'hidden' : '' %> relative -z-10">
     <div class="absolute inset-0 bg-[linear-gradient(45deg,rgba(15,52,96,0.5),rgba(22,33,62,0.5))] bg-cover bg-center bg-no-repeat -z-8"></div>
     <div class="relative z-10">
       <p class='font-bold'>📱 Découvrir l'App Betkoin! 📱</p>
@@ -21,46 +24,52 @@
     </div>
   </div>
 <% end %>
-<div data-controller="dialog" data-action="click->dialog#backdropClose">
-<dialog data-dialog-target="dialog"
-  class="bg-[var(--bg-card-dark)] p-4 rounded-2xl w-[80%] max-w-[400px] text-white
-  fixed left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 border-2 border-[var(--ezb-red)]
-  z-[1050] shadow-lg">
 
-    <iframe
-      src="https://www.youtube.com/embed/48yxrkKt91M"
-      frameborder="0"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-      allowfullscreen>
-    </iframe>
-  </dialog>
-  <button id='showRewardAdButton' class="fixed bottom-[66px] left-1/2 -translate-x-1/2 z-[999] px-8 py-4
-    bg-gradient-to-r from-[var(--ezb-red)] to-[var(--ezb-red-hover)] border-none rounded-full
-    text-white font-bold shadow-lg shadow-[rgba(233,69,96,0.3)] cursor-pointer text-sm
-    transition-all duration-300 ease-in-out whitespace-nowrap max-w-[90%] w-fit text-center
-    animate-bounce animate-infinite animate-duration-3000 animate-ease-in-out"
-    type="button" data-action="dialog#open">
-    🎥 Regarder une vidéo (+250 🪙) • 20
-  </button>
-</div>
+<% if user_signed_in? && current_user.able_to_watch_ads? %>
+  <div data-controller="dialog" data-action="click->dialog#backdropClose">
+    <dialog data-dialog-target="dialog"
+      class="bg-[var(--bg-card-dark)] p-4 rounded-2xl w-[80%] max-w-[400px] text-white
+      fixed left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 border-2 border-[var(--ezb-red)]
+      z-[1050] shadow-lg">
+      <iframe
+        src="https://www.youtube.com/embed/48yxrkKt91M"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen>
+      </iframe>
+    </dialog>
+
+    <button id='showRewardAdButton'
+      class="fixed bottom-[66px] left-1/2 -translate-x-1/2 z-[999] px-8 py-4
+      bg-gradient-to-r from-[var(--ezb-red)] to-[var(--ezb-red-hover)] border-none rounded-full
+      text-white font-bold shadow-lg shadow-[rgba(233,69,96,0.3)] cursor-pointer text-sm
+      transition-all duration-300 ease-in-out whitespace-nowrap max-w-[90%] w-fit text-center
+      animate-bounce animate-infinite animate-duration-3000 animate-ease-in-out"
+      type="button"
+      data-action="dialog#open">
+      🎥 Regarder une vidéo (+250 🪙) • <%= current_user.daily_ads_count %>
+    </button>
+  </div>
+
+<% end %>
+
 
 <script>
   document.addEventListener("DOMContentLoaded", () => {
-  const modal = document.querySelector("dialog[data-dialog-target='dialog']");
-  const openButton = document.getElementById("showRewardAdButton");
+    const modal = document.querySelector("dialog[data-dialog-target='dialog']");
+    const openButton = document.getElementById("showRewardAdButton");
 
-  if (modal && openButton) {
-    openButton.addEventListener("click", () => {
-      modal.showModal(); // Ouvre la modal de manière correcte
-    });
+    if (modal && openButton) {
+      openButton.addEventListener("click", () => {
+        modal.showModal(); // Ouvre la modal de manière correcte
+      });
 
-    // Pour fermer en cliquant en dehors de la modal
-    modal.addEventListener("click", (event) => {
-      if (event.target === modal) {
-        modal.close();
-      }
-    });
-  }
-});
-
+      // Pour fermer en cliquant en dehors de la modal
+      modal.addEventListener("click", (event) => {
+        if (event.target === modal) {
+          modal.close();
+        }
+      });
+    }
+  });
 </script>

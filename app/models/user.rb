@@ -4,7 +4,38 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :confirmable
 
-  ##### Parrainage #####
+  ##### Follower ###############################################################
+  has_one :follower, dependent: :destroy
+  after_create :create_follower
+
+  def create_follower
+    Follower.create(user: self, instagram: false, telegram: false, x_twitter: false, youtube: false, tiktok: false)
+  end
+
+  ##### Ads ####################################################################
+  # strictement supérieur ou égal à 0
+  validates :daily_ads_count, numericality: { greater_than_or_equal_to: 0 }
+
+  # a chaque fois que le user regarde une pub, on décrémente le nombre de pubs restantes
+  # on chaque fois qu'on décrémente on ajoute +250 coins au user.wallet.coins
+  # Chaque minuit, on réinitialise le nombre de pubs restantes à 20
+
+  def has_watched_ads
+    self.daily_ads_count -= 1
+    self.wallet.coins += 250
+    self.save!
+    self.wallet.save!
+  end
+
+  def able_to_watch_ads?
+    self.daily_ads_count > 0
+  end
+
+  def set_ads_count(count)
+    self.daily_ads_count = count
+    self.save!
+  end
+  ##### Parrainage #############################################################
   has_many :referrals, class_name: "User", foreign_key: "referrer_id"
   belongs_to :referrer, class_name: "User", optional: true
 
@@ -27,7 +58,7 @@ class User < ApplicationRecord
   def create_friendship_with_referrer
     Friendship.create!(sender: referrer, receiver: self, status: "accepted")
   end
-
+  ##############################################################################
 
   has_many :bets, dependent: :destroy
   has_many :comments, dependent: :destroy

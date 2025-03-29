@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_03_28_130834) do
+ActiveRecord::Schema[8.0].define(version: 2025_03_29_154828) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -61,6 +61,18 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_28_130834) do
     t.index ["competition_id"], name: "index_events_on_competition_id"
   end
 
+  create_table "followers", force: :cascade do |t|
+    t.boolean "instagram"
+    t.boolean "telegram"
+    t.boolean "x_twitter"
+    t.boolean "youtube"
+    t.boolean "tiktok"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_followers_on_user_id"
+  end
+
   create_table "friendships", force: :cascade do |t|
     t.bigint "sender_id", null: false
     t.bigint "receiver_id", null: false
@@ -108,6 +120,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_28_130834) do
     t.bigint "referrer_id"
     t.string "referral_token"
     t.string "ref_from_url"
+    t.integer "daily_ads_count", default: 20, null: false
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["referrer_id"], name: "index_users_on_referrer_id"
@@ -128,6 +141,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_28_130834) do
   add_foreign_key "comments", "events"
   add_foreign_key "comments", "users"
   add_foreign_key "events", "competitions"
+  add_foreign_key "followers", "users"
   add_foreign_key "friendships", "users", column: "receiver_id"
   add_foreign_key "friendships", "users", column: "sender_id"
   add_foreign_key "odds", "events"

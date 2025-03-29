@@ -1,7 +1,7 @@
 <%# <h1 class="font-bold text-4xl">Pages#profile</h1> %>
 
 <div class="p-4">
-  <section class="p-4 flex justify-between items-center mb-8" >
+  <section class="p-4 flex justify-between items-center mb-8">
     <div class='flex gap-2 items-center'>
       <div id="avatar" class="w-20 h-20 text-[1.8rem] rounded-full bg-[var(--ezb-red)] flex justify-center items-center hover:scale-110 transform transition duration-300 font-bold">
         <%= @user.first_name[0] %>
@@ -10,60 +10,49 @@
         <%= @user.first_name %>
       </h2>
     </div>
-      <%= image_tag 'icons/settings.svg', alt: "Paramètres", class: "w-6 h-6 cursor-pointer", id: "openModal", data: { action: "dialog#open", turbo: "false" }  %>
+    <%= image_tag 'icons/settings.svg', alt: "Paramètres", class: "w-6 h-6 cursor-pointer", id: "openModal", data: { action: "dialog#open", turbo: "false" } %>
   </section>
-
-
 
   <%= link_to '👥 Ajouter des amis', friendships_path, class: "p-4 flex items-center justify-center bg-[var(--ezb-red)] rounded-lg mb-6 text-[1.2rem] font-bold hover:bg-[var(--ezb-red-hover)] transform transition-colors duration-300 cursor-pointer" %>
 
-
-
-
-
-<section id="statistiques" class='bg-[var(--bg-card)] rounded-lg p-8 mb-4'>
-  <h2 class='text-[var(--ezb-red)] text-center mb-8 text-[1.4rem]'>Statistiques</h2>
-  <ul class='grid grid-cols-2 grid-rows-2'>
-    <li class='mb-4 text-[var(--profile-stat-text)]'>
-      Coins
-      <p class='flex gap-2 items-center text-[1.2rem] text-white font-bold'>
-        <%= @wallet.coins %>
-        🪙
-
-      </p>
-    </li>
-    <li class='mb-4 text-[var(--profile-stat-text)]'>
-      Diamants
-     <p class='flex gap-2 items-center text-[1.2rem] text-white font-bold'>
-        <%= @wallet.diamonds %>
-        💎
-      </p>
-    </li>
-    <li class='mb-4 text-[var(--profile-stat-text)]'>
-      Paris gagnés
-       <p class='flex gap-2 items-center text-[1.2rem] text-white font-bold'>
-        <%= @bets_won.count %>
-        🎉
-
-      </p>
-    </li>
-    <li class='mb-4 text-[var(--profile-stat-text)]'>
-      Ratio de réussite
-       <p class='flex gap-2 items-center text-[1.2rem] text-white font-bold'>
-        <%= @ratio %> %
-      </p>
-    </li>
-  </ul>
-  <hr class='mb-4'>
-  <div id='divisions' class="flex flex-col gap-4 ">
-    <p class='text-[var(--profile-stat-text)]'>Division actuelle</p>
-    <div class="flex justify-center bg-[var(--bg-card-dark)] rounded-lg p-4   border-white/10 border-2 gap-4">
-    <p class="text-[1.2rem] font-bold text-[var(--blue-debutant)]
-   ">Division Débutant</p>
-      <p class='text-[0.9rem]'>
-        (Top 80-100%)
-      </p>
-
+  <section id="statistiques" class='bg-[var(--bg-card)] rounded-lg p-8 mb-4'>
+    <h2 class='text-[var(--ezb-red)] text-center mb-8 text-[1.4rem]'>Statistiques</h2>
+    <ul class='grid grid-cols-2 grid-rows-2'>
+      <li class='mb-4 text-[var(--profile-stat-text)]'>
+        Coins
+        <p class='flex gap-2 items-center text-[1.2rem] text-white font-bold'>
+          <%= @wallet.coins %>
+          🪙
+        </p>
+      </li>
+      <li class='mb-4 text-[var(--profile-stat-text)]'>
+        Diamants
+        <p class='flex gap-2 items-center text-[1.2rem] text-white font-bold'>
+          <%= @wallet.diamonds %>
+          💎
+        </p>
+      </li>
+      <li class='mb-4 text-[var(--profile-stat-text)]'>
+        Paris gagnés
+        <p class='flex gap-2 items-center text-[1.2rem] text-white font-bold'>
+          <%= @bets_won.count %>
+          🎉
+        </p>
+      </li>
+      <li class='mb-4 text-[var(--profile-stat-text)]'>
+        Ratio de réussite
+        <p class='flex gap-2 items-center text-[1.2rem] text-white font-bold'>
+          <%= @ratio %> %
+        </p>
+      </li>
+    </ul>
+    <hr class='mb-4'>
+    <div id='divisions' class="flex flex-col gap-4">
+      <p class='text-[var(--profile-stat-text)]'>Division actuelle</p>
+      <div class="flex justify-center bg-[var(--bg-card-dark)] rounded-lg p-4 border-white/10 border-2 gap-4">
+        <p class="text-[1.2rem] font-bold text-[var(--blue-debutant)]">Division Débutant</p>
+        <p class='text-[0.9rem]'>(Top 80-100%)</p>
+      </div>
     </div>
   </section>
 
@@ -90,35 +79,24 @@
         <p>Suivez nous sur TikTok</p>
         <a href="https://www.tiktok.com/@eazybetcoin" class='bg-[var(--ezb-red)] hover:bg-[var(--ezb-red-hover)] hover:scale-110 rounded-sm flex text-center justify-center transform transition duration-300' target="_blank">Réclamer <br> 1000 🪙</a>
       </li>
-      <%# <li class="bg-[var(--bg-card-dark)] rounded-lg flex flex-col gap-4 p-4 justify-between">
+      <li class="bg-[var(--bg-card-dark)] rounded-lg flex flex-col gap-4 p-4 justify-between">
         <p>Parrainer un ami</p>
-        <a href="#" class='bg-[var(--ezb-red)] hover:bg-[var(--ezb-red-hover)] hover:scale-110 rounded-sm flex text-center justify-center transform transition duration-300' target="_blank">Réclamer <br> 5💎</a>
-      </li> %>
-    <li class="bg-[var(--bg-card-dark)] rounded-lg flex flex-col gap-4 p-4 justify-between">
-  <p>Parrainer un ami</p>
-  <button type="button" id="show-referral" class="bg-[var(--ezb-red)] hover:bg-[var(--ezb-red-hover)] hover:scale-110 rounded-sm flex text-center justify-center transform transition duration-300 p-2 text-white">
-    Réclamer <br> 5💎
-  </button>
-</li>
-
+        <button type="button" id="show-referral" class="bg-[var(--ezb-red)] hover:bg-[var(--ezb-red-hover)] hover:scale-110 rounded-sm flex text-center justify-center transform transition duration-300 p-2 text-white">
+          Réclamer <br> 5💎
+        </button>
+      </li>
     </ul>
 
-  <div id="referral-container" class="hidden flex flex-col gap-2">
-    <p class="text-white text-sm">Partage ce lien avec tes amis :</p>
-    <input type="text" id="referral-link" value="https://www.eazybetcoinapp.com/users/sign_up?ref=<%= @user.referral_token %>" class="text-white bg-gray-800 p-2 rounded w-full" readonly />
-
-    <button type="button" id="copy-button" class="bg-[var(--ezb-red)] text-white rounded-lg p-2 cursor-pointer">Copier</button>
-  </div>
-
+    <div id="referral-container" class="hidden flex flex-col gap-2">
+      <p class="text-white text-sm">Partage ce lien avec tes amis :</p>
+      <input type="text" id="referral-link" value="https://www.eazybetcoinapp.com/users/sign_up?ref=<%= @user.referral_token %>" class="text-white bg-gray-800 p-2 rounded w-full" readonly />
+      <button type="button" id="copy-button" class="bg-[var(--ezb-red)] text-white rounded-lg p-2 cursor-pointer">Copier</button>
+    </div>
   </section>
-
 </div>
 
-
-
- <%= render "modal/modal-profile" %>
-  <%= render "modal/modal-friend" %>
-
+<%= render "modal/modal-profile" %>
+<%= render "modal/modal-friend" %>
 
 <script>
   document.addEventListener("turbo:load", () => {
@@ -127,17 +105,17 @@
     const closeModalButton = document.getElementById("closeModal");
     const closeModalFriend = document.getElementById("closeModalFriend");
     const modal = document.getElementById("profileModal");
-    const modalFriend = document.getElementById('friendModal')
+    const modalFriend = document.getElementById('friendModal');
     const showReferralBtn = document.getElementById("show-referral");
     const referralContainer = document.getElementById("referral-container");
     const copyButton = document.getElementById("copy-button");
     const referralInput = document.getElementById("referral-link");
 
- showReferralBtn.addEventListener("click", () => {
+    showReferralBtn.addEventListener("click", () => {
       referralContainer.classList.toggle("hidden");
     });
 
-   copyButton.addEventListener("click", () => {
+    copyButton.addEventListener("click", () => {
       referralInput.select();
       document.execCommand("copy");
       copyButton.textContent = "Copié ! ✅";
@@ -160,22 +138,25 @@
         disableScroll();
       });
     }
- if (openModalFriend && modalFriend) {
+
+    if (openModalFriend && modalFriend) {
       openModalFriend.addEventListener("click", () => {
         modalFriend.showModal();
-        disableScroll(); // Désactive le scroll lorsque la modal est ouverte
+        disableScroll();
       });
     }
+
     if (closeModalButton && modal) {
       closeModalButton.addEventListener("click", () => {
         modal.close();
         enableScroll();
       });
     }
-       if (closeModalFriend && modalFriend) {
+
+    if (closeModalFriend && modalFriend) {
       closeModalFriend.addEventListener("click", () => {
         modalFriend.close();
-        enableScroll(); // Réactive le scroll lorsque la modal est fermée
+        enableScroll();
       });
     }
 
@@ -185,10 +166,11 @@
         enableScroll();
       }
     });
-     modalFriend?.addEventListener("click", (event) => {
+
+    modalFriend?.addEventListener("click", (event) => {
       if (event.target === modalFriend) {
         modalFriend.close();
-        enableScroll(); // Réactive le scroll si on ferme la modal en cliquant en dehors
+        enableScroll();
       }
     });
   });
