@@ -20,6 +20,8 @@ Rails.application.routes.draw do
     unlocks: "users/unlocks"
   }
 
+  mount MissionControl::Jobs::Engine, at: "/jobs"
+
   get "challenges" => "pages#challenges"
   get "shop" => "pages#shop"
   get "divisions" => "pages#divisions"
