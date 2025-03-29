@@ -31,4 +31,9 @@ class UsersController < ApplicationController
     @ratio = @bets_won.count.to_f / @bets.count.to_f
     @ratio = @ratio.nan? ? 0 : @ratio
   end
+
+  def watch_ads
+    current_user.has_watched_ads
+    redirect_back(fallback_location: root_path)
+  end
 end

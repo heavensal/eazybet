@@ -31,15 +31,19 @@
       class="bg-[var(--bg-card-dark)] p-4 rounded-2xl w-[80%] max-w-[400px] text-white
       fixed left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 border-2 border-[var(--ezb-red)]
       z-[1050] shadow-lg">
-      <iframe
+      <iframe class="w-full h-[200px] rounded-lg"
         src="https://www.youtube.com/embed/48yxrkKt91M"
         frameborder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         allowfullscreen>
       </iframe>
+
+      <div class="flex flex-col items-center justify-center mt-4">
+        <%= link_to "Réclamer mes 250 🪙 !", watch_ads_user_path, data: { turbo_method: :patch, turbo_confirm: "250 🪙 obtenu !" }, class: "bg-[var(--ezb-red)] hover:bg-[var(--ezb-red-hover)] text-white px-4 py-2 rounded transition" %>
+      </div>
     </dialog>
 
-    <button id='showRewardAdButton'
+    <button
       class="fixed bottom-[66px] left-1/2 -translate-x-1/2 z-[999] px-8 py-4
       bg-gradient-to-r from-[var(--ezb-red)] to-[var(--ezb-red-hover)] border-none rounded-full
       text-white font-bold shadow-lg shadow-[rgba(233,69,96,0.3)] cursor-pointer text-sm

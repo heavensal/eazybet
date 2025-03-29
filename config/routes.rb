@@ -49,6 +49,7 @@ Rails.application.routes.draw do
   resource :user, only: [] do
     get :profile, on: :member
     resource :follower, only: [ :update ]
+    patch :watch_ads, on: :member
   end
   resources :friendships, only: [ :index, :create, :update, :destroy ] do
     get :search, on: :collection
