@@ -2,11 +2,11 @@ production:
   update_event_scores:
     class: UpdateEventScoresJob
     queue: default
-    schedule: every day at 1 am
+    schedule: every 30 minutes
   update_event_list:
     class: UpdateEventListJob
     queue: default
-    schedule: every day at 2 am
+    schedule: every 30 minutes
 # development:
   # update_event_scores:
   #   class: UpdateEventScoresJob
