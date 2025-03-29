@@ -4,14 +4,13 @@ class EventsController < ApplicationController
     @competition = Competition.find(params[:competition_id])
     # récupérer les events de la competition et sur lesquels l'utilisateur n'a pas encore parié
     if user_signed_in?
-      @events = @competition.events.where.not(
-                  id: Event.joins(:bets)
-                  .where(bets: { user_id: current_user.id })
-                  .select(:id)
-                )
-
+      @events = @competition.events.where(status: 'pending').where.not(
+              id: Event.joins(:bets)
+              .where(bets: { user_id: current_user.id })
+              .select(:id)
+            )
     else
-      @events = @competition.events
+      @events = @competition.events.where(status: 'pending')
     end
   end
 
