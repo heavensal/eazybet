@@ -8,7 +8,7 @@ class UpdateEventScoresJob < ApplicationJob
     competitions = Competition.all
     competitions.each do |competition|
       response = Faraday.get("https://api.the-odds-api.com/v4/sports/#{competition.key}/scores") do |req|
-        req.params["apiKey"] = "45db0d1f3d9d8a565881719f73a6b386"
+        req.params["apiKey"] = "e8a6d343cffeead6c8ebca1c59738f03"
         req.params["daysFrom"] = 1
         req.params["dateFormat"] = "iso"
         req.headers["Accept"] = "application/json"

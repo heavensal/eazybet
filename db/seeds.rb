@@ -14,7 +14,7 @@ require 'json'
 
 # Create competitions
 # response = Faraday.get("https://api.the-odds-api.com/v4/sports") do |req|
-#   req.params['apiKey'] = '45db0d1f3d9d8a565881719f73a6b386'
+#   req.params['apiKey'] = 'e8a6d343cffeead6c8ebca1c59738f03'
 #   req.params['all'] = 'true'
 #   req.headers['Accept'] = 'application/json'
 # end
@@ -62,7 +62,7 @@ require 'json'
 
 # Create Events
 # params = {
-#   apiKey: "45db0d1f3d9d8a565881719f73a6b386",
+#   apiKey: "e8a6d343cffeead6c8ebca1c59738f03",
 #   regions: "eu",
 #   markets: "h2h",
 #   dateFormat: "iso",
@@ -104,7 +104,7 @@ Odd.destroy_all
 puts Odd.all.length
 puts "Odds destroyed"
 params = {
-  apiKey: "45db0d1f3d9d8a565881719f73a6b386",
+  apiKey: "e8a6d343cffeead6c8ebca1c59738f03",
   regions: "eu",
   markets: "h2h",
   dateFormat: "iso",

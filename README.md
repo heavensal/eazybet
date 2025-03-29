@@ -6,7 +6,7 @@ avoir plusieurs bookmakers pour prévoir les erreurs si les autres ont pas les c
 
 Compétitions
 * soccer_uefa_champs_league
-* api_key 45db0d1f3d9d8a565881719f73a6b386
+* api_key e8a6d343cffeead6c8ebca1c59738f03
 * id real - atletico 92053acbb79f42814087737044390f6f
 
 Things you may want to cover:
