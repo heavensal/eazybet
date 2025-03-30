@@ -25,9 +25,9 @@ end
     @odds = @event.odds
   end
 
-  def played
-    @events = Event.joins(:bets).where(bets: { user_id: current_user.id })
-  end
+def played
+  @events = Event.joins(:bets).where(bets: { user_id: current_user.id, status: 'pending' })
+end
 
   def finished
     @events = Event.where(status: "finished")
