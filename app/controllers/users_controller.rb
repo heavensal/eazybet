@@ -24,13 +24,17 @@ class UsersController < ApplicationController
 
   # pour la view du profil de l'utilisateur connecté
   def profile
-    @user = current_user
-    @wallet = @user.wallet
-    @bets = @user.bets
-    @bets_won = @bets.where(status: "won")
-    @ratio = @bets_won.count.to_f / @bets.count.to_f
-    @ratio = @ratio.nan? ? 0 : @ratio
-  end
+  @user = current_user
+  @wallet = @user.wallet
+
+  @bets = @user.bets
+  @bets_won = @bets.where(status: 'won')
+  @bets_lost = @bets.where(status: 'lost')
+
+  total_played = @bets_won.size + @bets_lost.size
+
+  @ratio = total_played.positive? ? ((@bets_won.size.to_f / total_played) * 100).round(2) : 0
+end
 
   def watch_ads
     current_user.has_watched_ads
