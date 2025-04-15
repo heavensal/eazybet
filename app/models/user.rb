@@ -19,10 +19,12 @@ class User < ApplicationRecord
 
   def self.new_with_session(params, session)
     super.tap do |user|
-      if data = session["devise.google_data"] && session["devise.google_data"]["info"]
-        user.email = data["email"] if user.email.blank?
-        user.first_name = data["first_name"] if user.first_name.blank?
-        user.last_name = data["last_name"] if user.last_name.blank?
+      if data = session["devise.google_data"]
+        user.email = data["info"]["email"]
+        user.first_name = data["info"]["first_name"]
+        user.last_name = data["info"]["last_name"]
+        user.provider ||= data["provider"]
+        user.uid ||= data["uid"]
       end
     end
   end
