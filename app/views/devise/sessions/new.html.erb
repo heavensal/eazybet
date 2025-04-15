@@ -22,8 +22,10 @@
     <%= f.submit "Se connecter" %>
   </div>
 <% end %>
-<%= form_with url: user_google_oauth2_omniauth_authorize_path, method: :post, local: true, data: { turbo: false } do %>
-  <%= submit_tag "Sign in with Google", class: "bg-[var(--ezb-red)] rounded-lg px-2.5 py-2 max-w-fit cursor-pointer" %>
+
+<%= button_to user_google_oauth2_omniauth_authorize_path, method: :post, data: { turbo: false }, class: "flex gap-2 px-4 py-2 bg-white text-black border border-gray-300 rounded-lg shadow hover:shadow-md transition duration-200 cursor-pointer" do %>
+  <%= image_tag 'icons/google.svg', class: 'w-5 h-5', alt: 'Google' %>
+  <span>Se Connecter avec Google</span>
 <% end %>
 
 

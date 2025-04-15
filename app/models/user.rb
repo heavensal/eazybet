@@ -3,32 +3,28 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :confirmable,
-          :omniauthable, omniauth_providers: [:google_oauth2]
+          :omniauthable, omniauth_providers: [ :google_oauth2 ]
 
   ##### Omniauth ###############################################################
   def self.from_omniauth(auth)
-    user = User.find_by(provider: auth.provider, uid: auth.uid)
+    find_or_initialize_by(provider: auth.provider, uid: auth.uid) do |user|
+      user.email = auth.info.email
+      user.password = Devise.friendly_token[0, 20]
+      user.first_name = auth.info.name   # assuming the user model has a name
+      # If you are using confirmable and the provider(s) you use validate emails,
+      # uncomment the line below to skip the confirmation emails.
+      user
+    end
+  end
 
-    if user.nil? && auth.info.email.present?
-      user = User.find_by(email: auth.info.email)
-      if user
-        user.update(provider: auth.provider, uid: auth.uid)
+  def self.new_with_session(params, session)
+    super.tap do |user|
+      if data = session["devise.google_data"] && session["devise.google_data"]["info"]
+        user.email = data["email"] if user.email.blank?
+        user.first_name = data["first_name"] if user.first_name.blank?
+        user.last_name = data["last_name"] if user.last_name.blank?
       end
     end
-
-    if user.nil?
-      user = User.new(
-        email: auth.info.email,
-        password: Devise.friendly_token[0, 20],
-        first_name: auth.info.name || auth.info.name&.split&.first,
-        last_name: "",
-        avatar: auth.info.picture,
-        provider: auth.provider,
-        uid: auth.uid
-      )
-    end
-
-    user
   end
 
   def incomplete_profile?
