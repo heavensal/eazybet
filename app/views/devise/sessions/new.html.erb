@@ -22,5 +22,10 @@
     <%= f.submit "Se connecter" %>
   </div>
 <% end %>
+<%= form_with url: user_google_oauth2_omniauth_authorize_path, method: :post, local: true, data: { turbo: false } do %>
+  <%= submit_tag "Sign in with Google", class: "bg-[var(--ezb-red)] rounded-lg px-2.5 py-2 max-w-fit cursor-pointer" %>
+<% end %>
+
+
 
 <%= render "devise/shared/links" %>

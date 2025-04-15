@@ -5,7 +5,10 @@ class BetsController < ApplicationController
   def create
     @bet = current_user.bets.build(bet_params)
     if @bet.save
-      redirect_to played_events_path, notice: "Votre pari a bien été enregistré"
+      respond_to do |format|
+        format.turbo_stream
+        format.html { redirect_to played_events_path, notice: "Votre pari a bien été enregistré" }
+      end
     else
       redirect_back(fallback_location: root_path, alert: "Erreur lors de l'enregistrement du pari")
     end

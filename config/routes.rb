@@ -17,7 +17,8 @@ Rails.application.routes.draw do
     passwords: "users/passwords",
     registrations: "users/registrations",
     sessions: "users/sessions",
-    unlocks: "users/unlocks"
+    unlocks: "users/unlocks",
+    omniauth_callbacks: "users/omniauth_callbacks"
   }
 
   mount MissionControl::Jobs::Engine, at: "/jobs"
@@ -70,5 +71,6 @@ Rails.application.routes.draw do
     resources :scores
     resources :users
     resources :bets
+    resources :friendships
   end
 end

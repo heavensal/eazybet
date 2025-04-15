@@ -67,4 +67,17 @@ class Event < ApplicationRecord
   def self.cancelled
     where(status: "cancelled")
   end
+
+  # il faut récupérer tous les prochains events jusqu'a 72h après le prochain event, quelque chose comme +72h au prochain event.commence_time
+  def self.upcoming
+    first_event = where("commence_time > ?", Time.now).order(:commence_time).first
+    return none unless first_event
+    where(commence_time: first_event.commence_time..(first_event.commence_time + 72.hours))
+  end
+
+
+  # il faut récupérer tous les events passés jusqu'a 72h avant le prochain event, quelque chose comme -72h au prochain event.commence_time
+  def self.past
+    where("commence_time < ?", Time.now).where("commence_time > ?", Time.now - 72.hours)
+  end
 end

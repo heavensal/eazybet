@@ -9,6 +9,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #   super
   # end
 
+  def complete_omniauth_user
+
+  end
   # POST /resource
   # def create
   #   super do |resource|

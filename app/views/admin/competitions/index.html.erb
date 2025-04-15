@@ -1,0 +1,42 @@
+<h1 class="text-2xl font-bold mb-4">Les compétitions</h1>
+
+<p class="mb-4">
+  <%= link_to 'Créer une compétition', new_admin_competition_path, class: 'btn btn-primary bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded' %>
+</p>
+
+<div class="overflow-x-auto">
+  <table class="min-w-full bg-white border border-gray-200 rounded-lg shadow-md">
+    <thead>
+      <tr class="bg-gray-100 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider">
+        <th class="px-6 py-3 border-b">Clé</th>
+        <th class="px-6 py-3 border-b">Groupe</th>
+        <th class="px-6 py-3 border-b">Titre</th>
+        <th class="px-6 py-3 border-b">Description</th>
+        <th class="px-6 py-3 border-b">Active</th>
+        <th class="px-6 py-3 border-b">Has Outrights</th>
+        <th class="px-6 py-3 border-b">Créé à</th>
+        <th class="px-6 py-3 border-b">Mis à jour à</th>
+        <th class="px-6 py-3 border-b">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @competitions.each do |competition| %>
+        <tr class="border-b hover:bg-gray-50">
+          <td class="px-6 py-4"><%= competition.key %></td>
+          <td class="px-6 py-4"><%= competition.group %></td>
+          <td class="px-6 py-4"><%= competition.title %></td>
+          <td class="px-6 py-4"><%= competition.description %></td>
+          <td class="px-6 py-4"><%= competition.active ? 'Oui' : 'Non' %></td>
+          <td class="px-6 py-4"><%= competition.has_outrights ? 'Oui' : 'Non' %></td>
+          <td class="px-6 py-4"><%= competition.created_at.strftime('%d/%m/%Y %H:%M') %></td>
+          <td class="px-6 py-4"><%= competition.updated_at.strftime('%d/%m/%Y %H:%M') %></td>
+          <td class="px-6 py-4">
+            <%= link_to 'Voir', admin_competition_path(competition), class: 'text-blue-500 hover:underline' %> |
+            <%= link_to 'Modifier', edit_admin_competition_path(competition), class: 'text-yellow-500 hover:underline' %> |
+            <%= link_to 'Supprimer', admin_competition_path(competition), method: :delete, data: { confirm: 'Êtes-vous sûr ?' }, class: 'text-red-500 hover:underline' %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

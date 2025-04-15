@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_03_29_154828) do
+ActiveRecord::Schema[8.0].define(version: 2025_04_14_175422) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -101,6 +101,17 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_29_154828) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "teams", force: :cascade do |t|
+    t.string "full_name", null: false
+    t.string "odd_api_id", null: false
+    t.string "short_name"
+    t.string "english_name"
+    t.string "french_name"
+    t.string "spanish_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -121,6 +132,9 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_29_154828) do
     t.string "referral_token"
     t.string "ref_from_url"
     t.integer "daily_ads_count", default: 20, null: false
+    t.string "avatar"
+    t.string "provider"
+    t.string "uid"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["referrer_id"], name: "index_users_on_referrer_id"

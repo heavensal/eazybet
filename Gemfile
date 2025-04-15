@@ -79,6 +79,13 @@ end
 
 # users management
 gem "devise", "~> 4.9.4"
+gem "omniauth"
+gem 'omniauth-google-oauth2'
+gem 'omniauth-rails_csrf_protection'
 
 # request fetch api
 gem "faraday"
+
+# gestion des avatars et des images
+gem "cloudinary"
+gem "carrierwave"

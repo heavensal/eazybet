@@ -2,7 +2,42 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable, :confirmable
+         :recoverable, :rememberable, :validatable, :confirmable,
+          :omniauthable, omniauth_providers: [:google_oauth2]
+
+  ##### Omniauth ###############################################################
+  def self.from_omniauth(auth)
+    user = User.find_by(provider: auth.provider, uid: auth.uid)
+
+    if user.nil? && auth.info.email.present?
+      user = User.find_by(email: auth.info.email)
+      if user
+        user.update(provider: auth.provider, uid: auth.uid)
+      end
+    end
+
+    if user.nil?
+      user = User.new(
+        email: auth.info.email,
+        password: Devise.friendly_token[0, 20],
+        first_name: auth.info.name || auth.info.name&.split&.first,
+        last_name: "",
+        avatar: auth.info.picture,
+        provider: auth.provider,
+        uid: auth.uid
+      )
+    end
+
+    user
+  end
+
+  def incomplete_profile?
+    first_name.blank? || last_name.blank? || phone_number.blank? || ref_from_url.blank?
+  end
+
+
+  ##### AVATAR #################################################################
+  mount_uploader :avatar, AvatarUploader
 
   ##### Follower ###############################################################
   has_one :follower, dependent: :destroy

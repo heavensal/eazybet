@@ -5,7 +5,13 @@
   <section class="p-4 flex justify-between items-center mb-8">
     <div class='flex gap-2 items-center'>
       <div id="avatar" class="w-20 h-20 text-[1.8rem] rounded-full bg-[var(--ezb-red)] flex justify-center items-center hover:scale-110 transform transition duration-300 font-bold">
-        <%= @user.first_name[0] %>
+        <% if @user.avatar? %>
+          <%= cl_image_tag @user.avatar.url, class: "rounded-full w-full h-full", alt: "Avatar de #{@user.first_name}" %>
+
+        <% else %>
+          <%= @user.first_name[0] %>
+
+        <% end %>
       </div>
       <h2 class="leading-[1.2] text-2xl">
         <%= @user.first_name %>
