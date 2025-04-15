@@ -1,4 +1,4 @@
-class Admin::OddController < Admin::ApplicationController
+class Admin::OddsController < Admin::ApplicationController
   before_action :set_odd, only: %i[show edit update destroy]
 
   # GET /admin/odd
