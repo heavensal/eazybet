@@ -1,4 +1,4 @@
-class Manager::AdsController < ApplicationController
+class Manager::AdsController < Manager::ApplicationController
   before_action :set_ad, only: [ :show, :edit, :update, :destroy ]
 
   # GET /manager/ads
