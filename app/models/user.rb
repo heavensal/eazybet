@@ -5,6 +5,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable, :confirmable,
           :omniauthable, omniauth_providers: [ :google_oauth2 ]
 
+  validates :role, presence: true, inclusion: { in: %w[user admin manager] }
+
   ##### Omniauth ###############################################################
   def self.from_omniauth(auth)
     find_or_initialize_by(provider: auth.provider, uid: auth.uid) do |user|
@@ -143,6 +145,7 @@ class User < ApplicationRecord
   # WALLET
   ############################################################
   has_one :wallet, dependent: :destroy
+  accepts_nested_attributes_for :wallet
 
   after_create :create_wallet
   after_create :force_confirm
@@ -162,6 +165,14 @@ class User < ApplicationRecord
   ############################################################
   def admin?
     role == "admin"
+  end
+
+  def user?
+    role == "user"
+  end
+
+  def manager?
+    role == "manager"
   end
 
   ############################################################

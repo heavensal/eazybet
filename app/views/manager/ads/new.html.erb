@@ -1,0 +1,66 @@
+<main class="container mx-auto">
+  <h1 class="font-bold text-4xl text-center">
+    Ajouter une nouvelle publicité
+  </h1>
+
+  <section id="form-ad" class="px-4 mt-4">
+    <%= form_with(model: [:manager, @ad], local: true) do |form| %>
+
+      <div class="mb-4">
+
+        <%= form.label :title, "Titre", class: "block text-gray-300 text-sm font-bold mb-2" %>
+        <%= form.text_field :title, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-300 leading-tight focus:outline-none focus:shadow-outline" %>
+
+        <% if form.object.errors[:title].any? %>
+          <% form.object.errors[:title].each do |msg| %>
+            <p class="text-sm text-red-500"><%= msg %></p>
+          <% end %>
+        <% end %>
+
+      </div>
+
+      <div class="mb-4">
+
+        <%= form.label :description, "Description", class: "block text-gray-300 text-sm font-bold mb-2" %>
+        <%= form.text_area :description, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-300 leading-tight focus:outline-none focus:shadow-outline" %>
+
+        <% if form.object.errors[:description].any? %>
+          <% form.object.errors[:description].each do |msg| %>
+            <p class="text-sm text-red-500"><%= msg %></p>
+          <% end %>
+        <% end %>
+
+      </div>
+
+      <div class="mb-4">
+
+        <%= form.label :video, "Vidéo", class: "block text-gray-300 text-sm font-bold mb-2" %>
+        <%= form.file_field :video, class: "block w-full text-sm text-gray-300 border border-gray-300 rounded-lg cursor-pointer bg-gray-700 focus:outline-none file:bg-gray-800 file:border-0 file:text-gray-300 file:font-semibold file:py-2 file:px-4 hover:file:bg-blue-600 hover:file:text-white transition duration-300 ease-in-out" %>
+
+        <% if form.object.errors[:video].any? %>
+          <% form.object.errors[:video].each do |msg| %>
+            <p class="text-sm text-red-500"><%= msg %></p>
+          <% end %>
+        <% end %>
+
+      </div>
+
+      <div class="mb-4">
+
+        <%= form.check_box :active, class: "h-5 w-5 text-blue-600 focus:ring-blue-500 border-gray-300 rounded", value: "1" %>
+        <%= form.label :active, "Mettre en ligne", class: "text-gray-300 text-sm font-bold mb-2" %>
+
+        <% if form.object.errors[:active].any? %>
+          <% form.object.errors[:active].each do |msg| %>
+            <p class="text-sm text-red-500"><%= msg %></p>
+          <% end %>
+        <% end %>
+      </div>
+
+      <div class="mb-4 text-center">
+        <%= form.submit "Créer la publicité", class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline cursor-pointer transition duration-300 ease-in-out visited:bg-red-300", data: { turbo_submits_with: "En cours d'envoi..." } %>
+      </div>
+    <% end %>
+  </section>
+
+</main>

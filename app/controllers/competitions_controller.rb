@@ -7,6 +7,7 @@ class CompetitionsController < ApplicationController
     .group("competitions.id, competitions.title")
     .order(Arel.sql("MIN(events.commence_time) ASC"))
     .select("competitions.id, competitions.title")
+    @ad = Ad.active.order("RANDOM()").first
   end
 
   def show

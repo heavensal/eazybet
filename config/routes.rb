@@ -52,11 +52,10 @@ Rails.application.routes.draw do
     resource :follower, only: [ :update ]
     patch :watch_ads, on: :member
   end
+
   resources :friendships, only: [ :index, :create, :update, :destroy ] do
     get :search, on: :collection
   end
-
-
 
   resources :users, only: [ :show ] do
     get :ranking, on: :collection
@@ -72,5 +71,9 @@ Rails.application.routes.draw do
     resources :users
     resources :bets
     resources :friendships
+  end
+
+  namespace :manager do
+    resources :ads
   end
 end

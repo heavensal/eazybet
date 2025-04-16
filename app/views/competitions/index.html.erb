@@ -28,19 +28,28 @@
 <% if user_signed_in? && current_user.able_to_watch_ads? %>
   <div data-controller="dialog" data-action="click->dialog#backdropClose">
     <dialog data-dialog-target="dialog"
-      class="bg-[var(--bg-card-dark)] p-4 rounded-2xl w-[80%] max-w-[400px] text-white
+      class="bg-[var(--bg-card-dark)] p-4 rounded-2xl w-9/10 h-9/10 max-w-[400px] text-white
       fixed left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 border-2 border-[var(--ezb-red)]
-      z-[1050] shadow-lg">
-      <iframe class="w-full h-[200px] rounded-lg"
-        src="https://www.youtube.com/embed/48yxrkKt91M"
-        frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowfullscreen>
-      </iframe>
+      z-[1050] shadow-lg" >
+      <div id="video_ad" class="h-full" data-controller="ads--reward">
+        <%= video_tag @ad.video.url,
+                        class: "h-9/10 rounded-lg shadow-lg mx-auto",
+                        muted: false,
+                        playsinline: true,
+                        preload: "auto",
+                        data: { "ads--reward-target": "video" } %>
 
-      <div class="flex flex-col items-center justify-center mt-4">
-        <%= link_to "Réclamer mes 250 🪙 !", watch_ads_user_path, data: { turbo_method: :patch, turbo_confirm: "250 🪙 obtenu !" }, class: "bg-[var(--ezb-red)] hover:bg-[var(--ezb-red-hover)] text-white px-4 py-2 rounded transition" %>
+        <div class="flex items-center justify-center mt-2 gap-4">
+          <button data-action="ads--reward#togglePlay" class="bg-[var(--ezb-red)] text-white px-4 py-2 rounded transition">
+            ▶️ Play / ⏸️ Pause
+          </button>
+        </div>
+
+        <div class="flex-col items-center justify-center mt-4 hidden" data-ads--reward-target="claim">
+          <%= link_to "Réclamer mes 250 🪙 !", watch_ads_user_path, data: { turbo_method: :patch, turbo_confirm: "250 🪙 obtenu !" }, class: "bg-[var(--ezb-red)] hover:bg-[var(--ezb-red-hover)] text-white px-4 py-2 rounded transition" %>
+        </div>
       </div>
+
     </dialog>
 
     <button
@@ -56,24 +65,3 @@
   </div>
 
 <% end %>
-
-
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const modal = document.querySelector("dialog[data-dialog-target='dialog']");
-    const openButton = document.getElementById("showRewardAdButton");
-
-    if (modal && openButton) {
-      openButton.addEventListener("click", () => {
-        modal.showModal(); // Ouvre la modal de manière correcte
-      });
-
-      // Pour fermer en cliquant en dehors de la modal
-      modal.addEventListener("click", (event) => {
-        if (event.target === modal) {
-          modal.close();
-        }
-      });
-    }
-  });
-</script>

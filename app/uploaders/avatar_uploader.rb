@@ -8,19 +8,19 @@ class AvatarUploader < CarrierWave::Uploader::Base
 
   # Formats autorisés
   def extension_allowlist
-    %w(jpg jpeg gif png)
+    %w[jpg jpeg gif png]
   end
 
   # Optionnel : Créer différentes versions de l'image
   version :thumb do
-    process resize_to_fit: [50, 50]
+    process resize_to_fit: [ 50, 50 ]
   end
 
   version :medium do
-    process resize_to_fit: [200, 200]
+    process resize_to_fit: [ 200, 200 ]
   end
 
   # Optionnel : Définir des paramètres de transformation Cloudinary
-  process :convert => 'png'
-  process :tags => ['avatar']
+  process convert: "png"
+  process tags: [ "avatar" ]
 end
