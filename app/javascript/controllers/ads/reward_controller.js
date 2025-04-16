@@ -3,7 +3,7 @@ import { Controller } from "@hotwired/stimulus"
 // Connects to data-controller="ads--reward"
 export default class extends Controller {
 
-  static targets = ["video", "claim"]
+  static targets = ["video", "claim", "play"]
 
   connect() {
     this.videoTarget.controls = false
@@ -20,6 +20,7 @@ export default class extends Controller {
 
     this.videoTarget.addEventListener("ended", () => {
       this.isCompleted = true
+      this.playTarget.classList.add("hidden")
       this.claimTarget.classList.remove("hidden")
       this.claimTarget.classList.add("flex")
     })
