@@ -2,11 +2,11 @@ production:
   update_event_scores:
     class: UpdateEventScoresJob
     queue: default
-    schedule: every 30 minutes
+    schedule: every day at 2 am
   update_event_list:
     class: UpdateEventListJob
     queue: default
-    schedule: every 30 minutes
+    schedule: every day at 2 am
   reset_daily_ads:
     class: ResetDailyAdsJob
     queue: default
