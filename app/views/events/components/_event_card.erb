@@ -1,0 +1,54 @@
+<li id="event_<%= event.id %>" class="flex-none w-[calc(100%-1rem)] snap-start max-w-[500px] bg-[#0f3460] rounded-lg shadow-[0_0_5px_rgba(0,0,0,0.3)] mb-4 overflow-hidden transition-all duration-300 ease-[cubic-bezier(0.4,_0,_0.2,_1)] hover:translate-y-[-4px] hover:shadow-[0_10px_20px_rgba(0,0,0,0.2)] relative">
+
+  <div class="p-2.5 flex justify-between rounded-t-lg items-center font-bold absolute top-0 left-0 right-0">
+    <p><%= competition.title %></p>
+
+    <p class="text-white">
+      <%= l(commence_time) %>
+    </p>
+  </div>
+
+  <div class="grid grid-cols-2 gap-0 ">
+    <% if Team.find_by(full_name: event.home_team).picture.present? %>
+        <%= cl_image_tag(Team.find_by(full_name: event.home_team).picture.full_public_id,
+          transformation: [
+            {quality: "auto:best"},
+            {fetch_format: "webp"},
+            {aspect_ratio: "2:3", width: 500, crop: "crop"}
+          ], class: "object-cover w-full h-full") %>
+
+    <% else %>
+      <p>
+        <span class="text-gray-500">Aucune image disponible</span>
+      </p>
+    <% end %>
+
+    <% if Team.find_by(full_name: event.away_team).picture.present? %>
+      <%= cl_image_tag(Team.find_by(full_name: event.away_team).picture.full_public_id,
+        transformation: [
+          {quality: "auto:best"},
+          {fetch_format: "webp"},
+          {aspect_ratio: "2:3", width: 500, crop: "crop"}
+        ], class: "object-cover w-full h-full") %>
+
+    <% else %>
+      <p>
+        <span class="text-gray-500">Aucune image disponible</span>
+      </p>
+    <% end %>
+
+  </div>
+
+  <div class="relative flex justify-center">
+    <%= turbo_frame_tag "event_odds_#{event.id}", src: odds_event_path(event), class: "h-32 p-4 flex justify-between items-stretch absolute z-10 -translate-y-1/2 shadow-lg w-9/10 mx-auto rounded-lg bg-[#16213D]" do %>
+      <p>
+        Chargement des cotes...
+      </p>
+    <% end %>
+  </div>
+
+    <%= link_to event_path(event), class: "h-32 w-full p-4 flex block items-end", data: { turbo: false } do %>
+      💬<%= comments.size %>
+    <% end %>
+
+</li>

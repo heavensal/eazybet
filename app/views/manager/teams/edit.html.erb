@@ -1,0 +1,105 @@
+<main class="container mx-auto">
+  <h1 class="font-bold text-4xl text-center">
+    Modifier l'équipe <%= @team.french_name %>
+  </h1>
+
+  <section id="form-team" class="px-4 mt-4">
+    <%= form_with(model: [:manager, @team], local: true) do |form| %>
+
+      <div class="mb-4">
+
+        <%= form.label :full_name, "full_name", class: "block text-gray-300 text-sm font-bold mb-2" %>
+        <%= form.text_field :full_name, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-300 leading-tight focus:outline-none focus:shadow-outline" %>
+
+        <% if form.object.errors[:full_name].any? %>
+          <% form.object.errors[:full_name].each do |msg| %>
+            <p class="text-sm text-red-500"><%= msg %></p>
+          <% end %>
+        <% end %>
+
+      </div>
+
+      <div class="mb-4">
+
+        <%= form.label :odd_api_id, "odd_api_id", class: "block text-gray-300 text-sm font-bold mb-2" %>
+        <%= form.text_field :odd_api_id, class: "bg-gray-700 shadow appearance-none border rounded w-full py-2 px-3 text-gray-300 leading-tight focus:outline-none focus:shadow-outline", readonly: true %>
+
+        <% if form.object.errors[:odd_api_id].any? %>
+          <% form.object.errors[:odd_api_id].each do |msg| %>
+            <p class="text-sm text-red-500"><%= msg %></p>
+          <% end %>
+        <% end %>
+
+      </div>
+
+      <div class="mb-4">
+
+        <%= form.label :picture, "picture", class: "block text-gray-300 text-sm font-bold mb-2" %>
+        <%= form.file_field :picture, class: "block w-full text-sm text-gray-300 border border-gray-300 rounded-lg cursor-pointer bg-gray-700 focus:outline-none file:bg-gray-800 file:border-0 file:text-gray-300 file:font-semibold file:py-2 file:px-4 hover:file:bg-blue-600 hover:file:text-white transition duration-300 ease-in-out" %>
+
+        <% if form.object.errors[:picture].any? %>
+          <% form.object.errors[:picture].each do |msg| %>
+            <p class="text-sm text-red-500"><%= msg %></p>
+          <% end %>
+        <% end %>
+
+      </div>
+
+      <div class="mb-4">
+
+        <%= form.label :short_name, "short_name", class: "block text-gray-300 text-sm font-bold mb-2" %>
+        <%= form.text_field :short_name, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-300 leading-tight focus:outline-none focus:shadow-outline" %>
+
+        <% if form.object.errors[:short_name].any? %>
+          <% form.object.errors[:short_name].each do |msg| %>
+            <p class="text-sm text-red-500"><%= msg %></p>
+          <% end %>
+        <% end %>
+      </div>
+
+      <div class="mb-4">
+
+        <%= form.label :english_name, "english_name", class: "block text-gray-300 text-sm font-bold mb-2" %>
+        <%= form.text_field :english_name, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-300 leading-tight focus:outline-none focus:shadow-outline" %>
+
+        <% if form.object.errors[:english_name].any? %>
+          <% form.object.errors[:english_name].each do |msg| %>
+            <p class="text-sm text-red-500"><%= msg %></p>
+          <% end %>
+        <% end %>
+
+      </div>
+
+            <div class="mb-4">
+
+        <%= form.label :french_name, "french_name", class: "block text-gray-300 text-sm font-bold mb-2" %>
+        <%= form.text_field :french_name, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-300 leading-tight focus:outline-none focus:shadow-outline" %>
+
+        <% if form.object.errors[:french_name].any? %>
+          <% form.object.errors[:french_name].each do |msg| %>
+            <p class="text-sm text-red-500"><%= msg %></p>
+          <% end %>
+        <% end %>
+
+      </div>
+
+            <div class="mb-4">
+
+        <%= form.label :spanish_name, "spanish_name", class: "block text-gray-300 text-sm font-bold mb-2" %>
+        <%= form.text_field :spanish_name, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-300 leading-tight focus:outline-none focus:shadow-outline" %>
+
+        <% if form.object.errors[:spanish_name].any? %>
+          <% form.object.errors[:spanish_name].each do |msg| %>
+            <p class="text-sm text-red-500"><%= msg %></p>
+          <% end %>
+        <% end %>
+
+      </div>
+
+      <div class="mb-4 text-center">
+        <%= form.submit "Modifier l'équipe", class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline cursor-pointer transition duration-300 ease-in-out visited:bg-red-300", data: { turbo_submits_with: "En cours de modification..." } %>
+      </div>
+
+    <% end %>
+  </section>
+</main>

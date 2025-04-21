@@ -1,0 +1,2 @@
+module Manager::TeamsHelper
+end

@@ -1,0 +1,50 @@
+<main class="container mx-auto px-4 py-6">
+  <h1 class="font-bold text-4xl text-center mb-8">
+    <%= @team.full_name %>
+  </h1>
+
+  <section id="show-team" class="grid grid-cols-1 md:grid-cols-2 gap-8">
+    <div class="flex items-center justify-center">
+      <% if @team.picture.present? %>
+        <%= cl_image_tag(@team.picture.full_public_id,
+          transformation: [
+            {quality: "auto:best"},
+            {fetch_format: "webp"},
+            {aspect_ratio: "2:3", width: 500, crop: "crop"}
+          ]) %>
+
+      <% else %>
+        <p>
+          <span class="text-gray-500">Aucune image disponible</span>
+        </p>
+      <% end %>
+    </div>
+
+    <div class="space-y-4">
+      <div class="p-4 bg-blue-950 rounded-lg">
+        <strong class="block mb-1">Nom d'API:</strong>
+        <p class="text-lg"><%= @team.odd_api_id %></p>
+      </div>
+
+      <div class="p-4 bg-blue-950 rounded-lg">
+        <strong class="block mb-1">Nom à afficher:</strong>
+        <p class="text-lg"><%= @team.short_name %></p>
+      </div>
+
+      <div class="p-4 bg-blue-950 rounded-lg">
+        <strong class="block mb-1">Nom en anglais:</strong>
+        <p class="text-lg"><%= @team.english_name %></p>
+      </div>
+
+      <div class="p-4 bg-blue-950 rounded-lg">
+        <strong class="block mb-1">Nom en français:</strong>
+        <p class="text-lg"><%= @team.french_name %></p>
+      </div>
+
+      <div class="p-4 bg-blue-950 rounded-lg">
+        <strong class="block mb-1">Nom en espagnol:</strong>
+        <p class="text-lg"><%= @team.spanish_name %></p>
+      </div>
+    </div>
+  </section>
+</main>

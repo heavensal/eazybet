@@ -3,8 +3,9 @@
   <%= image_tag 'icons/back.svg', alt: "Retour", class: "w-6 h-6 mb-4" %>
 <% end %>
 
+
 <div class="flex justify-center">
-  <%= render "competitions/components/card",
+  <%= render "events/components/event_card",
     competition: @event.competition,
     event: @event,
     id: @event.id,

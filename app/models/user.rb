@@ -71,7 +71,7 @@ class User < ApplicationRecord
     self.save!
   end
   ##### Parrainage #############################################################
-  has_many :referrals, class_name: "User", foreign_key: "referrer_id"
+  has_many :referrals, class_name: "User", foreign_key: "referrer_id", dependent: :nullify
   belongs_to :referrer, class_name: "User", optional: true
 
   validates :referral_token, uniqueness: true

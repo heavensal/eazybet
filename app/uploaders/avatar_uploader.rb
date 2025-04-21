@@ -1,9 +1,8 @@
 class AvatarUploader < CarrierWave::Uploader::Base
   include Cloudinary::CarrierWave
 
-  # Définir le dossier de stockage sur Cloudinary
-  def store_dir
-    "eazybetcoinapp/avatars"
+  def public_id
+    "eazybetcoinapp/avatars/#{model.first_name.parameterize}"
   end
 
   # Formats autorisés

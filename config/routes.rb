@@ -75,5 +75,6 @@ Rails.application.routes.draw do
 
   namespace :manager do
     resources :ads
+    resources :teams
   end
 end

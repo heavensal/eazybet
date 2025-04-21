@@ -5,9 +5,6 @@
     <%= render "competitions/components/odds", odd: @event.draw_odd, bet: user_signed_in? ? @event.bets.find_by(user_id: current_user.id) : nil %>
     <%= render "competitions/components/odds", odd: @event.away_team_odd, bet: user_signed_in? ? @event.bets.find_by(user_id: current_user.id) : nil  %>
 
-    <% render "events/components/odds/info_one_odd", odd: @event.home_team_odd, bet: user_signed_in? ? @event.bets.find_by(user_id: current_user.id) : nil %>
-    <% render "events/components/odds/info_one_odd", odd: @event.draw_odd, bet: user_signed_in? ? @event.bets.find_by(user_id: current_user.id) : nil %>
-    <% render "events/components/odds/info_one_odd", odd: @event.away_team_odd, bet: user_signed_in? ? @event.bets.find_by(user_id: current_user.id) : nil  %>
   <% else %>
     <li class="col-span-3 flex justify-center items-center text-white">
       <p>Les cotes ne sont pas encore disponibles</p>

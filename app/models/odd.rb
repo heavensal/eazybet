@@ -1,5 +1,5 @@
 class Odd < ApplicationRecord
-  belongs_to :event
+  belongs_to :event, touch: true
   has_many :bets, dependent: :destroy
 
   validates :name, presence: true
