@@ -1,0 +1,39 @@
+<div data-controller="dialog" data-action="click->dialog#backdropClose">
+  <dialog data-dialog-target="dialog"
+          class="bg-[var(--bg-card-dark)] p-4 rounded-2xl w-9/10 h-9/10 max-w-[400px] text-white
+                  fixed left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 border-2 border-[var(--ezb-red)]
+                  z-[1050] shadow-lg">
+    <div id="video_ad" class="h-full" data-controller="ads--reward">
+      <%= video_tag ad.video.url,
+                    class: "h-9/10 rounded-lg shadow-lg mx-auto",
+                    muted: false,
+                    playsinline: true,
+                    preload: "auto",
+                    data: { "ads--reward-target": "video",
+                            "action": "click->ads--reward#togglePlay" } %>
+
+      <button data-action="ads--reward#togglePlay"
+              data-ads--reward-target="play"
+              data-ads--reward-target="playButton"
+              class="absolute inset-0 flex items-center justify-center bg-opacity-30 text-white text-6xl rounded-lg transition-opacity">
+        ▶️
+      </button>
+
+      <div class="flex-col items-center justify-center mt-4 hidden" data-ads--reward-target="claim">
+        <%= link_to "Réclamer mes 250 🪙 !", watch_ads_user_path, data: { turbo_method: :patch, turbo_confirm: "250 🪙 obtenu !" }, class: "bg-[var(--ezb-red)] hover:bg-[var(--ezb-red-hover)] text-white px-4 py-2 rounded transition" %>
+      </div>
+    </div>
+  </dialog>
+
+  <button class="fixed bottom-[66px] left-1/2 -translate-x-1/2 z-[999] px-8 py-4
+                  bg-gradient-to-r from-[var(--ezb-red)] to-[var(--ezb-red-hover)] border-none rounded-full
+                  text-white font-bold shadow-lg shadow-[rgba(233,69,96,0.3)] cursor-pointer text-sm
+                  transition-all duration-300 ease-in-out whitespace-nowrap max-w-[90%] w-fit text-center
+                  animate-bounce animate-infinite animate-duration-3000 animate-ease-in-out"
+          type="button"
+          data-action="dialog#open">
+    🎥 Regarder une vidéo (+250 🪙) • <%= user.daily_ads_count %>
+  </button>
+</div>
+
+<%# render "components/button_watch_ads", ad: @ad, user: current_user %>

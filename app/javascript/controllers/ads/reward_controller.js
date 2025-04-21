@@ -29,7 +29,9 @@ export default class extends Controller {
   togglePlay() {
     if (this.videoTarget.paused) {
       this.videoTarget.play()
+      this.playTarget.classList.add("hidden")
     } else {
+      this.playTarget.classList.remove("hidden")
       this.videoTarget.pause()
     }
   }

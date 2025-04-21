@@ -3,8 +3,13 @@ class ApplicationController < ActionController::Base
   # allow_browser versions: :modern
 
   before_action :authenticate_user!
+  before_action :define_ad
 
   before_action :configure_permitted_parameters, if: :devise_controller?
+
+  def define_ad
+    @ad = Ad.active.order("RANDOM()").first
+  end
 
   protected
 

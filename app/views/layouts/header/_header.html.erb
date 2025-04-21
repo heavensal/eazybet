@@ -54,17 +54,7 @@
     </li>
 
     <li class='flex gap-2' data-controller="dialog" data-action="click->dialog#backdropClose">
-      <dialog data-dialog-target="dialog" class="bg-[var(--bg-card-dark)] p-4 rounded-2xl w-[80%] max-w-[400px] text-white absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 border-2 border-[var(--ezb-red)]">
-        <iframe
-          src="https://www.youtube.com/embed/48yxrkKt91M"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen>
-        </iframe>
-      </dialog>
-      <button class="px-2 py-4 transition-colors duration-300 rounded-full hover:bg-[var(--blue-hover)]" data-action="dialog#open" type="button">
-        + <%= current_user.wallet.coins %> 🪙
-      </button>
+      <%= render "components/button_coins_watch_ads", ad: @ad, user: current_user %>
     </li>
 
   <% else %>
@@ -74,5 +64,6 @@
     <li>
       <%= link_to 'Inscription', new_user_registration_path, class: "text-white" %>
     </li>
+
   <% end %>
 </ul>

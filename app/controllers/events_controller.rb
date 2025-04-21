@@ -21,12 +21,13 @@ class EventsController < ApplicationController
     @odds = @event.odds
   end
 
-def played
-  @events = Event.joins(:bets).where(bets: { user_id: current_user.id, status: "pending" })
-end
+  def played
+    @events = Event.joins(:bets).where(bets: { user_id: current_user.id, status: "pending" })
+  end
 
   def finished
     @events = Event.where(status: "finished")
+    @bets = current_user.bets.finished.order(updated_at: :desc)
   end
 
   def show
