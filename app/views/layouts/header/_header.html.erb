@@ -52,10 +52,11 @@
         </button>
       </div>
     </li>
-
+<% if @ad.not_nil? %>
     <li class='flex gap-2' data-controller="dialog" data-action="click->dialog#backdropClose">
       <%= render "components/button_coins_watch_ads", ad: @ad, user: current_user %>
     </li>
+<% end %>
 
   <% else %>
     <li>
