@@ -6,11 +6,11 @@
   <section id="show-team" class="grid grid-cols-1 md:grid-cols-2 gap-8">
     <div class="flex items-center justify-center">
       <% if @team.picture.present? %>
+
         <%= cl_image_tag(@team.picture.full_public_id,
-          transformation: [
-            {quality: "auto:best"},
-            {fetch_format: "webp"},
-            {aspect_ratio: "2:3", width: 500, crop: "crop"}
+          format: "webp", transformation: [
+            {aspect_ratio: "1:1", crop: "fill"},
+            {quality: "auto:best"}
           ]) %>
 
       <% else %>

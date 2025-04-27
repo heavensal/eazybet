@@ -4,7 +4,7 @@
   <ul class="flex overflow-x-auto scroll-snap-x scroll-snap-mandatory py-4 px-2 -mx-2 scroll-smooth touch-auto scrollbar-none gap-4 list-none" data-turbo-permanent>
     <% @events.each do |event| %>
 
-      <%= render "competitions/components/card",
+      <%= render "events/components/event_card",
         competition: event.competition.title,
         event: event, id:event.id,
         home_team: event.home_team,
