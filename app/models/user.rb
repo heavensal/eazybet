@@ -7,6 +7,9 @@ class User < ApplicationRecord
 
   validates :role, presence: true, inclusion: { in: %w[user admin manager] }
 
+  validates :first_name, presence: true
+  validates :username, presence: true, uniqueness: true
+
   ##### Omniauth ###############################################################
   def self.from_omniauth(auth)
     find_or_initialize_by(provider: auth.provider, uid: auth.uid) do |user|

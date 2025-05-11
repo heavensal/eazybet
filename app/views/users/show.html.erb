@@ -6,15 +6,15 @@
     <div class='flex gap-2 items-center'>
       <div id="avatar" class="w-20 h-20 text-[1.8rem] rounded-full bg-[var(--ezb-red)] flex justify-center items-center hover:scale-110 transform transition duration-300 font-bold">
         <% if @user.avatar? %>
-          <%= cl_image_tag @user.avatar.url, class: "rounded-full w-full h-full", alt: "Avatar de #{@user.first_name}" %>
+          <%= cl_image_tag @user.avatar.url, class: "rounded-full w-full h-full", alt: "Avatar de #{@user.username}" %>
 
         <% else %>
-          <%= @user.first_name[0] %>
+          <%= @user.username[0] %>
 
         <% end %>
       </div>
       <h2 class="leading-[1.2] text-2xl">
-        <%= @user.first_name %>
+        <%= @user.username %>
       </h2>
     </div>
   </section>

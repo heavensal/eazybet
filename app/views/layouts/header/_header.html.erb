@@ -9,7 +9,7 @@
         <% end %>
 
       <% else %>
-        <%= link_to current_user.first_name[0], profile_user_path, class: "transform transition duration-300 hover:scale-110 h-10 w-10 bg-[var(--ezb-red)] rounded-full items-center justify-center flex font-bold" %>
+        <%= link_to current_user.username[0], profile_user_path, class: "transform transition duration-300 hover:scale-110 h-10 w-10 bg-[var(--ezb-red)] rounded-full items-center justify-center flex font-bold" %>
 
       <% end %>
 

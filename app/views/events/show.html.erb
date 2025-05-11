@@ -26,7 +26,7 @@
       <%= turbo_frame_tag comment, class: "space-y-2" do %>
         <div class="rounded-lg shadow-md <%= current_user == comment.user ? 'bg-[var(--bg-card)] text-white' : 'bg-white text-black' %> p-4">
           <h6 class="text-sm <%= current_user == comment.user ? 'text-white' : 'text-gray-500' %>">
-            <%= comment.user.first_name %> - il y a <%= time_ago_in_words(comment.created_at) %>
+            <%= comment.user.username %> - il y a <%= time_ago_in_words(comment.created_at) %>
           </h6>
           <p class="text-base"><%= comment.content %></p>
           <div class="flex gap-2 justify-end">

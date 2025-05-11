@@ -7,7 +7,7 @@ class FriendshipsController < ApplicationController
     @sent_friendships = current_user.sent_friendships
     @friendships = current_user.friends
     if params[:query].present?
-      @users = User.where("first_name ILIKE ? OR email ILIKE ? OR last_name ILIKE ?", "%#{params[:query]}%", "%#{params[:query]}%", "%#{params[:query]}%")
+      @users = User.where("username ILIKE ? OR email ILIKE ? OR last_name ILIKE ?", "%#{params[:query]}%", "%#{params[:query]}%", "%#{params[:query]}%")
       .where.not(id: current_user.id)
     else
       @users = []

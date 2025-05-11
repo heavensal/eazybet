@@ -71,7 +71,7 @@ group :development do
   gem "hotwire-spark"
 
   # Translation
-  gem "i18n-tasks"
+  # gem "i18n-tasks"
 end
 
 group :test do

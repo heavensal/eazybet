@@ -44,6 +44,6 @@ class Admin::UsersController < Admin::ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:email, :first_name, :last_name, :phone_number, :role, :daily_ads_count, :avatar, :password, :password_confirmation, :ref_from_url, :referrer_id, :referral_token, wallet_attributes: [ :coins, :diamonds ])
+    params.require(:user).permit(:email, :first_name, :last_name, :username, :phone_number, :role, :daily_ads_count, :avatar, :password, :password_confirmation, :ref_from_url, :referrer_id, :referral_token, wallet_attributes: [ :coins, :diamonds ])
   end
 end
