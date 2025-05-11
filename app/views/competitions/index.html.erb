@@ -26,54 +26,5 @@
 <% end %>
 
 <% if user_signed_in? && current_user.able_to_watch_ads? %>
-  <div data-controller="dialog" data-action="click->dialog#backdropClose">
-    <dialog data-dialog-target="dialog"
-      class="bg-[var(--bg-card-dark)] p-4 rounded-2xl w-[80%] max-w-[400px] text-white
-      fixed left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 border-2 border-[var(--ezb-red)]
-      z-[1050] shadow-lg">
-      <iframe class="w-full h-[200px] rounded-lg"
-        src="https://www.youtube.com/embed/48yxrkKt91M"
-        frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowfullscreen>
-      </iframe>
-
-      <div class="flex flex-col items-center justify-center mt-4">
-        <%= link_to "Réclamer mes 250 🪙 !", watch_ads_user_path, data: { turbo_method: :patch, turbo_confirm: "250 🪙 obtenu !" }, class: "bg-[var(--ezb-red)] hover:bg-[var(--ezb-red-hover)] text-white px-4 py-2 rounded transition" %>
-      </div>
-    </dialog>
-
-    <button
-      class="fixed bottom-[66px] left-1/2 -translate-x-1/2 z-[999] px-8 py-4
-      bg-gradient-to-r from-[var(--ezb-red)] to-[var(--ezb-red-hover)] border-none rounded-full
-      text-white font-bold shadow-lg shadow-[rgba(233,69,96,0.3)] cursor-pointer text-sm
-      transition-all duration-300 ease-in-out whitespace-nowrap max-w-[90%] w-fit text-center
-      animate-bounce animate-infinite animate-duration-3000 animate-ease-in-out"
-      type="button"
-      data-action="dialog#open">
-      🎥 Regarder une vidéo (+250 🪙) • <%= current_user.daily_ads_count %>
-    </button>
-  </div>
-
+  <%= render "components/button_watch_ads", ad: @ad, user: current_user %>
 <% end %>
-
-
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const modal = document.querySelector("dialog[data-dialog-target='dialog']");
-    const openButton = document.getElementById("showRewardAdButton");
-
-    if (modal && openButton) {
-      openButton.addEventListener("click", () => {
-        modal.showModal(); // Ouvre la modal de manière correcte
-      });
-
-      // Pour fermer en cliquant en dehors de la modal
-      modal.addEventListener("click", (event) => {
-        if (event.target === modal) {
-          modal.close();
-        }
-      });
-    }
-  });
-</script>

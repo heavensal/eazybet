@@ -1,12 +1,21 @@
- <%= render "filters/filters"   %>
+<%= render "filters/filters" %>
 <ul class='flex flex-col justify-center items-center md:grid-cols-3'>
-<% @events.each do |event| %>
-
+  <% @events.each do |event| %>
 
     <%# on affiche les matchs joués, pour afficher du front rapidement pour tester, j'ai utilisé le meme partial que pour les matchs à venir %>
     <%# Mais il faut un component différent, car il y a le modal de paris dans celui la, ce qui est pas bon pour les matchs joués %>
-    <%= render "events/components/card_played", event: event, id:event.id, home_team: event.home_team, away_team: event.away_team, home_team_odd: event.home_team_odd, away_team_odd: event.away_team_odd,
-    draw_odd:event.draw_odd,commence_time: event.commence_time, odds:event.odds, comments:event.comments, bet: event.bets.find_by(user_id: current_user.id)  %>
+    <%= render "events/components/card_played",
+      event: event,
+      id:event.id,
+      home_team: event.home_team,
+      away_team: event.away_team,
+      home_team_odd: event.home_team_odd,
+      away_team_odd: event.away_team_odd,
+      draw_odd: event.draw_odd,
+      commence_time: event.commence_time,
+      odds: event.odds,
+      comments: event.comments,
+      bet: event.bets.find_by(user_id: current_user.id) %>
 
-<% end %>
+  <% end %>
 </ul>

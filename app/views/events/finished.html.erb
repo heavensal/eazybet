@@ -1,3 +1,60 @@
- <%= render "filters/filters"   %>
+<%= render "filters/filters"   %>
 
- <p class='text-center py-8 text-[rgb(113,128,150)]'>Les résultats de vos paris seront affichés ici lorsque le jeu sera pleinement fonctionnel.</p>
+<ul id="events" class="flex flex-col snap-y snap-mandatory overflow-y-auto h-screen">
+  <% @bets.each do |bet| %>
+    <li class="snap-start w-full h-screen bg-[#0f3460] rounded-lg shadow-[0_0_5px_rgba(0,0,0,0.3)] mb-4 transition-all duration-300 ease-[cubic-bezier(0.4,_0,_0.2,_1)] border border-[rgba(255,_255,_255,_0.1)]">
+
+      <div class="px-3 flex justify-between bg-gray-900 rounded-t-lg items-center">
+        <p class="py-2">
+          <%= bet.status == "won" ? "Gagné !" : "Perdu !" %>
+        </p>
+        <p class="text-white">
+          <%= l(bet.event.commence_time) %>
+        </p>
+      </div>
+      <div class="flex flex-col p-2">
+          <p>
+            <%= bet.event.home_team %> <%= bet.event.home_team_score.result %>
+            <span class="text-[var(--premium-yellow)]">-</span>
+            <%= bet.event.away_team_score.result %> <%= bet.event.away_team %>
+          </p>
+        <% if bet.status == "lost" %>
+          <p>
+            Mise:
+            <%= bet.stake %> 🪙
+            sur
+            <%= bet.odd.name %>
+          </p>
+
+          <p>
+            Gains <br>0 🪙 <br>0 💎
+          </p>
+
+        <% elsif bet.money_type == "coins" %>
+          <p>
+            Mise:
+            <%= bet.stake %> 🪙
+            sur
+            <%= bet.odd.name %>
+          </p>
+
+          <p>
+            Gains <br><%= bet.coins_to_win %> 🪙 <br><%= bet.diamonds_to_win %> 💎
+          </p>
+
+        <% else %>
+          <p>
+            Mise:
+            <%= bet.stake %> 💎
+            sur
+            <%= bet.odd.name %>
+          </p>
+          <p>
+            Gains potentiels: <%= bet.diamonds_to_win %> 💎
+          </p>
+
+        <% end %>
+      </div>
+    </li>
+  <% end %>
+</ul>

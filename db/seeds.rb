@@ -100,43 +100,73 @@ require 'json'
 # end
 
 # Create Odds
-Odd.destroy_all
-puts Odd.all.length
-puts "Odds destroyed"
-params = {
-  apiKey: "e8a6d343cffeead6c8ebca1c59738f03",
-  regions: "eu",
-  markets: "h2h",
-  dateFormat: "iso",
-  oddsFormat: "decimal",
-  bookmakers: "winamax_fr",
-  includeLinks: "false",
-  includeSids: "false",
-  includeBetLimits: "false"
-}
+# Odd.destroy_all
+# puts Odd.all.length
+# puts "Odds destroyed"
+# params = {
+#   apiKey: "e8a6d343cffeead6c8ebca1c59738f03",
+#   regions: "eu",
+#   markets: "h2h",
+#   dateFormat: "iso",
+#   oddsFormat: "decimal",
+#   bookmakers: "winamax_fr",
+#   includeLinks: "false",
+#   includeSids: "false",
+#   includeBetLimits: "false"
+# }
 
-events = Event.all
+# events = Event.all
 
-events.each do |event|
-  # Requête GET avec Faraday
-  response = Faraday.get("https://api.the-odds-api.com/v4/sports/#{event.competition.key}/events/#{event.id}/odds") do |req|
-  req.params = params
-  req.headers['Accept'] = 'application/json'
+# events.each do |event|
+#   # Requête GET avec Faraday
+#   response = Faraday.get("https://api.the-odds-api.com/v4/sports/#{event.competition.key}/events/#{event.id}/odds") do |req|
+#   req.params = params
+#   req.headers['Accept'] = 'application/json'
+#   end
+
+#   if response.success?
+#     data = JSON.parse(response.body)
+#     puts data
+#     unless data['bookmakers'].empty?
+#       data = data['bookmakers'][0]['markets'][0]['outcomes']
+#       data.each do |odd|
+#         puts odd
+#         new_odd = Odd.find_or_create_by!(name: odd['name'],
+#         price: odd['price'],
+#         status: "pending",
+#         event_id: event.id)
+#         puts "#{new_odd.name} with #{new_odd.price} CREATED !!!"
+#       end
+#     end
+#   else
+#     puts "Erreur : #{response.status} - #{response.reason_phrase}"
+#   end
+# end
+
+# exemple of data
+# [
+#   {
+#     "full_name": "1. FC Heidenheim",
+#     "id": "par_01j6rt51r3ea0ss6a91dkxs0gs"
+#   },
+#   {
+#     "full_name": "AC Milan",
+#     "id": "par_01hqmkqyxpfjwv4p801y8wsfwc"
+#   }
+# ]
+# Create Teams
+Competition.all.each do |competition|
+  response = Faraday.get("https://api.the-odds-api.com/v4/sports/#{competition.key}/participants") do |req|
+    req.params['apiKey'] = 'e8a6d343cffeead6c8ebca1c59738f03'
+    req.headers['Accept'] = 'application/json'
   end
-
   if response.success?
     data = JSON.parse(response.body)
     puts data
-    unless data['bookmakers'].empty?
-      data = data['bookmakers'][0]['markets'][0]['outcomes']
-      data.each do |odd|
-        puts odd
-        new_odd = Odd.find_or_create_by!(name: odd['name'],
-        price: odd['price'],
-        status: "pending",
-        event_id: event.id)
-        puts "#{new_odd.name} with #{new_odd.price} CREATED !!!"
-      end
+    data.each do |team|
+      puts team
+      new_team = Team.find_or_create_by!(full_name: team['full_name'], odd_api_id: team['id'])
+      puts "Team #{new_team.full_name} created"
     end
   else
     puts "Erreur : #{response.status} - #{response.reason_phrase}"

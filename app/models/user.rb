@@ -2,7 +2,45 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable, :confirmable
+         :recoverable, :rememberable, :validatable, :confirmable,
+          :omniauthable, omniauth_providers: [ :google_oauth2 ]
+
+  validates :role, presence: true, inclusion: { in: %w[user admin manager] }
+
+  validates :first_name, presence: true
+  validates :username, presence: true, uniqueness: true
+
+  ##### Omniauth ###############################################################
+  def self.from_omniauth(auth)
+    find_or_initialize_by(provider: auth.provider, uid: auth.uid) do |user|
+      user.email = auth.info.email
+      user.password = Devise.friendly_token[0, 20]
+      user.first_name = auth.info.name   # assuming the user model has a name
+      # If you are using confirmable and the provider(s) you use validate emails,
+      # uncomment the line below to skip the confirmation emails.
+      user
+    end
+  end
+
+  def self.new_with_session(params, session)
+    super.tap do |user|
+      if data = session["devise.google_data"]
+        user.email = data["info"]["email"]
+        user.first_name = data["info"]["first_name"]
+        user.last_name = data["info"]["last_name"]
+        user.provider ||= data["provider"]
+        user.uid ||= data["uid"]
+      end
+    end
+  end
+
+  def incomplete_profile?
+    first_name.blank? || last_name.blank? || phone_number.blank? || ref_from_url.blank?
+  end
+
+
+  ##### AVATAR #################################################################
+  mount_uploader :avatar, AvatarUploader
 
   ##### Follower ###############################################################
   has_one :follower, dependent: :destroy
@@ -36,7 +74,7 @@ class User < ApplicationRecord
     self.save!
   end
   ##### Parrainage #############################################################
-  has_many :referrals, class_name: "User", foreign_key: "referrer_id"
+  has_many :referrals, class_name: "User", foreign_key: "referrer_id", dependent: :nullify
   belongs_to :referrer, class_name: "User", optional: true
 
   validates :referral_token, uniqueness: true
@@ -110,6 +148,7 @@ class User < ApplicationRecord
   # WALLET
   ############################################################
   has_one :wallet, dependent: :destroy
+  accepts_nested_attributes_for :wallet
 
   after_create :create_wallet
   after_create :force_confirm
@@ -129,6 +168,14 @@ class User < ApplicationRecord
   ############################################################
   def admin?
     role == "admin"
+  end
+
+  def user?
+    role == "user"
+  end
+
+  def manager?
+    role == "manager"
   end
 
   ############################################################

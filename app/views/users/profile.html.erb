@@ -4,10 +4,16 @@
   <section class="p-4 flex justify-between items-center mb-8">
     <div class='flex gap-2 items-center'>
       <div id="avatar" class="w-20 h-20 text-[1.8rem] rounded-full bg-[var(--ezb-red)] flex justify-center items-center hover:scale-110 transform transition duration-300 font-bold">
-        <%= @user.first_name[0] %>
+        <% if @user.avatar? %>
+          <%= cl_image_tag @user.avatar.url, class: "rounded-full w-full h-full", alt: "Avatar de #{@user.username}" %>
+
+        <% else %>
+          <%= @user.username[0] %>
+
+        <% end %>
       </div>
       <h2 class="leading-[1.2] text-2xl">
-        <%= @user.first_name %>
+        <%= @user.username %>
       </h2>
     </div>
     <%= image_tag 'icons/settings.svg', alt: "Paramètres", class: "w-6 h-6 cursor-pointer", id: "openModal", data: { action: "dialog#open", turbo: "false" } %>

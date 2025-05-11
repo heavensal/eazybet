@@ -1,0 +1,45 @@
+<main class="container mx-auto">
+  <h1 class="font-bold text-4xl">
+    Bienvenue <%= current_user.first_name %> dans l'interface de gestion des utilisateurs
+  </h1>
+
+  <div class="flex justify-between items-center mt-4">
+    <h2 class="text-2xl font-semibold">Liste des utilisateurs</h2>
+    <%# link_to 'Ajouter un nouvel utilisateur', new_admin_user_path, class: 'bg-blue-400 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded hover:shadow-lg transition duration-300 ease-in-out' %>
+  </div>
+
+  <section class="px-4 mt-4">
+
+      <div class="overflow-x-auto">
+        <table class="min-w-full border border-gray-800">
+
+          <thead class="bg-gray-900 border border-gray-800">
+            <tr>
+              <th class="py-2 px-4 ">ID</th>
+              <th class="py-2 px-4 ">Full name</th>
+              <th class="py-2 px-4 ">email</th>
+              <th class="py-2 px-4 ">Role</th>
+              <th class="py-2 px-4 ">Actions</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @users.each do |user| %>
+              <tr class="border border-gray-800 hover:bg-gray-800">
+                <td class="py-2 px-4 "><%= user.id %></td>
+                <td class="py-2 px-4 "><%= user.first_name %> <%= user.last_name %></td>
+                <td class="py-2 px-4 "><%= user.email %></td>
+                <td class="py-2 px-4 "><%= user.role %></td>
+                <td class="py-2 px-4 ">
+                  <%= link_to 'Voir', admin_user_path(user), class: 'btn btn-blue-400 hover:bg-blue-500 text-white font-bold py-1 px-3 rounded hover:shadow-lg transition duration-300 ease-in-out' %>
+                  <%= link_to 'Modifier', edit_admin_user_path(user), class: 'btn btn-yellow-400 hover:bg-yellow-500 text-white font-bold py-1 px-3 rounded hover:shadow-lg transition duration-300 ease-in-out' %>
+                  <%= link_to 'Supprimer', admin_user_path(user), data: { turbo_method: :delete, turbo_confirm: 'Êtes-vous sûr de vouloir supprimer cette publicité ?' }, class: 'btn btn-red-400 hover:bg-red-500 text-white font-bold py-1 px-3 rounded hover:shadow-lg transition duration-300 ease-in-out' %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+
+  </section>
+</main>

@@ -1,0 +1,23 @@
+<main class="container mx-auto">
+  <h1 class="font-bold text-4xl text-center">
+    Publicité - <%= @ad.title %>
+  </h1>
+
+  <section id="show-ad" class="px-4 mt-4">
+    <div class="grid grid-cols-2 gap-4">
+      <div>
+        <%= video_tag @ad.video.url, class: "w-full h-auto rounded-lg shadow-lg", controls: true %>
+      </div>
+
+      <div>
+        <h2 class="text-2xl font-semibold">Détails de la publicité</h2>
+        <p class="mt-2 text-gray-300"><strong>Titre:</strong> <%= @ad.title %></p>
+        <p class="mt-2 text-gray-300"><strong>Description:</strong> <%= @ad.description %></p>
+        <p class="mt-2 text-gray-300"><strong>Statut:</strong> <%= @ad.active? ? "En ligne" : "Hors ligne" %></p>
+        <p class="mt-2 text-gray-300"><strong>Créé le:</strong> <%= @ad.created_at.strftime("%d/%m/%Y") %></p>
+        <p class="mt-2 text-gray-300"><strong>Mis à jour le:</strong> <%= @ad.updated_at.strftime("%d/%m/%Y") %></p>
+        <p class="mt-2 text-gray-300"><strong>Nombre de vues:</strong> <%= @ad.views_count %></p>
+      </div>
+    </div>
+  </section>
+</main>

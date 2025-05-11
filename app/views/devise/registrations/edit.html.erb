@@ -15,6 +15,11 @@
   <%= render "devise/shared/error_messages", resource: resource %>
 
   <div class="flex flex-col gap-4">
+    <%= f.label :avatar, "Avatar" %>
+    <%= f.file_field :avatar, class: "bg-[var(--bg-card)] p-2 border border-white rounded-lg w-full", accept: 'image/png,image/jpeg,image/jpg' %>
+  </div>
+
+  <div class="flex flex-col gap-4">
     <%= f.label :first_name, "Prénom" %>
     <%= f.text_field :first_name, autocomplete: "firstname", class: "bg-[var(--bg-card)] p-2 border border-white rounded-lg w-full", placeholder: 'Entrez votre prénom'  %>
   </div>
@@ -22,6 +27,11 @@
   <div class="flex flex-col gap-4">
     <%= f.label :last_name, "Nom" %>
     <%= f.text_field :last_name, autocomplete: "lastname", class: "bg-[var(--bg-card)] p-2 border border-white rounded-lg w-full", placeholder: 'Entrez votre nom'  %>
+  </div>
+
+  <div class="flex flex-col gap-4">
+    <%= f.label :username, "Pseudo" %>
+    <%= f.text_field :username, autocomplete: "username", class: "bg-[var(--bg-card)] p-2 border border-white rounded-lg w-full", placeholder: 'Entrez votre pseudo'  %>
   </div>
 
   <div class="flex flex-col gap-4">

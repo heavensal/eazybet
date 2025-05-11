@@ -1,0 +1,19 @@
+# User FR translation
+fr:
+  activerecord:
+    errors:
+      models:
+        user:
+          messages:
+            not_saved: "L'utilisateur n'a pas pu être enregistré"
+          attributes:
+            email:
+              blank: "veuillez entrer une adresse email"
+              invalid: "l'email n'est pas valide"
+              taken: "l'email est déjà utilisé"
+            password:
+              blank: "ne peut pas être vide"
+              too_short: "doit contenir au moins %{count} caractères"
+            password_confirmation:
+              blank: "ne peut pas être vide"
+              confirmation: "doit correspondre au mot de passe"

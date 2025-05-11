@@ -23,4 +23,11 @@
   </div>
 <% end %>
 
+<%= button_to user_google_oauth2_omniauth_authorize_path, method: :post, data: { turbo: false }, class: "flex gap-2 px-4 py-2 bg-white text-black border border-gray-300 rounded-lg shadow hover:shadow-md transition duration-200 cursor-pointer" do %>
+  <%= image_tag 'icons/google.svg', class: 'w-5 h-5', alt: 'Google' %>
+  <span>Se Connecter avec Google</span>
+<% end %>
+
+
+
 <%= render "devise/shared/links" %>

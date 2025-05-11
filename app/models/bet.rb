@@ -10,6 +10,11 @@ class Bet < ApplicationRecord
   validates :diamonds_to_win, presence: true, numericality: { greater_or_equal_than: 0 }
   validates :status, presence: true, inclusion: { in: %w[pending won lost] }
 
+  scope :pending, -> { where(status: "pending") }
+  scope :won, -> { where(status: "won") }
+  scope :lost, -> { where(status: "lost") }
+  scope :finished, -> { where(status: "lost").or(where(status: "won")) }
+
   # Permet de faire un pari valide
   before_validation :set_price_and_expected_wins, on: :create
 
